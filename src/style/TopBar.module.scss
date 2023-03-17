@@ -1,0 +1,27 @@
+.TopBar{
+    background-color:#8BD1AE;
+    display: flex;
+    height: 40px;
+    color: white;
+}
+
+.TopBarLeftItem{
+    flex: 1 1;
+    display: flex;
+    align-items: center;
+    img{
+        width: 25px;
+        height: 25px;
+    }
+}
+
+.TopBarItem{
+    flex: 1 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        width: 25px;
+        height: 25px;
+    }
+}

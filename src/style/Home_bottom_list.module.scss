@@ -1,0 +1,37 @@
+.HomeButtomList {
+    height: 80px;
+    margin: 0px;
+}
+
+.HomeButtomListUl {
+    margin-top: 15px;
+    display: -webkit-inline-box;
+    width: 90%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+}
+
+.HomeButtomListLi {
+    width: 23%;
+    list-style: none;
+}
+
+.HomeButtomListUl::-webkit-scrollbar {
+    display: none;
+}
+
+.BottomNavigationTrue {
+    color: #8BD1AE;
+    font-size: 28px;
+}
+
+.BottomNavigationFalse {
+    color: gray;
+    font-size: 25px;
+    text-decoration: none;
+}

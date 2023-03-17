@@ -1,0 +1,43 @@
+
+.textDiv{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+.textArea{
+    height: 200px;
+    border-radius: 20px;
+    background-color: rgb(245, 245, 245);
+    padding: 20px;
+    padding-bottom: 50px;
+    width: 100%;
+}
+.textCount{
+    position: absolute;
+    bottom: 40px;
+    right: 30px;
+    font-size: 24px;
+    color: gray;
+}
+
+.inputDiv{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+}
+.inputDom{
+    height: 50px;
+    border-radius: 20px;
+    background-color: rgb(245, 245, 245);
+    padding: 20px;
+    width: 100%;
+}
+.inputCount{
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+    font-size: 24px;
+    color: gray;
+}

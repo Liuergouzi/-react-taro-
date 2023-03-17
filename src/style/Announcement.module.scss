@@ -1,0 +1,35 @@
+
+
+.Carousel{
+    margin: 0px;
+}
+
+.announcement{
+    display: flex;
+    margin-left: 40px;
+    font-size: 22px;
+    align-items: center;
+    text-align: center;
+}
+.announcementText{
+    width: 80px;
+    color: yellowgreen;
+}
+
+.announcementImg{
+    width: 45px;
+    height: 45px;
+}
+
+.announcementNoticebar{
+    background-color: white;
+    margin-right: 40rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.announcementNull{
+    flex: 1;
+}
