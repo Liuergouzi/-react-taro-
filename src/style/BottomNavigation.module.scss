@@ -1,0 +1,46 @@
+.BottomNavigation{
+    background-color: rgb(250, 250, 250);
+    list-style: none;
+    display: flex;
+    bottom: 0;
+    left: 0;
+    height: 3rem;
+    width: 100%;
+    border-top-width: 1px;
+    border-top-color: #e2e2e2;
+    border-top-style: solid;
+    position: fixed;
+}
+
+.BottomNavigationLink{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.BottomNavigationImg{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+.BottomNavigationTrue{
+    color:#8BD1AE;
+    font-size: 0.9rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.BottomNavigationFalse{
+    color: gray;
+    font-size: 0.5rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
