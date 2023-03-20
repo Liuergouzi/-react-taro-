@@ -18,17 +18,8 @@ import images from '../resources';
 // import Classify from '../view/Classify';
 // import ArticleLoadMore from '../component/ArticleLoadMore';
 // import Login from '../view/Login';
-<<<<<<< HEAD
 //import ArticleDetail from '../component/ArticleDetail';
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-//import ArticleDetail from '../component/ArticleDetail';
-=======
->>>>>>> 77d71f61220f48bfebdce9bc9f8881806eba1d0e
-=======
->>>>>>> 77d71f61220f48bfebdce9bc9f8881806eba1d0e
->>>>>>> c9d95df691930cc6cc983ad4835cefd851fc86dc
+// import Chat from '../view/Chat';
 
 const Error = React.lazy(() => import("../view/Error"));
 const Home = React.lazy(() => import("../view/Home"));
@@ -39,17 +30,9 @@ const Article = React.lazy(() => import("../component/Article"));
 const Classify = React.lazy(() => import('../view/Classify'));
 const ArticleLoadMore = React.lazy(() => import("../component/ArticleLoadMore"))
 const Login = React.lazy(() => import("../view/Login"))
-<<<<<<< HEAD
 const ArticleDetail = React.lazy(() => import("../component/ArticleDetail"))
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-const ArticleDetail = React.lazy(() => import("../component/ArticleDetail"))
-=======
->>>>>>> 77d71f61220f48bfebdce9bc9f8881806eba1d0e
-=======
->>>>>>> 77d71f61220f48bfebdce9bc9f8881806eba1d0e
->>>>>>> c9d95df691930cc6cc983ad4835cefd851fc86dc
+const Chat =React.lazy(()=>import("../view/Chat"));
+
 /**
  * 轮子哥
  * 最新react-router-dom@6版本路由自定义配置
@@ -121,24 +104,18 @@ const routes = [
     element: <Login />,
   },
   {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> c9d95df691930cc6cc983ad4835cefd851fc86dc
     title: '帖子详情',
     path: '/articleDetail',
     isBottomTabbar: false,
     element: <ArticleDetail />,
   },
   {
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 77d71f61220f48bfebdce9bc9f8881806eba1d0e
-=======
->>>>>>> 77d71f61220f48bfebdce9bc9f8881806eba1d0e
->>>>>>> c9d95df691930cc6cc983ad4835cefd851fc86dc
+    title: '聊天界面',
+    path: '/chat',
+    isBottomTabbar: false,
+    element: <Chat />,
+  },
+  {
     path: "/*",
     isBottomTabbar: false,
     element: <Navigate to="/home" />,
