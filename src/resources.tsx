@@ -4,6 +4,8 @@
  */
 
 import test from '../public/images/test.png'
+import testH1 from '../public/images/testH1.png'
+import testH2 from '../public/images/testH2.png'
 import home_1 from "../public/images/home_1.svg"
 import home_2 from "../public/images/home_2.svg"
 import classify_1 from "../public/images/classify_1.svg"
@@ -30,6 +32,8 @@ import sys_notice from "../public/images/sys_notice.svg"
 import qq from "../public/images/qq.png"
 import wx from "../public/images/wx.png"
 import close from "../public/images/close.png"
+import emote from "../public/images/emote.png"
+import picture from "../public/images/picture.png"
 const images = {
     home_1: home_1,
     home_2: home_2,
@@ -55,9 +59,13 @@ const images = {
     comment: comment,
     sys_notice: sys_notice,
     test : test,
+    testH1:testH1,
+    testH2:testH2,
     qq:qq,
     wx:wx,
-    close:close
+    close:close,
+    emote:emote,
+    picture:picture
 }
 
 export default images

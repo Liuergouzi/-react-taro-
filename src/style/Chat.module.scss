@@ -1,0 +1,141 @@
+.chatTop {
+    height: 75px;
+    border-bottom: 1px solid rgb(230, 230, 230);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    width: 100%;
+}
+
+.headImg {
+    height: 65px;
+    width: 65px;
+    border-radius: 100%;
+}
+
+.headName {
+    font-size: 30px;
+    text-align: center;
+}
+
+.contain {
+    overflow: scroll;
+    -ms-overflow-style: none;
+    height: 100%;
+    overflow: hidden;
+    overflow: -moz-scrollbars-none;
+    padding-top: 85px;
+    padding-bottom: 100px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.chatBottom {
+    height: 85px;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.chatBottomDiv {
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 100%;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 100px;
+}
+
+.inputDiv {
+    width: -webkit-fill-available;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+.bottomInput {
+    padding: 5px;
+    width: 100%;
+    height: 50px;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottomLeft {
+    margin-left: 12px;
+    display: flex;
+}
+
+.bottomRight {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+}
+
+.bottomImg {
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+}
+
+.bottomButton {
+    background-color: #8BD1AE;
+    border-radius: 20px;
+    font-size: 28px;
+    width: 90px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    margin-left: 20px;
+    color: white;
+}
+
+
+.chatOuter {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    max-width: 60%;
+    border-style: solid;
+    border-width: 20px;
+    border-image-slice: 200 200 200 200 fill;
+    border-image-repeat: repeat;
+    word-break: break-word;
+    width: fit-content;
+    font-size: 28px;
+    border-image-source: url('https://img1.baidu.com/it/u=2886904992,4235317177&fm=253&fmt=auto&app=138&f=PNG?w=601&h=500');
+    //https://img2.baidu.com/it/u=3509235520,2279715638&fm=253&fmt=auto&app=138&f=JPEG?w=719&h=500
+    //https://img1.baidu.com/it/u=2886904992,4235317177&fm=253&fmt=auto&app=138&f=PNG?w=601&h=500
+    //https://img2.baidu.com/it/u=3067263493,1297250380&fm=253&fmt=auto&app=138&f=JPEG?w=657&h=500
+    //https://img1.baidu.com/it/u=1566053567,748961353&fm=253&fmt=auto&app=138&f=JPEG?w=501&h=500
+    //https://img1.baidu.com/it/u=324899582,2104491077&fm=253&fmt=auto&app=138&f=JPEG?w=610&h=442
+    //https://img2.baidu.com/it/u=1726467042,2093738865&fm=253&fmt=auto&app=138&f=JPEG?w=501&h=500
+    //https://img2.baidu.com/it/u=2749630833,2908024010&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500
+    //https://img2.baidu.com/it/u=2295970517,1265217531&fm=253&fmt=auto&app=138&f=JPEG?w=1000&h=500
+}
+
+.itemMessage{
+    display: flex;
+    
+}
+
+.time{
+    font-size: 23px;
+    color: gainsboro;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+.chatImg{
+    max-height: 45%;
+    max-width: 60%;
+}

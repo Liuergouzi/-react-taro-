@@ -23,6 +23,7 @@ export const CarouselInfo: any = ({ image = "", title = "", content = "" }) => {
 
   const [isChange,setChange]=useState(false)
 
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setChange(!isChange);

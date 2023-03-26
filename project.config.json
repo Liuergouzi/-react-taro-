@@ -37,7 +37,7 @@
         "packNpmRelationList": [],
         "minifyWXSS": false,
         "disableUseStrict": false,
-        "minifyWXML": true,
+        "minifyWXML": false,
         "showES6CompileOption": false,
         "useCompilerPlugins": false
     },
