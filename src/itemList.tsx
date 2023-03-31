@@ -23,9 +23,9 @@ const itemList = {
         { id: 4, name: "快递帮拿", url: images.expressDelivery }
     ],
     Notice_List: [
-        { url: images.sys_notice, title: "系统通知", message: "暂无相关信息", time: "2023/3/5" },
-        { url: images.sell_bg, title: "轮子哥", message: "给你发送了一条消息", time: "2023/3/5" },
-        { url: images.sell_bg, title: "轮子哥", message: "给你发送了一条消息", time: "2023/3/5" }
+        { head: images.sys_notice, name: "系统通知", message: "暂无相关信息", time: "2023/3/5" },
+        { head: images.sell_bg, name: "轮子哥", message: "给你发送了一条消息", time: "2023/3/5" },
+        { head: images.sell_bg, name: "轮子哥", message: "给你发送了一条消息", time: "2023/3/5" }
     ],
     My_head_buttom_list: [
         { id: 1, name: "关注", count: 0 },

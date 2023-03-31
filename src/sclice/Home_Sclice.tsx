@@ -9,29 +9,15 @@ export const Home_Sclice = createSlice({
     name: '首页全局状态传参管理',
     initialState: {
         article:[],
-        // {
-        //     url:"",
-        //     name:"",
-        //     time:"",
-        //     title:"",
-        //     context:"",
-        //     loveCount:"",
-        //     commentCount:""
-        // }
+        pageIndex:0
     },
     reducers: {
         setData: (state: any, action) => {
             state.article.push(action.payload)
         },
-        // add: state => {
-        //     state.value += 1
-        // },
-        // subtract: state => {
-        //     state.value -= 1
-        // },
-        // reset: (state, action) => {
-        //     state.value = action.payload
-        // }
+        setPageIndex:(state: any)=>{
+            state.pageIndex=state.pageIndex+1
+        }
     }
 })
 

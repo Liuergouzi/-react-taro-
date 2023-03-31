@@ -29,7 +29,7 @@ export default function Article() {
                     这是一个标题《造轮子专业户》
                 </div>
                 <div className={style.Article_context_contain}>
-                    我们不是大自然的搬运工，我们采用长白山最秃头的轮子道长亲自开过光的键盘，用富含多种灰尘的老cpu，独具匠心只为造好轮子，你放心我也放心！
+                    我们不是大自然的搬运工,我们采用长白山最秃头的轮子道长亲自开过光的键盘,用富含多种灰尘的老cpu,独具匠心只为造好轮子，你放心我也放心！
                 </div>
             </div>
             <div className={style.Article_bottom}>
@@ -39,7 +39,6 @@ export default function Article() {
                 <div className={style.Article_bottom_text}>32</div>
             </div>
         </div>
-
     )
 }
 

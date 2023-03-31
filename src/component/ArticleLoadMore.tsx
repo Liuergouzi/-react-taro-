@@ -8,6 +8,8 @@ import LoadMore from "./LoadMore";
 
 export default function ArticleLoadMore() {
   return (
-    <LoadMore><Article/></LoadMore>
+    <LoadMore requesUrl={"https://www.baidu.com/"} viewId={'ArticleLoadMore'}>
+      <Article/>
+    </LoadMore>
   )
 }

@@ -44,9 +44,11 @@ export default function Chat({ sendId = "1", receiveId = "2" }) {
         Toast.show("聊天服务连接失败,请联系轮子哥");
     })
 
+
     Taro.onSocketMessage(function (res) {
         setMessageList([...messageList, { sendId: sendId, receiveId: receiveId, messageType: "text", message: res.data, time: time, isOther: true }])
     })
+
 
     const insertMessage = (message, messageType, time) => {
         Taro.request({

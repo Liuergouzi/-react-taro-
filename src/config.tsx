@@ -7,7 +7,8 @@ const baseUrl='http://localhost:9090'
  const reUrl = {
      chatWebSocket: 'ws://localhost:9090/ws/WebSocket/',
      chatInsert:baseUrl+'/ws/insertMessage',
-     chatUploadImg:baseUrl+'/ws/sendImg'
+     chatUploadImg:baseUrl+'/ws/sendImg',
+     getChatList:baseUrl+'/ws/getChatList'
  }
  
  export default reUrl
