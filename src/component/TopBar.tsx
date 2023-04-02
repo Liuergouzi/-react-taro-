@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Component } from 'react'
 import style from '../style/TopBar.module.scss'
-import  images  from '../resources'
+import images from '../resources'
 
 /**
  * 轮子哥
@@ -9,13 +8,12 @@ import  images  from '../resources'
  */
 
 interface propsBind {
-    title?: string
     leftShow: boolean
-    rightShow: boolean
+    children?: any
 }
 
 export default class TopBar extends Component<propsBind, any> {
-
+    
     constructor(props: propsBind) {
         super(props)
     }
@@ -24,17 +22,16 @@ export default class TopBar extends Component<propsBind, any> {
         return (
             <div className={style.TopBar}>
                 {this.props.leftShow ?
-                    <div className={style.TopBarLeftItem}>
-                        <img src={images.back}></img>
+                    <div className={style.TopBarLeftItem} onClick={()=>{window.history.back()}}>
+                        <img className={style.TopBarLeftItemImg} src={images.back}></img>
                         <div>返回</div>
-                    </div>:<div className={style.TopBarLeftItem}></div>
+                    </div> : <div className={style.TopBarLeftItem}></div>
                 }
 
-                <div  className={style.TopBarItem}>{this.props.title}</div>
+                <div className={style.TopBarItem}>{this.props.children}</div>
 
-                { this.props.rightShow ?
-                    <Link to="/login" className={style.TopBarItem}>去登录？</Link>:<div className={style.TopBarItem}></div>
-                }
+                <div className={style.TopBarItem}></div>
+
             </div>
         )
     }

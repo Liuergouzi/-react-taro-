@@ -1,18 +1,22 @@
 .TopBar{
     background-color:#8BD1AE;
     display: flex;
-    height: 40px;
+    height: auto;
     color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .TopBarLeftItem{
     flex: 1 1;
     display: flex;
     align-items: center;
-    img{
-        width: 25px;
-        height: 25px;
-    }
+    padding-left: 10px;
+}
+.TopBarLeftItemImg{
+    width: 40px;
+    height: 30px;
+    padding-left: 10px;
 }
 
 .TopBarItem{
@@ -20,8 +24,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    img{
-        width: 25px;
-        height: 25px;
-    }
 }

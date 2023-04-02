@@ -14,14 +14,8 @@ function getNowTime() {
     //秒 getSeconds()：(0 ~ 59)
     var second = date.getSeconds();
 
-    var time =year + '-' + addZero(month) + '-' + addZero(day) + ' ' + addZero(hour) + ':' + addZero(minute) + ':' + addZero(second);
+    var time =year + '/' + (month) + '/' + (day) + ' ' + (hour) + ':' + (minute) + ':' + (second);
     return time;
-}
-
-
-//小于10的拼接上0字符串
-function addZero(s) {
-    return s < 10 ? ('0' + s) : s;
 }
 
 export default getNowTime()
