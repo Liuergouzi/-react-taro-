@@ -1,6 +1,6 @@
 import style from '../style/Login.module.scss'
 import images from '../resources'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Taro from '@tarojs/taro'
 
@@ -9,22 +9,26 @@ export default function Login() {
     const [isRegister, setIsRegister] = useState(false)
     const [account, setAccount] = useState("")
     const [password, setPassword] = useState("")
-    const [chect, setChect] = useState(Math.ceil(Math.random()*10000))
+    const [chect, setChect] = useState(Math.ceil(Math.random() * 10000))
     const [chectInput, setchectInput] = useState("")
+    const navigate = useNavigate();
 
-    useEffect(()=>setChect(Math.ceil(Math.random()*10000)),[isRegister])
+    useEffect(() => setChect(Math.ceil(Math.random() * 10000)), [isRegister])
 
     const login = () => {
-        isRegister ?
+        if(isRegister){
             Taro.setStorage({
-                key: "account",
+                key: "socketId",
                 data: account
             })
-            :
+            navigate(-1)
+        }else{
             Taro.setStorage({
-                key: "account",
+                key: "socketId",
                 data: account
             })
+            navigate(-1)
+        }
         console.log(Taro.getStorageSync('account') + password)
     }
 
@@ -37,9 +41,7 @@ export default function Login() {
                     <div className={style.loginTopText}>我成为了全村最靓的崽</div>
                 </div>
                 <div className={style.right}>
-                    <Link to={{ pathname: '/my' }}>
-                        <img className={style.rightImg} src={images.close}></img>
-                    </Link>
+                    <img className={style.rightImg} src={images.close}  onClick={()=>{navigate(-1);}}></img>
                 </div>
             </div>
             <div className={style.contain}>
@@ -58,8 +60,8 @@ export default function Login() {
                     <div className={style.inputFlex}>
                         <div className={style.inputTop}>验证码</div>
                         <div className={style.inputChect}>
-                            <input className={style.loginInput} placeholder="请输入验证码" onChange={(e: any) => {setchectInput(e.detail.value)}}></input>
-                            <div className={style.chect} onClick={()=>setChect(Math.ceil(Math.random()*10000))}>{chect}</div>
+                            <input className={style.loginInput} placeholder="请输入验证码" onChange={(e: any) => { setchectInput(e.detail.value) }}></input>
+                            <div className={style.chect} onClick={() => setChect(Math.ceil(Math.random() * 10000))}>{chect}</div>
                         </div>
                         <div className={style.line}></div>
                     </div>

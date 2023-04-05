@@ -13,9 +13,9 @@ export default function Push() {
                 <Push_tags />
                 <Push_textarea />
                 <Push_UploadImg />
-                <Push_Buttom/>
+                <Push_Buttom />
+                <BottomNavigation />
             </Provider>
-            <BottomNavigation />
         </div>
     )
 }

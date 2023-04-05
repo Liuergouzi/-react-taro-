@@ -34,6 +34,9 @@ import wx from "../public/images/wx.png"
 import close from "../public/images/close.png"
 import emote from "../public/images/emote.png"
 import picture from "../public/images/picture.png"
+import friend from "../public/images/friend.png"
+import interaction from "../public/images/interaction.png"
+
 const images = {
     home_1: home_1,
     home_2: home_2,
@@ -65,7 +68,9 @@ const images = {
     wx:wx,
     close:close,
     emote:emote,
-    picture:picture
+    picture:picture,
+    friend:friend,
+    interaction:interaction
 }
 
 export default images

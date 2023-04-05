@@ -36,8 +36,8 @@ export default function HomeLoadMore(props: any) {
 
   let temp = tempRequestData;
   temp.pageIndex = useSelector((state: any) => state.Notice_Sclice_State.pageIndex);
-  console.log("我执行了", temp.pageIndex)
-  console.log("父",props.ListCount)
+  console.log("当前页数：", temp.pageIndex)
+  console.log("当前列表长度",props.ListCount)
 
   const handleClick = () => {
     console.log("开始请求")

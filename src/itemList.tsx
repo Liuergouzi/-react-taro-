@@ -23,9 +23,9 @@ const itemList = {
         { id: 4, name: "快递帮拿", url: images.expressDelivery }
     ],
     Notice_List: [
-        { head: images.sys_notice, name: "系统通知", message: "暂无相关信息", time: "公元前2023/3/5" },
-        { head: images.sell_bg, name: "轮子哥", message: "给你发送了一条消息", time: "2023/3/5" },
-        { head: images.sell_bg, name: "轮子哥", message: "给你发送了一条消息", time: "2023/3/5" }
+        { head: images.sys_notice, name: "系统通知", message: "暂无相关信息", time: "公元前202年",redCount:0 },
+        { head: images.interaction, name: "互动消息", message: "暂无相关信息", time: "公元前318年/3/5",redCount:0 },
+        { head: images.friend, name: "新粉丝", message: "想什么呢，没人会关注你", time: "永乐22年",redCount:0 }
     ],
     My_head_buttom_list: [
         { id: 1, name: "关注", count: 0 },

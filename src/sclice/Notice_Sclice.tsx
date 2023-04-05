@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
+import Taro from '@tarojs/taro'
+import reUrl from '../config'
 import itemList from '../itemList'
 
 /**
@@ -9,19 +11,28 @@ import itemList from '../itemList'
 export const Notice_Sclice = createSlice({
     name: '消息模块全局状态传参管理',
     initialState: {
+        socketState: false,
         chatList: [...itemList.Notice_List],
         pageIndex: 0,
-        chatItemClick:{}
+        chatItemClick: {}
     },
     reducers: {
+        openSocket: (state: any) => {
+            if (!state.socketState && Taro.getStorageSync("socketId")!="") {
+                 Taro.connectSocket({
+                    url: reUrl.chatWebSocket + "1",
+                })
+                state.socketState=true
+            }
+        },
         setChatData: (state: any, action) => {
             state.chatList = [...state.chatList, ...action.payload]
         },
-        setChatDataAll:(state: any, action)=>{
+        setChatDataAll: (state: any, action) => {
             state.chatList = [...action.payload]
         },
-        clearChatData:(state:any)=>{
-            state.chatList=[...itemList.Notice_List]
+        clearChatData: (state: any) => {
+            state.chatList = [...itemList.Notice_List]
         },
         setPageIndex: (state: any) => {
             state.pageIndex = state.pageIndex + 1
@@ -30,11 +41,11 @@ export const Notice_Sclice = createSlice({
             state.pageIndex = 0
         },
         setChatItemClick: (state: any, action) => {
-            state.chatItemClick=action.payload
+            state.chatItemClick = action.payload
         }
     }
 })
 
-export const { setChatData,clearChatData,setChatDataAll, setPageIndex, clearPageIndex,setChatItemClick } = Notice_Sclice.actions
+export const { openSocket, setChatData, clearChatData, setChatDataAll, setPageIndex, clearPageIndex, setChatItemClick } = Notice_Sclice.actions
 
 export default Notice_Sclice.reducer
