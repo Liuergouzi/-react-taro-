@@ -23,9 +23,9 @@ const itemList = {
         { id: 4, name: "快递帮拿", url: images.expressDelivery }
     ],
     Notice_List: [
-        { head: images.sys_notice, name: "系统通知", message: "暂无相关信息", time: "公元前202年",redCount:0 },
-        { head: images.interaction, name: "互动消息", message: "暂无相关信息", time: "公元前318年/3/5",redCount:0 },
-        { head: images.friend, name: "新粉丝", message: "想什么呢，没人会关注你", time: "永乐22年",redCount:0 }
+        { otherId:-27333, head: images.sys_notice, name: "系统通知", message: "暂无相关信息", time: "公元前202年",redCount:0 },
+        { otherId:-28333,head: images.interaction, name: "互动消息", message: "暂无相关信息", time: "公元前318年/3/5",redCount:0 },
+        { otherId:-29333,head: images.friend, name: "新粉丝", message: "想什么呢，没人会关注你", time: "永乐22年",redCount:0 }
     ],
     My_head_buttom_list: [
         { id: 1, name: "关注", count: 0 },
@@ -56,6 +56,11 @@ const itemList = {
                 { id: 6, name: "我的发布", url: images.announcement },
             ]
         },
+    ],
+    SysNoticeList:[
+        {
+            id:-1,title:"轮子哥",time:"2023/4/8 20:00",content:"轮子哥测试，轮子哥测试，轮子哥好好测试，轮子哥测试，轮子哥测试，轮子哥测试，轮子哥测试，轮子哥测试，轮子哥测试，轮子哥测试轮子哥测试，轮子哥测试"
+        }
     ]
 
 }

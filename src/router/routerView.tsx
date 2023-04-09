@@ -1,6 +1,6 @@
 import { Component, PropsWithChildren, Suspense } from 'react'
 import { BrowserRouter, useRoutes } from "react-router-dom";
-import Loading from '../view/Loading';
+import Loading from '../view/loading/Loading';
 import routers from './router';
 const GetRoutes = () => useRoutes(routers)
 

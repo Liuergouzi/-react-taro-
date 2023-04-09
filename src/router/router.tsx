@@ -20,18 +20,24 @@ import images from '../resources';
 // import Login from '../view/Login';
 //import ArticleDetail from '../component/ArticleDetail';
 // import Chat from '../view/Chat';
+// import SysNotice from "../view/sysnotice/SysNotice";
+// import Interaction from "../view/interaction/Interaction";
+// import NewFriend from "../view/newfriend/NewFriend";
 
-const Error = React.lazy(() => import("../view/Error"));
-const Home = React.lazy(() => import("../view/Home"));
-const My = React.lazy(() => import("../view/My"));
-const Notice = React.lazy(() => import("../view/Notice"));
-const Push = React.lazy(() => import("../view/Push"));
-const Article = React.lazy(() => import("../component/Article"));
-const Classify = React.lazy(() => import('../view/Classify'));
-const ArticleLoadMore = React.lazy(() => import("../component/ArticleLoadMore"))
-const Login = React.lazy(() => import("../view/Login"))
-const ArticleDetail = React.lazy(() => import("../component/ArticleDetail"))
-const Chat =React.lazy(()=>import("../view/Chat"));
+const Error = React.lazy(() => import("../view/error/Error"));
+const Home = React.lazy(() => import("../view/home/Home"));
+const My = React.lazy(() => import("../view/my/My"));
+const Notice = React.lazy(() => import("../view/notice/Notice"));
+const Push = React.lazy(() => import("../view/push/Push"));
+const Article = React.lazy(() => import("../component/ariticle/Article"));
+const Classify = React.lazy(() => import('../view/classify/Classify'));
+const ArticleLoadMore = React.lazy(() => import("../component/ariticle/ArticleLoadMore"))
+const Login = React.lazy(() => import("../view/login/Login"))
+const ArticleDetail = React.lazy(() => import("../component/ariticle/ArticleDetail"))
+const Chat =React.lazy(()=>import("../view/chat/Chat"));
+const SysNotice =React.lazy(()=>import("../view/sysnotice/SysNotice"));
+const Interaction =React.lazy(()=>import("../view/interaction/Interaction"));
+const NewFriend =React.lazy(()=>import("../view/newfriend/NewFriend"));
 
 /**
  * 轮子哥
@@ -114,6 +120,24 @@ const routes = [
     path: '/chat',
     isBottomTabbar: false,
     element: <Chat />,
+  },
+  {
+    title: '系统通知页面',
+    path: '/sysNotice',
+    isBottomTabbar: false,
+    element: <SysNotice />,
+  },
+  {
+    title: '消息互动提示页面',
+    path: '/interaction',
+    isBottomTabbar: false,
+    element: <Interaction />,
+  },
+  {
+    title: '新粉丝通知页面',
+    path: '/newFriend',
+    isBottomTabbar: false,
+    element: <NewFriend />,
   },
   {
     path: "/*",

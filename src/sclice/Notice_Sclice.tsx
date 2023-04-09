@@ -34,10 +34,10 @@ export const Notice_Sclice = createSlice({
         clearChatData: (state: any) => {
             state.chatList = [...itemList.Notice_List]
         },
-        setPageIndex: (state: any) => {
+        setChatPageIndex: (state: any) => {
             state.pageIndex = state.pageIndex + 1
         },
-        clearPageIndex: (state: any) => {
+        clearChatPageIndex: (state: any) => {
             state.pageIndex = 0
         },
         setChatItemClick: (state: any, action) => {
@@ -46,6 +46,6 @@ export const Notice_Sclice = createSlice({
     }
 })
 
-export const { openSocket, setChatData, clearChatData, setChatDataAll, setPageIndex, clearPageIndex, setChatItemClick } = Notice_Sclice.actions
+export const { openSocket, setChatData, clearChatData, setChatDataAll, setChatPageIndex, clearChatPageIndex, setChatItemClick } = Notice_Sclice.actions
 
 export default Notice_Sclice.reducer
