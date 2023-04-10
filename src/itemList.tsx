@@ -23,9 +23,9 @@ const itemList = {
         { id: 4, name: "快递帮拿", url: images.expressDelivery }
     ],
     Notice_List: [
-        { otherId:-27333, head: images.sys_notice, name: "系统通知", message: "暂无相关信息", time: "公元前202年",redCount:0 },
-        { otherId:-28333,head: images.interaction, name: "互动消息", message: "暂无相关信息", time: "公元前318年/3/5",redCount:0 },
-        { otherId:-29333,head: images.friend, name: "新粉丝", message: "想什么呢，没人会关注你", time: "永乐22年",redCount:0 }
+        { otherId: -27333, head: images.sys_notice, name: "系统通知", message: "暂无相关信息", time: "公元前202年", redCount: 0 },
+        { otherId: -28333, head: images.interaction, name: "互动消息", message: "暂无相关信息", time: "公元前318年/3/5", redCount: 0 },
+        { otherId: -29333, head: images.friend, name: "新粉丝", message: "想什么呢，没人会关注你", time: "永乐22年", redCount: 0 }
     ],
     My_head_buttom_list: [
         { id: 1, name: "关注", count: 0 },
@@ -57,9 +57,33 @@ const itemList = {
             ]
         },
     ],
-    SysNoticeList:[
+    SysNoticeList: [
         {
-            id:-1,title:"轮子哥",time:"2023/4/8 20:00",content:"轮子哥测试，轮子哥测试，轮子哥好好测试，轮子哥测试，轮子哥测试，轮子哥测试，轮子哥测试，轮子哥测试，轮子哥测试，轮子哥测试轮子哥测试，轮子哥测试"
+            id: -1, title: "轮子哥", time: "2023/4/8 20:00", content: "轮子哥测试，轮子哥测试，轮子哥好好测试，轮子哥测试，轮子哥测试，轮子哥测试，轮子哥测试，轮子哥测试，轮子哥测试，轮子哥测试轮子哥测试，轮子哥测试"
+        }
+    ],
+    InteractionList: [
+        {
+            "_id": "-112",
+            "receiveId": "1",
+            "otherId": "-32823",
+            "type": "love",
+            "otherHead": "https://img1.baidu.com/it/u=822964690,2883123715&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
+            "otherName": "天下轮子唯我坤坤",
+            "title": "lunzi哥",
+            "time": "2023-03-29:17:46",
+            "content": "点赞实ll哈哈的侧测试s"
+        },
+        {
+            "_id": "-112",
+            "receiveId": "1",
+            "otherId": "-32823",
+            "type": "comment",
+            "otherHead": "https://img1.baidu.com/it/u=822964690,2883123715&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
+            "otherName": "最好的轮子",
+            "title": "lunzi哥",
+            "time": "2023-03-29:17:46",
+            "content": "评论测试ll哈哈的侧测试s"
         }
     ]
 

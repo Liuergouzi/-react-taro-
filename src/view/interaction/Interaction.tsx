@@ -1,7 +1,11 @@
-import React from 'react'
+import { Provider } from 'react-redux'
+import store from '../../sclice/Store'
+import InteractionLoadMore from './InteractionLoadMore'
 
 export default function Interaction() {
   return (
-    <div>Interaction</div>
+    <Provider store={store}>
+      <InteractionLoadMore></InteractionLoadMore>
+    </Provider>
   )
 }

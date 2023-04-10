@@ -27,7 +27,9 @@ import girl from "../public/images/girl.svg"
 import more from "../public/images/more.svg"
 import love_1 from "../public/images/love_1.svg"
 import love_2 from "../public/images/love_2.svg"
+import love_3 from "../public/images/love3.png"
 import comment from "../public/images/comment.svg"
+import comment2 from "../public/images/comment2.png"
 import sys_notice from "../public/images/sys_notice.svg"
 import qq from "../public/images/qq.png"
 import wx from "../public/images/wx.png"
@@ -36,6 +38,7 @@ import emote from "../public/images/emote.png"
 import picture from "../public/images/picture.png"
 import friend from "../public/images/friend.png"
 import interaction from "../public/images/interaction.png"
+
 
 const images = {
     home_1: home_1,
@@ -59,7 +62,9 @@ const images = {
     more: more,
     love_1: love_1,
     love_2: love_2,
+    love_3:love_3,
     comment: comment,
+    comment2:comment2,
     sys_notice: sys_notice,
     test : test,
     testH1:testH1,

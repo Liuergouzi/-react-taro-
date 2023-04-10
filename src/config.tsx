@@ -11,7 +11,8 @@ const baseUrl='http://localhost:9090'
      getChatList:baseUrl+'/ws/getChatList2',
      redReset:baseUrl+'/ws/redReset',
      getMessage:baseUrl+'/ws/getMessage',
-     getSysNotice:baseUrl+'/ws/getSystemNoticeUserAll'
+     getSysNotice:baseUrl+'/ws/getSystemNoticeUserAll',
+     getInteraction:baseUrl+'/ws/getInteraction'
  }
  
  export default reUrl

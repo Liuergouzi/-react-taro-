@@ -122,10 +122,10 @@ export default function Chat() {
             Toast.show("道友为何如此沉默寡言？");
             return;
         }
+        Taro.sendSocketMessage({
+            data: JSON.stringify(sendData)
+        })
         if (socketOpen) {
-            Taro.sendSocketMessage({
-                data: JSON.stringify(sendData)
-            })
         } else {
             Toast.show("消息已发送，但对方可能无法实时接收");
         }
