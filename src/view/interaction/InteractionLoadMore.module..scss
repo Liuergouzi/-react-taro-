@@ -1,3 +1,7 @@
+.interaction{
+    margin-top: 80px;
+}
+
 .contain{
     padding-left: 30px;
     padding-right: 30px;
@@ -11,17 +15,16 @@
     min-width: 100px;
 }
 .leftImg{
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     border-radius: 100%;
-    position: relative;
 }
 .leftMinImg{
     width: 35px;
     height: 35px;
-    position: absolute;
-    top: 60px;
-    left: 80px;
+    position: relative;
+    top: -35px;
+    left: 45px;
 }
 
 .center{

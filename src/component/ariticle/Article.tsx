@@ -9,22 +9,24 @@ import { useNavigate } from 'react-router-dom'
 
 export default function Article() {
     const navigate = useNavigate();
-    const articleData:any = useSelector((state:any) => state.Home_Reducer_State.article)
+    const articleData: any = useSelector((state: any) => state.Home_Reducer_State.article)
 
     return (
         <div className={style.Article + " Article"}>
             <div className={style.Article_top}>
                 <div className={style.Article_top_left}>
-                    <div className={style.Article_top_head}><img className={style.Article_top_headImg} src={images.boy} alt='' /></div>
+                    <div className={style.Article_top_head} onClick={() => { navigate("/personalDetails"); }}>
+                        <img className={style.Article_top_headImg} src={images.boy} alt='' />
+                    </div>
                     <div className={style.Article_top_headleft}>
-                        <div className={style.Article_top_name} onClick={()=>{console.log(articleData)}}>轮子哥</div>
+                        <div className={style.Article_top_name} onClick={() => { console.log(articleData) }}>轮子哥</div>
                         <div className={style.Article_top_time}>1小时前</div>
                     </div>
                 </div>
                 <div className={style.Article_top_right}><img className={style.Article_top_rightImg} src={images.more} alt='' /></div>
             </div>
 
-            <div className={style.Article_context} onClick={()=>{navigate("/articleDetail");}}>
+            <div className={style.Article_context} onClick={() => { navigate("/articleDetail"); }}>
                 <div className={style.Article_context_title}>
                     这是一个标题《造轮子专业户》
                 </div>

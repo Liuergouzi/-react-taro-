@@ -1,0 +1,58 @@
+
+.newFriend{
+    margin-top: 80px;
+}
+.contain{
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.left{
+    flex: 1;
+    min-width: 100px;
+}
+.leftImg{
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+}
+.center{
+    display: flex;
+    flex: 10;
+    flex-direction: column;
+}
+.name{
+    font-size: 30px;
+    height: 25px;
+    line-height: 25px;
+}
+.content{
+    padding-top: 10px;
+    font-size: 28px;
+    height: 25px;
+    line-height: 25px; 
+    display: flex;
+}
+.time{
+    font-size: 25px;
+    color: gray;
+}
+
+.right{
+    flex: 1;
+    min-width: 100px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+}
+.rightButton{
+    width: 100%;
+    border: 2px solid gray;
+    border-radius: 30px;
+    font-size: 28px;
+    text-align: center;
+}

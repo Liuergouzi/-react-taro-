@@ -4,7 +4,7 @@ import routers from '../../router/router';
 import style from './BottomNavigation.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
 import time from '../../tool/time';
-import { openSocket, setChatDataAll } from '../../sclice/Notice_Sclice'
+import { openSocket, setChatDataAll,setChatDefaultListOne } from '../../sclice/Notice_Sclice'
 import Taro from '@tarojs/taro';
 import { useEffect, useState } from 'react';
 /**
@@ -23,23 +23,22 @@ export default function BottomNavigation() {
     useEffect(() => {
         dispatch(openSocket())
     })
-
     //接收到消息，及时更新缓存的数据列表
     Taro.onSocketMessage(function (res) {
-        console.log(JSON.stringify(res.data))
         const resData = JSON.parse(res.data)
-        let chatTemp = JSON.parse(JSON.stringify(chatListData))
-        chatTemp.forEach(element => {
-            if (element.otherId == resData.sendId) {
-                console.log(element.redCount)
-                element.redCount = Number(element.redCount) + 1
-                console.log(element.redCount)
-                resData.messageType == 'text' ? element.message = resData.message : element.message = '[图片]'
-                element.time = time
-
-            }
-        });
-        dispatch(setChatDataAll(chatTemp))
+        if(resData.hasOwnProperty("type")){
+            dispatch(setChatDefaultListOne(resData))
+        }else{
+            let chatTemp = JSON.parse(JSON.stringify(chatListData))
+            chatTemp.forEach(element => {
+                if (element.otherId == resData.sendId) {
+                    element.redCount = Number(element.redCount) + 1
+                    resData.messageType == 'text' ? element.message = resData.message : element.message = '[图片]'
+                    element.time = time
+                }
+            });
+            dispatch(setChatDataAll(chatTemp))
+        }
         setNewMessage(true)
     })
 

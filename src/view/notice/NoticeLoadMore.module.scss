@@ -51,7 +51,22 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     flex: 5;
+    display: flex;
+    align-items: center;
 }
+
+.list_online{
+    margin-left: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 15px;
+    border-radius: 25px;
+    height: 25px;
+    line-height: 25px;
+    background-color: rgb(27, 245, 27);
+    color: white;
+}
+
 .list_bottom {
     width: 100%;
     display: flex;

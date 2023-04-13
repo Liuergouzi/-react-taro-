@@ -29,8 +29,10 @@ export default function My_head() {
             <div className={style.myHead}>
               <img className={style.headImg} src={images.boy}></img>
               <div className={style.loginFalse}>
-                <div className={style.loginTip}>您还未登录，去登录？</div>
-                  <div className={style.loginButtom} onClick={()=>{navigate("/login");}}>登录/注册</div>
+                <div className={style.loginTip}>您还未登录，去登录？
+                </div>
+                  <div className={style.loginButtom} onClick={()=>{navigate("/login");}}>登录/注册
+                  </div>
               </div>
             </div>
         }

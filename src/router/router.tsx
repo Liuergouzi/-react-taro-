@@ -23,6 +23,8 @@ import images from '../resources';
 // import SysNotice from "../view/sysnotice/SysNotice";
 // import Interaction from "../view/interaction/Interaction";
 // import NewFriend from "../view/newfriend/NewFriend";
+// import PersonalDetails from '../view/personaldetails/PersonalDetails';
+//import PersonalSetting from 'src/view/personalSetting/PersonalSetting';
 
 const Error = React.lazy(() => import("../view/error/Error"));
 const Home = React.lazy(() => import("../view/home/Home"));
@@ -34,11 +36,12 @@ const Classify = React.lazy(() => import('../view/classify/Classify'));
 const ArticleLoadMore = React.lazy(() => import("../component/ariticle/ArticleLoadMore"))
 const Login = React.lazy(() => import("../view/login/Login"))
 const ArticleDetail = React.lazy(() => import("../component/ariticle/ArticleDetail"))
-const Chat =React.lazy(()=>import("../view/chat/Chat"));
-const SysNotice =React.lazy(()=>import("../view/sysnotice/SysNotice"));
-const Interaction =React.lazy(()=>import("../view/interaction/Interaction"));
-const NewFriend =React.lazy(()=>import("../view/newfriend/NewFriend"));
-
+const Chat = React.lazy(() => import("../view/chat/Chat"));
+const SysNotice = React.lazy(() => import("../view/sysnotice/SysNotice"));
+const Interaction = React.lazy(() => import("../view/interaction/Interaction"));
+const NewFriend = React.lazy(() => import("../view/newfriend/NewFriend"));
+const PersonalDetails = React.lazy(() => import("../view/personalDetails/PersonalDetails"));
+const PersonalSetting = React.lazy(() => import("../view/personalSetting/PersonalSetting"));
 /**
  * 轮子哥
  * 最新react-router-dom@6版本路由自定义配置
@@ -140,10 +143,22 @@ const routes = [
     element: <NewFriend />,
   },
   {
+    title: '个人详情页面',
+    path: '/personalDetails',
+    isBottomTabbar: false,
+    element: <PersonalDetails />,
+  },
+  {
+    title: '个人详情设置页面',
+    path: '/personalSetting',
+    isBottomTabbar: false,
+    element: <PersonalSetting />,
+  },
+  {
     path: "/*",
     isBottomTabbar: false,
     element: <Navigate to="/home" />,
-  }, 
+  },
   {
     title: '404',
     path: '/*',

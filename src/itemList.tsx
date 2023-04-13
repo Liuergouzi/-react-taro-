@@ -31,7 +31,7 @@ const itemList = {
         { id: 1, name: "关注", count: 0 },
         { id: 2, name: "粉丝", count: 9999 },
         { id: 3, name: "获赞", count: 8848 },
-        { id: 4, name: "爱坤指数", count: "99999999+" }
+        { id: 4, name: "帖子", count: "99999999+" }
     ],
     My_bottom_list: [
         {
@@ -69,10 +69,10 @@ const itemList = {
             "otherId": "-32823",
             "type": "love",
             "otherHead": "https://img1.baidu.com/it/u=822964690,2883123715&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
-            "otherName": "天下轮子唯我坤坤",
+            "otherName": "好轮子测试1",
             "title": "lunzi哥",
-            "time": "2023-03-29:17:46",
-            "content": "点赞实ll哈哈的侧测试s"
+            "time": "2023/03/29 17:46",
+            "content": "点赞测试"
         },
         {
             "_id": "-112",
@@ -80,11 +80,40 @@ const itemList = {
             "otherId": "-32823",
             "type": "comment",
             "otherHead": "https://img1.baidu.com/it/u=822964690,2883123715&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
-            "otherName": "最好的轮子",
+            "otherName": "好轮子测试2",
             "title": "lunzi哥",
-            "time": "2023-03-29:17:46",
-            "content": "评论测试ll哈哈的侧测试s"
+            "time": "2023/03/27 17:46",
+            "content": "评论测试"
+        },
+        {
+            "_id": "-11212",
+            "receiveId": "1",
+            "otherId": "-3282323",
+            "type": "replay",
+            "otherHead": "https://img1.baidu.com/it/u=822964690,2883123715&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
+            "otherName": "好轮子测试3",
+            "title": "lunzi哥",
+            "time": "2023/03/26 17:46",
+            "content": "回复测试"
         }
+    ],
+    NewFriendList:[
+        {
+            "receiveId": "1",
+            "otherId": "-212323",
+            "type": "follow",
+            "otherHead": "https://img0.baidu.com/it/u=464957137,1127465915&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=667",
+            "otherName": "好轮子测试",
+            "title": "轮子测试",
+            "time": "2023/04/11 11:14",
+            "content": "轮子测试关注了你"
+        },
+    ],
+    personalDetailsTabList:[
+        {id:1,title:"帖子",name:"1"},
+        {id:2,title:"闲置",name:"2"},
+        {id:3,title:"求助",name:"3"},
+        {id:4,title:"评论",name:"4"}
     ]
 
 }

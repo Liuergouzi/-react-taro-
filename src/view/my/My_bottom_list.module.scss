@@ -1,3 +1,47 @@
+.myTop{
+    display: flex;
+    padding: 20px;
+}
+.myLeft{
+    flex: 1;
+    height: 150px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 1px rgb(206, 206, 206);
+    margin: 10px;
+}
+.myLeftTop{
+    padding: 5px;
+    height: 35px;
+    width: 120px;
+    font-size: 28px;
+    line-height: 35px;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: bold;
+    background: -webkit-linear-gradient(#a2ffff, #fffbca, #f7faf8);
+}
+
+.myRight{
+    flex: 1;
+    height: 150px;
+    border-radius: 20px;
+    box-shadow: -2px 2px 2px 1px rgb(206, 206, 206);
+    margin: 10px;
+}
+
+.myRightTop{
+    float: right;
+    padding: 5px;
+    height: 35px;
+    width: 120px;
+    font-size: 28px;
+    line-height: 35px;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: bold;
+    background: -webkit-linear-gradient(#f6ffa2, #bdfffc, #f7faf8);
+}
+
 .My_bottom_list{
     width: 100%;
     margin: 0;

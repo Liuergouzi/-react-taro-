@@ -1,9 +1,10 @@
 import { PowerScrollView } from '@antmjs/vantui'
 import react, { useEffect, useState } from 'react'
 import { setData } from '../../sclice/Home_Sclice'
-import { setChatData, clearChatData, setChatPageIndex, clearChatPageIndex } from '../../sclice/Notice_Sclice'
+import { setChatData, clearChatData, setChatPageIndex, clearChatPageIndex,setChatDefaultList } from '../../sclice/Notice_Sclice'
 import { setSysNoticeList, clearSysNoticeList, setSysNoticePageIndex, clearSysNoticePageIndex } from '../../sclice/SysNotice_Sclice'
 import { setInteractionList, clearInteractionList, setInteractionPageIndex, clearInteractionPageIndex } from '../../sclice/Interaction_Sclice'
+import { setNewFriendList, clearNewFriendList, setNewFriendPageIndex, clearNewFriendPageIndex } from '../../sclice/NewFriend_Sclice'
 import { useDispatch } from 'react-redux'
 import Taro from '@tarojs/taro'
 import './LoadMore.scss'
@@ -30,13 +31,13 @@ export default function HomeLoadMore(props: any) {
       ...newState,
     })
   }
-  const setDatas = (viewId: string, data: any) => {
+  const setDatas = (viewId: string, data: any, noticeList: any) => {
     switch (viewId) {
       case 'ArticleLoadMore': dispatch(setData(data)); data.length == tempRequestData.pageSize && dispatch(setSysNoticePageIndex()); break;
-      case 'Notice_List': dispatch(setChatData(data)); data.length == tempRequestData.pageSize && dispatch(setChatPageIndex()); break;
-      
+      case 'Notice_List':if(tempRequestData.pageIndex==0){dispatch(setChatDefaultList(noticeList))};dispatch(setChatData(data));data.length == tempRequestData.pageSize && dispatch(setChatPageIndex());break;
       case 'SysNotice': dispatch(setSysNoticeList(data)); data.length == tempRequestData.pageSize && dispatch(setSysNoticePageIndex()); break;
       case 'Interaction': dispatch(setInteractionList(data)); data.length == tempRequestData.pageSize && dispatch(setInteractionPageIndex()); break;
+      case 'NewFriend': dispatch(setNewFriendList(data)); data.length == tempRequestData.pageSize && dispatch(setNewFriendPageIndex()); break;
     }
   }
   const clearDatas = (viewId: string) => {
@@ -44,7 +45,8 @@ export default function HomeLoadMore(props: any) {
       case 'ArticleLoadMore': dispatch(clearChatPageIndex()); dispatch(clearChatPageIndex()); break;
       case 'Notice_List': dispatch(clearChatPageIndex()); dispatch(clearChatData()); break;
       case 'SysNotice': dispatch(clearSysNoticePageIndex()); dispatch(clearSysNoticeList()); break;
-      case 'Interaction': dispatch(clearInteractionPageIndex());dispatch(clearInteractionList()); break;
+      case 'Interaction': dispatch(clearInteractionPageIndex()); dispatch(clearInteractionList()); break;
+      case 'NewFriend': dispatch(clearNewFriendPageIndex()); dispatch(clearNewFriendList()); break;
 
     }
   }
@@ -59,13 +61,17 @@ export default function HomeLoadMore(props: any) {
           'content-type': 'application/json'
         },
         success: function (res) {
-          if (res.data.hasOwnProperty("data")) (
-            setDatas(props.viewId, res.data.data),
+          if (res.data.hasOwnProperty("data")) {
+            if (props.viewId == 'Notice_List') {
+              setDatas(props.viewId, res.data.data, res.data.noticeList)
+            } else {
+              setDatas(props.viewId, res.data.data, null)
+            }
             tempRequestDatas.pageSize != res.data.data.length ?
               setState({ basicsList: [{}], basicsFinished: true }) :
               setState({ basicsList: [{}], basicsFinished: false }),
-            resolve(res.data.data)
-          )
+              resolve(res.data.data)
+          }
           else {
             setState({
               basicsList: [{}],
@@ -82,9 +88,6 @@ export default function HomeLoadMore(props: any) {
   useEffect(() => {
     setTempRequestData(props.requestData)
   }, [props.requestData.pageIndex])
-
-  console.log(props.requestData.pageIndex)
-  console.log(tempRequestData)
 
   const basicsDoRefresh: any = async () => {
     await clearDatas(props.viewId)
@@ -121,7 +124,7 @@ export default function HomeLoadMore(props: any) {
       onScrollToLower={basicsLoadMore}
       current={state.basicsList.length}
       finished={state.basicsFinished}
-      renderLoading={props.ListCount % tempRequestData.pageSize != props.defaultListCount ? <div></div> : ""}
+      // renderLoading={props.ListCount % tempRequestData.pageSize != props.defaultListCount ? <div></div> : ""}
       animationDuration={10}
       style={{
         height: props.height

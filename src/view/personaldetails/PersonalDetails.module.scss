@@ -1,0 +1,98 @@
+.top {
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
+    padding-right: 30px;
+}
+
+.topHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topHeadImg {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.topChat {
+    background-color: #8BD1AE;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+    width: 80px;
+    border-radius: 30px;
+}
+.topHeadBottom{
+    display: flex;
+    margin-top: 10px;
+    font-size: 34px;
+    font-weight: bold;
+}
+.topName {
+    flex: 1;
+}
+
+.topList{
+    flex: 2;
+    display: flex;
+}
+.topItem{
+    flex: 1;
+    display:flex;
+    justify-content: center;
+}
+
+.topTag {
+    margin-top: 20px;
+}
+
+.tag {
+    background-color: #d4e9eb;
+    color: #3ec7e9;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.tag1{
+    background-color: #fad0d0;
+    color: #ff6262;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.tag2 {
+    background-color: #ececec;
+    color: #666666;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.tag3 {
+    background-color: #dcf7d8;
+    color: #1cdd0a;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}

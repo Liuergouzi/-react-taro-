@@ -19,7 +19,13 @@ const config = {
     }
   },
   framework: 'react',
-  compiler: 'webpack5',
+  compiler: {
+    type: 'webpack5',
+    // 仅 webpack5 支持依赖预编译配置
+    prebundle: {
+      enable: true,
+    },
+  },
   cache: {
     enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
@@ -49,7 +55,56 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    }
+    },
+    //智能提取分包
+    optimizeMainPackage: {
+      enable: true,
+    },
+    
+    // addChunkPages(pages) {
+    //   pages.set('view/chat/Chat', ['subpackages/common']),
+    //   pages.set('view/interaction/Interaction', ['subpackages/common'])
+    // },
+ 
+    webpackChain: (chain, webpack) => {
+      chain.merge({
+        // output: {
+        //   // 可以配合 npm script 和环境变量来动态修改
+        //   jsonpFunction: process.env.JSONP_NAME || 'webpackJsonp',
+        // },
+        // optimization: {
+        //   splitChunks: {
+        //     cacheGroups: {
+        //       subpackagesCommon: {
+        //         name: 'subpackages/common',
+        //         minChunks: 2,
+        //         test: (module, chunks) => {
+        //           const isNoOnlySubpackRequired = chunks.find((chunk) => !/\bsubpackages\b/.test(chunk.name))
+        //           return !isNoOnlySubpackRequired
+        //         },
+        //         priority: 200,
+        //       },
+        //     },
+        //   },
+        // },
+        //压缩编译指定压缩
+        plugin: {
+          install: {
+            plugin: require('terser-webpack-plugin'),
+            args: [
+              {
+                terserOptions: {
+                  compress: true, // 默认使用terser压缩
+                  // mangle: false,
+                  keep_classnames: true, // 不改变class名称
+                  keep_fnames: true, // 不改变函数名称
+                },
+              },
+            ],
+          },
+        },
+      })
+    },
   },
   h5: {
     esnextModules: [/@antmjs[\\/]vantui/],

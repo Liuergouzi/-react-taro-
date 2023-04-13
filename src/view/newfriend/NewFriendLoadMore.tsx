@@ -1,14 +1,14 @@
-import style from './InteractionLoadMore.module..scss'
-import images from '../../resources'
-import LoadMore from "../../component/loadmore/LoadMore";
-import Taro from '@tarojs/taro';
-import reUrl from '../../config';
+import style from './NewFriendLoadMore.module.scss'
 import { useSelector } from 'react-redux';
+import reUrl from '../../config';
+import Taro from '@tarojs/taro';
+import LoadMore from "../../component/loadmore/LoadMore";
 import time from '../../tool/time';
 
-export default function InteractionLoadMore() {
-    const interactionList: any = useSelector((state: any) => state.Interaction_Reducer.interactionList)
-    const pageIndex: number = useSelector((state: any) => state.Interaction_Reducer.pageIndex);
+export default function NewFriendLoadMore() {
+
+    const newFriendList: any = useSelector((state: any) => state.NewFriend_Reducer.newFriendList)
+    const pageIndex: number = useSelector((state: any) => state.NewFriend_Reducer.pageIndex);
     const pageSize = 15;
     const sendId: string = Taro.getStorageSync("socketId")
 
@@ -34,44 +34,39 @@ export default function InteractionLoadMore() {
     }
 
     return (
-        <div className={style.interaction}>
+        <div className={style.newFriend}>
+
             <LoadMore
-                requesUrl={reUrl.getInteractionAll}
-                viewId={'Interaction'}
-                ListCount={interactionList.length}
-                defaultListCount={3}
+                requesUrl={reUrl.getInteraction}
+                viewId={'NewFriend'}
+                ListCount={newFriendList.length}
+                defaultListCount={1}
                 height={(Taro.getWindowInfo().screenHeight) - 96 * 1.06 * (Taro.getWindowInfo().screenHeight) / 568 + 'px'}
                 requestData={{
                     id: sendId,
                     pageIndex: pageIndex,
-                    pageSize: pageSize
+                    pageSize: pageSize,
+                    type: 'follow'
                 }}>
+
                 {
-                    interactionList.map((item) => (
-                        <div className={style.contain} key={item.time}>
+                    newFriendList.map((item) => (
+                        <div className={style.contain}>
                             <div className={style.left}>
                                 <img className={style.leftImg} src={item.otherHead}></img>
-                                {
-                                    item.type == 'love' ?
-                                        <img className={style.leftMinImg} src={images.love_3}></img> :
-                                        <img className={style.leftMinImg} src={images.comment2}></img>
-                                }
                             </div>
                             <div className={style.center}>
                                 <div className={style.name}>{item.otherName}</div>
-                                <div className={style.replay}>
-                                    <div className={style.replayContent}>{item.content}</div>
-                                    <div className={style.time}>{getTime(item.time)}</div>
-                                </div>
+                                <div className={style.content}><div className={style.time}>{getTime(item.time)}&ensp;</div> {item.content}</div>
                             </div>
                             <div className={style.right}>
-                                <img className={style.rightImg} src={images.testH1}></img>
+                                <div className={style.rightButton}>回关</div>
                             </div>
                         </div>
                     ))
                 }
-            </LoadMore>
 
+            </LoadMore>
         </div>
     )
 }
