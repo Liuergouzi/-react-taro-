@@ -23,13 +23,13 @@ export default function My_bottom_list() {
             <div className={style.My_bottom_list}>
                 {
                     itemList.My_bottom_list.map(item => (
-                        <div className={style.list}>
+                        <div className={style.list} key={item.id}>
                             <div className={style.listTitle}>{item.title}</div>
                             <div className={style.listLine}></div>
                             <div className={style.listItem}>
                                 {
                                     item.data.map(items => (
-                                        <div className={style.listDiv}>
+                                        <div className={style.listDiv} key={items.id}>
                                             <img className={style.itemImg} src={items.url}></img>
                                             <div className={style.itemText}>{items.name}</div>
                                         </div>

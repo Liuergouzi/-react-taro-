@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "./",
-  "projectname": "tssd",
+  "projectname": "rtt",
   "appid": "testAppId",
   "setting": {
     "es6": false,

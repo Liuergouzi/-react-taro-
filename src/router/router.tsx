@@ -23,8 +23,8 @@ import images from '../resources';
 // import SysNotice from "../view/sysnotice/SysNotice";
 // import Interaction from "../view/interaction/Interaction";
 // import NewFriend from "../view/newfriend/NewFriend";
-// import PersonalDetails from '../view/personaldetails/PersonalDetails';
-//import PersonalSetting from 'src/view/personalSetting/PersonalSetting';
+// import PersonalDetails from '../subPack1/personaldetails/PersonalDetails';
+//import PersonalSetting from '../subPack1/personalSetting/PersonalSetting';
 
 const Error = React.lazy(() => import("../view/error/Error"));
 const Home = React.lazy(() => import("../view/home/Home"));
@@ -40,8 +40,8 @@ const Chat = React.lazy(() => import("../view/chat/Chat"));
 const SysNotice = React.lazy(() => import("../view/sysnotice/SysNotice"));
 const Interaction = React.lazy(() => import("../view/interaction/Interaction"));
 const NewFriend = React.lazy(() => import("../view/newfriend/NewFriend"));
-const PersonalDetails = React.lazy(() => import("../view/personalDetails/PersonalDetails"));
-const PersonalSetting = React.lazy(() => import("../view/personalSetting/PersonalSetting"));
+const PersonalDetails = React.lazy(() => import("../subPack1/personaldetails/PersonalDetails"));
+const PersonalSetting = React.lazy(() => import("../subPack1/personalSetting/PersonalSetting"));
 /**
  * 轮子哥
  * 最新react-router-dom@6版本路由自定义配置

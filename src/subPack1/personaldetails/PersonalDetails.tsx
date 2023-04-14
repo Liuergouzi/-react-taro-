@@ -1,6 +1,6 @@
-import TopMostTaroNavigationBar from '../../component/navigation/TopMostTaroNavigationBar'
 import style from './PersonalDetails.module.scss'
 import images from '../../resources'
+import TopMostTaroNavigationBar from '../../component/navigation/TopMostTaroNavigationBar'
 import { Tab, Tabs, Tag, Toast } from '@antmjs/vantui'
 
 export default function PersonalDetails() {

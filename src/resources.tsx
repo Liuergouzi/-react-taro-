@@ -3,79 +3,42 @@
  * 全局静态资源管理
  */
 
-import test from '../public/images/test.png'
-import testH1 from '../public/images/testH1.png'
-import testH2 from '../public/images/testH2.png'
-import home_1 from "../public/images/home_1.svg"
-import home_2 from "../public/images/home_2.svg"
-import classify_1 from "../public/images/classify_1.svg"
-import classify_2 from "../public/images/classify_2.svg"
-import push_1 from "../public/images/push_1.svg"
-import push_2 from "../public/images/push_2.svg"
-import notice_1 from "../public/images/notice_1.svg"
-import notice_2 from "../public/images/notice_2.svg"
-import my_1 from "../public/images/my_1.svg"
-import my_2 from "../public/images/my_2.svg"
-import back from "../public/images/back.svg"
-import announcement from "../public/images/announcement.svg"
-import expressDelivery from "../public/images/expressDelivery.svg"
-import sell_bg from "../public/images/sell_bg.svg"
-import lost_bg from "../public/images/lost_bg.svg"
-import f404_bg from "../public/images/f404_bg.svg"
-import boy from "../public/images/boy.svg"
-import girl from "../public/images/girl.svg"
-import more from "../public/images/more.svg"
-import love_1 from "../public/images/love_1.svg"
-import love_2 from "../public/images/love_2.svg"
-import love_3 from "../public/images/love3.png"
-import comment from "../public/images/comment.svg"
-import comment2 from "../public/images/comment2.png"
-import sys_notice from "../public/images/sys_notice.svg"
-import qq from "../public/images/qq.png"
-import wx from "../public/images/wx.png"
-import close from "../public/images/close.png"
-import emote from "../public/images/emote.png"
-import picture from "../public/images/picture.png"
-import friend from "../public/images/friend.png"
-import interaction from "../public/images/interaction.png"
-
-
 const images = {
-    home_1: home_1,
-    home_2: home_2,
-    classify_1: classify_1,
-    classify_2: classify_2,
-    push_1: push_1,
-    push_2: push_2,
-    notice_1: notice_1,
-    notice_2: notice_2,
-    my_1: my_1,
-    my_2: my_2,
-    back: back,
-    announcement: announcement,
-    expressDelivery: expressDelivery,
-    sell_bg: sell_bg,
-    lost_bg: lost_bg,
-    f404_bg: f404_bg,
-    boy: boy,
-    girl: girl,
-    more: more,
-    love_1: love_1,
-    love_2: love_2,
-    love_3:love_3,
-    comment: comment,
-    comment2:comment2,
-    sys_notice: sys_notice,
-    test : test,
-    testH1:testH1,
-    testH2:testH2,
-    qq:qq,
-    wx:wx,
-    close:close,
-    emote:emote,
-    picture:picture,
-    friend:friend,
-    interaction:interaction
+    test : 'https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/test.png',
+    testH1 : 'https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/testH1.png',
+    testH2 : 'https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/testH2.png',
+    home_1 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/home_1.svg",
+    home_2 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/home_2.svg",
+    classify_1 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/classify_1.svg",
+    classify_2 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/classify_2.svg",
+    push_1 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/push_1.svg",
+    push_2 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/push_2.svg",
+    notice_1 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/notice_1.svg",
+    notice_2 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/notice_2.svg",
+    my_1 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/my_1.svg",
+    my_2 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/my_2.svg",
+    back : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/back.svg",
+    announcement : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/announcement.svg",
+    expressDelivery : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/expressDelivery.svg",
+    sell_bg : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/sell_bg.svg",
+    lost_bg : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/lost_bg.svg",
+    f404_bg : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/f404_bg.svg",
+    boy : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/boy.svg",
+    girl : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/girl.svg",
+    more : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/more.svg",
+    love_1 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/love_1.svg",
+    love_2 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/love_2.svg",
+    love_3 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/love3.png",
+    comment : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/comment.svg",
+    comment2 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/comment2.png",
+    sys_notice : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/sys_notice.svg",
+    qq : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/qq.png",
+    wx : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/wx.png",
+    close : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/close.png",
+    emote : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/emote.png",
+    picture : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/picture.png",
+    friend : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/friend.png",
+    interaction : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/interaction.png"
 }
 
 export default images

@@ -1,5 +1,5 @@
 const config = {
-  projectName: 'tssd',
+  projectName: 'rtt',
   date: '2023-3-9',
   designWidth: 750,
   deviceRatio: {
@@ -62,8 +62,8 @@ const config = {
     },
     
     // addChunkPages(pages) {
-    //   pages.set('view/chat/Chat', ['subpackages/common']),
-    //   pages.set('view/interaction/Interaction', ['subpackages/common'])
+    //   pages.set('subPack1/personalSetting/PersonalSetting', ['subpackages/common']),
+    //   pages.set('subPack1/personaldetails/PersonalDetails', ['subpackages/common'])
     // },
  
     webpackChain: (chain, webpack) => {
@@ -107,6 +107,7 @@ const config = {
     },
   },
   h5: {
+    //Ui组件库默认编译
     esnextModules: [/@antmjs[\\/]vantui/],
     // router:{
     //   mode:'browser'
@@ -115,6 +116,7 @@ const config = {
       enable: true,
       config: {},
     },
+
     publicPath: '/',
     staticDirectory: 'static',
     postcss: {
@@ -122,6 +124,10 @@ const config = {
         enable: true,
         config: {
         }
+      },
+      pxtransform: {
+        enable: true,
+        config: {},
       },
       cssModules: {
         enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true

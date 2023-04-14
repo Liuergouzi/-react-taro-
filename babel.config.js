@@ -4,8 +4,7 @@ module.exports = {
   presets: [
     ['taro', {
       framework: 'react',
-      ts: true,
-      'dynamic-import-node': true,
+      ts: true
     }]
   ],
   "plugins": [
