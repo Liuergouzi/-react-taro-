@@ -17,7 +17,8 @@ const images = {
     notice_2 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/notice_2.svg",
     my_1 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/my_1.svg",
     my_2 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/my_2.svg",
-    back : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/back.svg",
+    add:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/add.png",
+    back : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/back.png",
     announcement : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/announcement.svg",
     expressDelivery : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/expressDelivery.svg",
     sell_bg : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/sell_bg.svg",
@@ -38,7 +39,9 @@ const images = {
     emote : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/emote.png",
     picture : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/picture.png",
     friend : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/friend.png",
-    interaction : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/interaction.png"
+    interaction : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/interaction.png",
+    address:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/address.png",
+    search:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/search.png"
 }
 
 export default images

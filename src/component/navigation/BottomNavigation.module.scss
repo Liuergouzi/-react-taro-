@@ -5,10 +5,16 @@
     bottom: 0;
     left: 0;
     height: 100px;
-    width: 100%;
-    border-top-width: 1px;
-    border-top-color: #e2e2e2;
-    border-top-style: solid;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+    border-radius: 30rpx;
+    box-shadow: 0px 0px 30px 1px rgb(201 208 210);
+    // width: 100%;
+    // border-top-width: 1px;
+    // border-top-color: #e2e2e2;
+    // border-top-style: solid;
     position: fixed;
 }
 
@@ -23,6 +29,12 @@
 .BottomNavigationImg{
     width: 1.2rem;
     height: 1.2rem;
+}
+
+.navFlex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .BottomNavigationTrue{
@@ -60,4 +72,132 @@
     right: 20px;
     top: 5px;
     position: absolute;
+}
+
+
+
+
+.navbar1 {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.75em;
+    font-weight: bold;
+    color: #383838;
+    transition: 0.24s 0.2s;
+    position: relative;
+    top: -20px;
+}
+
+.navbar2 {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1.75em;
+    font-weight: bold;
+    color: #383838;
+    transition: 0.24s 0.2s;
+    position: relative;
+    top: -20px;
+}
+
+.pushImg1{
+    width: 90px;
+    height: 90px;
+}
+
+.pushImg2{
+    width: 90px;
+    height: 90px;
+    transition-delay: 0.16s;
+    transition: 0.6s;
+    transform: rotate(45deg);
+}
+
+.menu1 {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    cursor: default;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 1.4s 0.07s;
+    z-index: -1;
+}
+
+.menu2 {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    cursor: default;
+    border-radius: 50%;
+    transition: transform 0.4s 0.08s, z-index 0s 0.5s;
+    transform: scale(1);
+    z-index: 1;
+}
+
+.liItem1 {
+    transition: all 0.5s 0.1s;
+}
+
+.liItem2 {
+    transition: all 0.6s;
+}
+
+.aitem1 {
+    transition: all .4s ease 0s;
+    width: 75px;
+    height: 55px;
+    line-height: 55px;
+    border-radius: 50%;
+    background: rgb(235, 235, 235);
+    position: absolute;
+    font-size: 60%;
+    color: #99b977;
+    transition: 0.6s;
+    text-decoration: none;
+    top: 150px;
+    right: 60px;
+}
+
+.aitem:hover {
+    background-color: #2860F8;
+    color: #fff;
+}
+
+.liItem2:nth-child(1) {
+    transition-delay: 0.02s;
+    transform: rotate(200deg);
+}
+
+.aitem2 {
+    width: 75px;
+    height: 55px;
+    line-height: 55px;
+    border-radius: 50%;
+    background: rgb(235, 235, 235);
+    position: absolute;
+    font-size: 60%;
+    color: #99b977;
+    transition: 0.6s;
+    text-decoration: none;
+    top: 150px;
+    right: 60px;
+    transition-delay: 0.04s;
+    transform: rotate(195deg);
+}
+
+.liItem2:nth-child(2) {
+    transition-delay: 0.16s;
+    transform: rotate(165deg);
+}
+
+
+.liItem2:nth-child(3) {
+    transition-delay: 0.18s;
+    transform: rotate(130deg);
 }

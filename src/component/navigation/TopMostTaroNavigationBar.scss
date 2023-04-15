@@ -1,0 +1,38 @@
+.nav_custom_bar{
+    width: 100%;
+    background: linear-gradient(90deg,#ffffff, #ffffff);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    flex-shrink: 0;
+    .nav_custom_bar_back{
+      position: absolute;
+      bottom: 20px;
+      left: 22px;
+      width: 50px;
+      height: 50px;
+      &.hidden{
+        display: none;
+      }
+    }
+  }
+  .nav_custom_bar_title1{
+    font-size: 32px;
+    font-family: Microsoft YaHei, Microsoft YaHei-Regular;
+    font-weight: 400;
+    text-align: left;
+    color: #333131;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  .nav_custom_bar_title2{
+    position: absolute;
+    left: 20px;
+    color: #333131;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }

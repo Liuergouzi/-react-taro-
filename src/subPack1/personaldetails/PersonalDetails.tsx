@@ -5,11 +5,9 @@ import { Tab, Tabs, Tag, Toast } from '@antmjs/vantui'
 
 export default function PersonalDetails() {
 
-    TopMostTaroNavigationBar({ title: "", frontColor: '#ffffff', backgroundColor: '#ffffff' })
-    // console.log(process.env.TARO_ENV)
-
     return (
         <div>
+            <TopMostTaroNavigationBar needBackIcon={true} mainTitle={'个人详情'} />
             <div className={style.top}>
                 <div className={style.topHead}>
                     <img className={style.topHeadImg} src={images.testH1}></img>

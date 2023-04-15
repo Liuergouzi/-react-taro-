@@ -5,13 +5,13 @@ import images from "../../resources"
 import style from './Chat.module.scss'
 import time from "../../tool/time"
 import reUrl from "../../config"
-import TopBar from "../../component/topbar/TopBar"
 import showError from '../../http/errorShow'
+import TopMostTaroNavigationBar from "../../component/navigation/TopMostTaroNavigationBar"
 
 export default function Chat() {
 
     const setChatItemClick = Taro.getStorageSync("setChatItemClick")
-    const sendId=Taro.getStorageSync("socketId")
+    const sendId = Taro.getStorageSync("socketId")
     const receiveId = setChatItemClick.id
     const [messageList, setMessageList] = useState<any[]>([])
     const [socketOpen, setSocketOpen] = useState(false)
@@ -102,7 +102,7 @@ export default function Chat() {
     }, [messageList]);
     //滚动底部
     const scrollToBottom = () => {
-        Taro.createSelectorQuery().select('#chatWindow').boundingClientRect(function (rect) {
+        Taro.createSelectorQuery().select('#chatWindow').boundingClientRect(function (rect: any) {
             if (rect) {
                 Taro.pageScrollTo({
                     scrollTop: rect.height
@@ -180,12 +180,7 @@ export default function Chat() {
 
     return (
         <div>
-            <TopBar leftShow={true}>
-                <div className={style.chatTop}>
-                    <img src={other.headImg} className={style.headImg} />
-                    <div className={style.headName}>{other.name}</div>
-                </div>
-            </TopBar>
+            <TopMostTaroNavigationBar needBackIcon={true} mainTitle={'私信'} />
 
 
             <div className={style.contain} id="chatWindow">

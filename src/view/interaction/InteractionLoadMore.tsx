@@ -40,7 +40,7 @@ export default function InteractionLoadMore() {
                 viewId={'Interaction'}
                 ListCount={interactionList.length}
                 defaultListCount={3}
-                height={(Taro.getWindowInfo().screenHeight) - 96 * 1.06 * (Taro.getWindowInfo().screenHeight) / 568 + 'px'}
+                height={(Taro.getWindowInfo().screenHeight) - 65 * 1.06 * (Taro.getWindowInfo().screenHeight) / 568 + 'px'}
                 requestData={{
                     id: sendId,
                     pageIndex: pageIndex,

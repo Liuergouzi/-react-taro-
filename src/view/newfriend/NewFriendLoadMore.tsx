@@ -41,7 +41,7 @@ export default function NewFriendLoadMore() {
                 viewId={'NewFriend'}
                 ListCount={newFriendList.length}
                 defaultListCount={1}
-                height={(Taro.getWindowInfo().screenHeight) - 96 * 1.06 * (Taro.getWindowInfo().screenHeight) / 568 + 'px'}
+                height={(Taro.getWindowInfo().screenHeight) - 65 * 1.06 * (Taro.getWindowInfo().screenHeight) / 568 + 'px'}
                 requestData={{
                     id: sendId,
                     pageIndex: pageIndex,

@@ -4,6 +4,7 @@ import { ActionSheet, Cascader, Collapse, CollapseItem, Dialog, Icon, Switch } f
 import { useState } from 'react'
 import { Input } from '@tarojs/components'
 import { regionData, CodeToText } from 'element-china-area-data'
+import TopMostTaroNavigationBar from '../../component/navigation/TopMostTaroNavigationBar'
 
 export default function PersonalSetting() {
 
@@ -18,7 +19,7 @@ export default function PersonalSetting() {
     const [yearShow, setYearShow] = useState(false)
     const [areaVisible, setAreaVisible] = useState(false)
     const [area, setArea] = useState([])
-    const [areaTitle, setAreaTitle] = useState([]as any[])
+    const [areaTitle, setAreaTitle] = useState([] as any[])
     const [introduction, setIntroduction] = useState('简单地介绍一下你自己吧')
     const [introductionShow, setIntroductionShow] = useState(false)
     const areaChange = (areas) => {
@@ -48,19 +49,20 @@ export default function PersonalSetting() {
 
     return (
         <div>
+            <TopMostTaroNavigationBar needBackIcon={true} mainTitle={'个人设置'} />
             <ActionSheet
                 show={sexShow}
                 actions={sexActions}
                 description="请选择你的性别"
                 onClose={() => setSexShow(false)}
-                onSelect={(e) => { setSex(e.detail.name)}}
+                onSelect={(e) => { setSex(e.detail.name) }}
             />
             <ActionSheet
                 show={yearShow}
                 actions={yearActions}
                 description="请选择你的入学届数"
                 onClose={() => setYearShow(false)}
-                onSelect={(e) => { setYear(e.detail.name)}}
+                onSelect={(e) => { setYear(e.detail.name) }}
             />
             <Dialog
                 id="vanDialog1"
@@ -70,7 +72,7 @@ export default function PersonalSetting() {
                 show={nameShow}
                 onConfirm={(value) => { console.log(value) }}
                 onClose={() => setNameShow(false)}>
-                <Input className={style.dialogInput} placeholder="请输入你的昵称" value={name} onInput={(e: any) => { setName(e.detail.value) }} />
+                <input className={style.dialogInput} placeholder="请输入你的昵称" value={name} onChange={(e: any) => { setName(e.detail.value) }} />
             </Dialog>
             <Dialog
                 id="vanDialog2"
@@ -80,7 +82,7 @@ export default function PersonalSetting() {
                 show={introductionShow}
                 onConfirm={(value) => { console.log(value) }}
                 onClose={() => setIntroductionShow(false)}>
-                <Input className={style.dialogInput} placeholder="请输入你的介绍" value={introduction} onInput={(e: any) => { setIntroduction(e.detail.value) }} />
+                <input className={style.dialogInput} placeholder="请输入你的介绍" value={introduction} onChange={(e: any) => { setIntroduction(e.detail.value) }} />
             </Dialog>
             <Cascader
                 // scrollIntoView={false}
@@ -123,7 +125,7 @@ export default function PersonalSetting() {
                 </div>
                 <div className={style.lines}>
                     <div className={style.left}>简介</div>
-                    <div className={style.right}  onClick={() => setIntroductionShow(true)}>{introduction}&nbsp;{'>'}&nbsp;</div>
+                    <div className={style.right} onClick={() => setIntroductionShow(true)}>{introduction}&nbsp;{'>'}&nbsp;</div>
                 </div>
             </div>
             <div className={style.lines}>

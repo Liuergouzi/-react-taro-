@@ -1,5 +1,4 @@
 import style from './SysNotice.module.scss'
-import TopBar from "../../component/topbar/TopBar"
 import { Ellipsis } from '@antmjs/vantui'
 import LoadMore from "../../component/loadmore/LoadMore";
 import reUrl from "../../config"
@@ -34,19 +33,19 @@ export default function SysNoticeLoadMore() {
         if(hour1-hour2!=0){return "前"+(hour1-hour2)+"小时"}
         if(minute1-minute2!=0){return "前"+(minute1-minute2)+"分钟"}
     }
+    console.log(Taro.getWindowInfo().screenHeight)
 
     return (
 
         <div className={style.bg}>
-            <TopBar leftShow={true}>系统通知</TopBar>
-            <div className={style.contain} style={{ height: (Taro.getWindowInfo().screenHeight) - 95 * 1.06 * (Taro.getWindowInfo().screenHeight) / 568 + 'px' }}>
+            <div className={style.contain} style={{ height: "100%"}}>
 
                 <LoadMore
                     requesUrl={reUrl.getSysNotice}
                     viewId={'SysNotice'}
                     ListCount={SysNoticeList.length}
                     defaultListCount={1}
-                    height={(Taro.getWindowInfo().screenHeight) - 96 * 1.06 * (Taro.getWindowInfo().screenHeight) / 568 + 'px'}
+                    height={(Taro.getWindowInfo().screenHeight) - 65 * 1.06 * (Taro.getWindowInfo().screenHeight) / 568 + 'px'}
                     requestData={{
                         id: sendId,
                         pageIndex: pageIndex,

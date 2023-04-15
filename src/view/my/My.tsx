@@ -8,11 +8,10 @@ import { Provider } from 'react-redux';
 import TopMostTaroNavigationBar from "../../component/navigation/TopMostTaroNavigationBar";
 import { useNavigate } from 'react-router-dom';
 const My = React.memo(() => {
-
-    TopMostTaroNavigationBar({ title: "", frontColor: '#ffffff', backgroundColor: '#ffffff' })
     const navigate = useNavigate();
     return (
         <Provider store={store}>
+            <TopMostTaroNavigationBar needBackIcon={true} mainTitle={'我的'} />
             <My_head />
             <div onClick={() => { navigate("/personalSetting"); }}>
                 点击设置

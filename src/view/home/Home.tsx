@@ -11,9 +11,14 @@ import React from 'react'
 import TopMostTaroNavigationBar from "../../component/navigation/TopMostTaroNavigationBar";
 
 const Home = React.memo(() => {
-    TopMostTaroNavigationBar({ title: "首页", frontColor: "#000000", backgroundColor: "#ffffff" })
     return (
         <div>
+            <TopMostTaroNavigationBar needBackIcon={false} mainTitle={''}>
+                <div className={style.search}>
+                    <img src={images.search} className={style.searchImg}></img>
+                    搜索你的想法，如：爱坤
+                </div>
+            </TopMostTaroNavigationBar>
             <Provider store={store}>
                 <Carousel />
                 <div className={style.HomeCenterList}>

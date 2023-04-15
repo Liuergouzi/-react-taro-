@@ -10,7 +10,7 @@ export default function Index() {
 
   return (
     <View className='index'>
-      <Text>Hello woarld!</Text>
+      <Text>Hello world!</Text>
     </View>
   )
 }

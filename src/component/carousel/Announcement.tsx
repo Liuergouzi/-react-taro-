@@ -2,6 +2,7 @@
 import style from './Announcement.module.scss'
 import images from '../../resources'
 import Carousels, { CarouselItem, CarouselInfo } from "./Carousel";
+import React from 'react';
 
 /**
  * 轮子哥
@@ -38,8 +39,7 @@ const info = [
 ];
 
 const announcementValue="轮子哥通知测试轮子哥通知测试轮子哥通知测试轮子哥通知测试轮子哥通知测试"
-
-export default function Carousel() {
+const  Carousel=React.memo(()=> {
 
     return (
         <div className={style.Carousel}>
@@ -67,3 +67,5 @@ export default function Carousel() {
         </div>
     )
 }
+)
+export default Carousel

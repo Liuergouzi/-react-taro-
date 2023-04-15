@@ -1,5 +1,5 @@
 import { Provider } from 'react-redux'
-import TopBar from '../../component/topbar/TopBar'
+import TopMostTaroNavigationBar from '../../component/navigation/TopMostTaroNavigationBar'
 import store from '../../sclice/Store'
 import NewFriendLoadMore from "./NewFriendLoadMore"
 
@@ -7,7 +7,7 @@ import NewFriendLoadMore from "./NewFriendLoadMore"
 export default function NewFriend() {
   return (
     <Provider store={store}>
-      <TopBar leftShow={true}>新粉丝</TopBar>
+      <TopMostTaroNavigationBar needBackIcon={true} mainTitle={'新粉丝'} />
       <NewFriendLoadMore></NewFriendLoadMore>
     </Provider>
   )

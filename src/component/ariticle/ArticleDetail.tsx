@@ -1,5 +1,6 @@
 import style from './ArticleDetail.module.scss'
 import images from '../../resources'
+import TopMostTaroNavigationBar from '../navigation/TopMostTaroNavigationBar'
 
 const itemList = [
     { id: 1, image: images.test, name: "点赞" },
@@ -11,7 +12,7 @@ const itemList = [
 export default function ArticleDetail() {
     return (
         <div className={style.main}>
-
+            <TopMostTaroNavigationBar needBackIcon={true} mainTitle={'详情'}/>
             <div className={style.info}>
 
                 <div className={style.infoLeft}>
