@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import BottomNavigation from '../../component/navigation/BottomNavigation';
 import Carousel from '../../component/carousel/Announcement';
 import style from './Home.module.scss'
@@ -11,10 +11,13 @@ import React from 'react'
 import TopMostTaroNavigationBar from "../../component/navigation/TopMostTaroNavigationBar";
 
 const Home = React.memo(() => {
+
+    const navigate = useNavigate();
+
     return (
         <div>
             <TopMostTaroNavigationBar needBackIcon={false} mainTitle={''}>
-                <div className={style.search}>
+                <div className={style.search} onClick={()=>navigate("/search")}>
                     <img src={images.search} className={style.searchImg}></img>
                     搜索你的想法，如：爱坤
                 </div>

@@ -11,7 +11,7 @@ const My = React.memo(() => {
     const navigate = useNavigate();
     return (
         <Provider store={store}>
-            <TopMostTaroNavigationBar needBackIcon={true} mainTitle={'我的'} />
+            <TopMostTaroNavigationBar needBackIcon={false} mainTitle={'我的'} />
             <My_head />
             <div onClick={() => { navigate("/personalSetting"); }}>
                 点击设置

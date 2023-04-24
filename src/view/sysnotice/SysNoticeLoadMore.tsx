@@ -1,7 +1,6 @@
 import style from './SysNotice.module.scss'
 import { Ellipsis } from '@antmjs/vantui'
 import LoadMore from "../../component/loadmore/LoadMore";
-import reUrl from "../../config"
 import { useSelector } from 'react-redux';
 import Taro from '@tarojs/taro';
 import time from '../../tool/time';
@@ -41,7 +40,7 @@ export default function SysNoticeLoadMore() {
             <div className={style.contain} style={{ height: "100%"}}>
 
                 <LoadMore
-                    requesUrl={reUrl.getSysNotice}
+                    requesUrl={'getSysNotice'}
                     viewId={'SysNotice'}
                     ListCount={SysNoticeList.length}
                     defaultListCount={1}

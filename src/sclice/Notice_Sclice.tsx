@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import Taro from '@tarojs/taro'
-import reUrl from '../config'
+import reUrl from '../requestUrl'
 import itemList from '../itemList'
 
 /**
@@ -20,7 +20,7 @@ export const Notice_Sclice = createSlice({
         openSocket: (state: any) => {
             if (!state.socketState && Taro.getStorageSync("socketId") != "") {
                 Taro.connectSocket({
-                    url: reUrl.chatWebSocket + "1",
+                    url: reUrl('chatWebSocket') + "1",
                 })
                 state.socketState = true
             }

@@ -49,6 +49,7 @@
     width: 100px;
     height: 100px;
     border-radius: 100%;
+    background-color: lightgray;
 }
 
 .collapseItems{
@@ -63,4 +64,17 @@
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
+}
+.loginButton{
+    background-color: #ffffff;
+    border: 1px solid lightgray;
+    height: 70px;
+    text-align: center;
+    line-height: 70px;
+    border-radius: 40px;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 40px;
+    display: flex;
+    color: rgb(255, 5, 5);
 }

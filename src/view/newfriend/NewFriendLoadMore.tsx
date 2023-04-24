@@ -1,6 +1,5 @@
 import style from './NewFriendLoadMore.module.scss'
 import { useSelector } from 'react-redux';
-import reUrl from '../../config';
 import Taro from '@tarojs/taro';
 import LoadMore from "../../component/loadmore/LoadMore";
 import time from '../../tool/time';
@@ -37,7 +36,7 @@ export default function NewFriendLoadMore() {
         <div className={style.newFriend}>
 
             <LoadMore
-                requesUrl={reUrl.getInteraction}
+                requesUrl={'getInteraction'}
                 viewId={'NewFriend'}
                 ListCount={newFriendList.length}
                 defaultListCount={1}

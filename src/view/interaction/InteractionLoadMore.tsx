@@ -2,7 +2,6 @@ import style from './InteractionLoadMore.module..scss'
 import images from '../../resources'
 import LoadMore from "../../component/loadmore/LoadMore";
 import Taro from '@tarojs/taro';
-import reUrl from '../../config';
 import { useSelector } from 'react-redux';
 import time from '../../tool/time';
 
@@ -36,7 +35,7 @@ export default function InteractionLoadMore() {
     return (
         <div className={style.interaction}>
             <LoadMore
-                requesUrl={reUrl.getInteractionAll}
+                requesUrl={'getInteractionAll'}
                 viewId={'Interaction'}
                 ListCount={interactionList.length}
                 defaultListCount={3}

@@ -1,0 +1,143 @@
+
+.mainComment, .subComment {
+    display: flex;
+    flex-direction: row;
+  }
+
+.commentItem {
+    padding: 0 20px 20px;
+    font-size: 28px;
+    line-height: 45px;
+}
+
+.userHeadImg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top: 5px;
+}
+
+.others {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.userName {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.content {
+    margin-top: 2px;
+    font-size: 28px;
+}
+
+.subComment {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 60px;
+    padding-right: 20px;
+  }
+.commentImgDiv{
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.commentImg{
+    max-width:100%;
+    max-height:100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.commentButtom{
+    display: flex;
+    color: gray;
+    font-size: 25px;
+    height: 30px;
+    line-height: 30px;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: space-between;
+}
+.loveDiv{
+    display: flex;
+    padding-right: 20px;
+}
+.commentLoveImg{
+    width: 35px;
+    height: 35px;
+}
+
+
+
+.chatBottom {
+    height: 85px;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.chatBottomDiv {
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 100%;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 100px;
+}
+
+.inputDiv {
+    width: -webkit-fill-available;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+
+.bottomInput {
+    padding: 5px;
+    width: 100%;
+    height: 50px;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottomLeft {
+    margin-left: 12px;
+    display: flex;
+}
+
+.bottomRight {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+}
+
+.bottomImg {
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+}
+
+.bottomButton {
+    background-color: #8BD1AE;
+    border-radius: 20px;
+    font-size: 28px;
+    width: 90px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    margin-left: 20px;
+    color: white;
+}

@@ -1,3 +1,4 @@
+import Taro from "@tarojs/taro";
 import React, { useState, useEffect, ReactElement } from "react";
 import style from "./Carousel.module.scss";
 
@@ -33,6 +34,13 @@ export const CarouselInfo = React.memo((props: CarouselInfo) => {
 
   const [isChange, setChange] = useState(false)
 
+  const parView=(imgUrl)=>{
+    Taro.previewImage({
+        current: imgUrl, // 当前显示图片的http链接
+        urls: [imgUrl] // 需要预览的图片http链接列表
+      })
+}
+
   useEffect(() => {
     const interval = setInterval(() => {
       setChange(!isChange);
@@ -47,7 +55,7 @@ export const CarouselInfo = React.memo((props: CarouselInfo) => {
 
   return (
     <div className={style.carousel_info}>
-      <img src={props.image} alt="Jay" className={style.carousel_info_image} />
+      <img src={props.image} alt="Jay" className={style.carousel_info_image} onClick={()=>{parView(props.image)}}/>
       <div className={isChange ? style.carousel_info_text : style.carousel_info_text_2}>
         <div className={style.carousel_info_title}>{props.title}</div>
         <div className={style.carousel_info_content}>{props.content}</div>

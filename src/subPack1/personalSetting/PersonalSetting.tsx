@@ -1,45 +1,121 @@
 import style from './PersonalSetting.module.scss'
-import images from '../../resources'
-import { ActionSheet, Cascader, Collapse, CollapseItem, Dialog, Icon, Switch } from '@antmjs/vantui'
-import { useState } from 'react'
-import { Input } from '@tarojs/components'
+import { ActionSheet, Button, Cascader, Collapse, CollapseItem, Dialog, Icon, Switch } from '@antmjs/vantui'
+import { useEffect, useState } from 'react'
 import { regionData, CodeToText } from 'element-china-area-data'
 import TopMostTaroNavigationBar from '../../component/navigation/TopMostTaroNavigationBar'
+import Taro from '@tarojs/taro'
+import { useNavigate } from 'react-router-dom'
+import netRequest from '../../http/http'
 
 export default function PersonalSetting() {
 
+    const [nameShow, setNameShow] = useState(false)
+    const [sexShow, setSexShow] = useState(false)
+    const [yearShow, setYearShow] = useState(false)
+    const [areaVisible, setAreaVisible] = useState(false)
+    const [introductionShow, setIntroductionShow] = useState(false)
     const [value1, setValue1] = useState(false)
     const [value2, setValue2] = useState(false)
     const [value3, setValue3] = useState(false)
-    const [name, setName] = useState('未命名用户')
-    const [nameShow, setNameShow] = useState(false)
-    const [sex, setSex] = useState('沃尔玛购物袋')
-    const [sexShow, setSexShow] = useState(false)
-    const [year, setYear] = useState(2019)
-    const [yearShow, setYearShow] = useState(false)
-    const [areaVisible, setAreaVisible] = useState(false)
     const [area, setArea] = useState([])
-    const [areaTitle, setAreaTitle] = useState([] as any[])
-    const [introduction, setIntroduction] = useState('简单地介绍一下你自己吧')
-    const [introductionShow, setIntroductionShow] = useState(false)
-    const areaChange = (areas) => {
-        setArea(areas)
-        setAreaTitle([CodeToText[areas[0]], CodeToText[areas[1]], CodeToText[areas[2]]])
+    const navigate = useNavigate();
+    const [user, setUser] = useState(
+        {
+            "avatar": "",
+            "nickname": "", "grade": "", "sex": "男",
+            "address": "", "description": "", "isInfo": "false"
+        }
+    )
+    const [isRequestFinsh, setIsRequestFinsh] = useState(true)
+
+    useEffect(() => {
+        if (Taro.getStorageSync("user") != "") {
+            let userTemp = JSON.parse(JSON.stringify(user));
+            const useStore = Taro.getStorageSync("user")
+            if(useStore.avatar!=null)
+            userTemp.avatar = useStore.avatar
+            if(useStore.nickname!=null)
+            userTemp.nickname = useStore.nickname
+            if(useStore.grade!=null)
+            userTemp.grade = useStore.grade
+            if(useStore.sex!=null)
+            userTemp.sex = useStore.sex
+            if(useStore.address!=null)
+            userTemp.address = useStore.address
+            if(useStore.description!=null)
+            userTemp.description = useStore.description
+            if(useStore.isInfo==false || useStore.isInfo==true)
+            userTemp.isInfo = String(useStore.isInfo)
+            setUser(userTemp)
+            console.log(userTemp)
+            setValue1(useStore.isInfo)
+        }
+    }, [])
+
+    const updateUser = (userInfo, id, bool) => {
+        let userTemp = JSON.parse(JSON.stringify(user));
+        switch (id) {
+            case 'avatar': userTemp.avatar = userInfo; break;
+            case 'nickname': userTemp.nickname = userInfo; break;
+            case 'grade': userTemp.grade = userInfo; break;
+            case 'sex': userTemp.sex = userInfo; break;
+            case 'address': userTemp.address = [CodeToText[userInfo[0]], CodeToText[userInfo[1]], CodeToText[userInfo[2]]].join("-"); setArea(userInfo); break;
+            case 'description': userTemp.description = userInfo; break;
+            case 'isInfo': userTemp.isInfo = String(userInfo); setValue1(userInfo); break;
+        }
+        setUser(userTemp)
+        if (isRequestFinsh && bool) {
+            if (id == 'address') {
+                if (userInfo.length == 3) {
+                    updateUserRequest(userTemp)
+                }
+            } else {
+                updateUserRequest(userTemp)
+            }
+        }
     }
+
+    const logout=()=>{
+        if (isRequestFinsh) {
+            setIsRequestFinsh(false);
+            netRequest({}, 'logout', 'POST', 1)
+              .then(() => {
+                navigate('/login')
+                //清除所有缓存
+                Taro.getStorageInfo({
+                    success: function (res) {
+                        res.keys.forEach(element => {
+                            Taro.removeStorageSync(element)
+                        });
+                    }
+                  })
+                setIsRequestFinsh(true)
+              })
+              .catch(() => { 
+                setIsRequestFinsh(true)
+               })
+        }
+    }
+
+    const updateUserRequest = (data) => {
+        if (isRequestFinsh) {
+            setIsRequestFinsh(false);
+            netRequest(data, 'user', 'PUT', 1)
+            .then((res) => {
+                Taro.setStorageSync("user", res.data.data)
+              setIsRequestFinsh(true)
+            })
+            .catch(() => { 
+              setIsRequestFinsh(true)
+             })
+        }
+    }
+
     const [sexActions] = useState([
-        {
-            name: '未知',
-        },
-        {
-            name: '男',
-        },
-        {
-            name: '女',
-        },
-        {
-            name: '沃尔玛购物袋',
-            subname: '如果你纠结于你的性别，那么这是一个完美的选择'
-        },
+        { name: '保密' },
+        { name: '男' },
+        { name: '女' },
+        { name: '沃尔玛购物袋', subname: '如果你纠结于你的性别，那么这是一个完美的选择' },
     ])
     const [yearActions] = useState([
         { name: 2023 }, { name: 2022 }, { name: 2021 }, { name: 2020 }, { name: 2019 }, { name: 2018 }, { name: 2017 },
@@ -50,29 +126,16 @@ export default function PersonalSetting() {
     return (
         <div>
             <TopMostTaroNavigationBar needBackIcon={true} mainTitle={'个人设置'} />
-            <ActionSheet
-                show={sexShow}
-                actions={sexActions}
-                description="请选择你的性别"
-                onClose={() => setSexShow(false)}
-                onSelect={(e) => { setSex(e.detail.name) }}
-            />
-            <ActionSheet
-                show={yearShow}
-                actions={yearActions}
-                description="请选择你的入学届数"
-                onClose={() => setYearShow(false)}
-                onSelect={(e) => { setYear(e.detail.name) }}
-            />
             <Dialog
                 id="vanDialog1"
                 title="修改昵称"
                 showCancelButton
                 confirmButtonOpenType="getUserInfo"
                 show={nameShow}
-                onConfirm={(value) => { console.log(value) }}
+                onConfirm={() => { updateUserRequest(user) }}
                 onClose={() => setNameShow(false)}>
-                <input className={style.dialogInput} placeholder="请输入你的昵称" value={name} onChange={(e: any) => { setName(e.detail.value) }} />
+                <input className={style.dialogInput} placeholder="请输入你的昵称" value={user.nickname}
+                    onChange={(e: any) => { updateUser(e.detail.value, "nickname", false) }} />
             </Dialog>
             <Dialog
                 id="vanDialog2"
@@ -80,10 +143,25 @@ export default function PersonalSetting() {
                 showCancelButton
                 confirmButtonOpenType="getUserInfo"
                 show={introductionShow}
-                onConfirm={(value) => { console.log(value) }}
+                onConfirm={() => { updateUserRequest(user) }}
                 onClose={() => setIntroductionShow(false)}>
-                <input className={style.dialogInput} placeholder="请输入你的介绍" value={introduction} onChange={(e: any) => { setIntroduction(e.detail.value) }} />
+                <input className={style.dialogInput} placeholder="请输入你的介绍" value={user.description}
+                    onChange={(e: any) => { updateUser(e.detail.value, "description", false) }} />
             </Dialog>
+            <ActionSheet
+                show={sexShow}
+                actions={sexActions}
+                description="请选择你的性别"
+                onClose={() => { setSexShow(false) }}
+                onSelect={(e) => { updateUser(e.detail.name, "sex", true) }}
+            />
+            <ActionSheet
+                show={yearShow}
+                actions={yearActions}
+                description="请选择你的入学届数"
+                onClose={() => { setYearShow(false) }}
+                onSelect={(e) => { updateUser(e.detail.name, "grade", true) }}
+            />
             <Cascader
                 // scrollIntoView={false}
                 childrenKey="children"
@@ -96,36 +174,35 @@ export default function PersonalSetting() {
                 onClose={() => {
                     setAreaVisible(false)
                 }}
-                onChange={areaChange}
+                onChange={(e) => { updateUser(e, "address", true) }}
             />
 
             <div className={style.contain}>
                 <div className={style.lines1}>
                     <div className={style.left1}>头像</div>
                     <div className={style.right1}>
-                        <img className={style.headImg} src={images.testH1}></img>
+                        <img className={style.headImg} src={user.avatar != null ? user.avatar : ""}></img>
                     </div>
                 </div>
-                <div className={style.lines}>
+                <div className={style.lines} onClick={() => setNameShow(true)}>
                     <div className={style.left}>昵称</div>
-
-                    <div className={style.right} onClick={() => setNameShow(true)}>{name}&nbsp;{'>'}&nbsp;</div>
+                    <div className={style.right}>{user.nickname}&nbsp;{'>'}&nbsp;</div>
                 </div>
-                <div className={style.lines}>
+                <div className={style.lines} onClick={() => setYearShow(true)}>
                     <div className={style.left}>年级</div>
-                    <div className={style.right} onClick={() => setYearShow(true)}>{year}年&nbsp;{'>'}&nbsp;</div>
+                    <div className={style.right}>{user.grade}&nbsp;{'>'}&nbsp;</div>
                 </div>
-                <div className={style.lines}>
+                <div className={style.lines} onClick={() => setSexShow(true)}>
                     <div className={style.left}>性别</div>
-                    <div className={style.right} onClick={() => setSexShow(true)}>{sex}&nbsp;{'>'}&nbsp;</div>
+                    <div className={style.right}>{user.sex}&nbsp;{'>'}&nbsp;</div>
                 </div>
-                <div className={style.lines}>
+                <div className={style.lines} onClick={() => { setAreaVisible(true) }}>
                     <div className={style.left}>地区</div>
-                    <div className={style.right} onClick={() => { setAreaVisible(true) }}>{areaTitle.length ? areaTitle.join('-') : '请选择地址'}&nbsp;{'>'}&nbsp;</div>
+                    <div className={style.right}>{user.address}&nbsp;{'>'}&nbsp;</div>
                 </div>
-                <div className={style.lines}>
+                <div className={style.lines} onClick={() => setIntroductionShow(true)}>
                     <div className={style.left}>简介</div>
-                    <div className={style.right} onClick={() => setIntroductionShow(true)}>{introduction}&nbsp;{'>'}&nbsp;</div>
+                    <div className={style.right}>{user.description}&nbsp;{'>'}&nbsp;</div>
                 </div>
             </div>
             <div className={style.lines}>
@@ -140,7 +217,7 @@ export default function PersonalSetting() {
                                         activeColor="#8BD1AE"
                                         inactiveColor="#a5a5a5"
                                         checked={value1}
-                                        onChange={(e) => setValue1(e.detail)} />
+                                        onChange={(e) => updateUser(e.detail, "isInfo", true)} />
                                 </div>
                             </div>
                             <div className={style.collapseItem}>
@@ -179,7 +256,7 @@ export default function PersonalSetting() {
                         </div>
                     </CollapseItem>
                 </Collapse>
-
+                <Button className={style.loginButton} type="info" onClick={() => { logout()}}>退出登录</Button>
             </div>
         </div>
     )

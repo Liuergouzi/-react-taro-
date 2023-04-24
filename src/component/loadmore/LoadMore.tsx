@@ -1,17 +1,19 @@
 import { PowerScrollView } from '@antmjs/vantui'
 import react, { useEffect, useState } from 'react'
-import { setData } from '../../sclice/Home_Sclice'
-import { setChatData, clearChatData, setChatPageIndex, clearChatPageIndex,setChatDefaultList } from '../../sclice/Notice_Sclice'
+import { setArticleList, clearArticleList, setArticlePageIndex, clearArticlePageIndex } from '../../sclice/Article_Sclice'
+import { setChatData, clearChatData, setChatPageIndex, clearChatPageIndex, setChatDefaultList } from '../../sclice/Notice_Sclice'
 import { setSysNoticeList, clearSysNoticeList, setSysNoticePageIndex, clearSysNoticePageIndex } from '../../sclice/SysNotice_Sclice'
 import { setInteractionList, clearInteractionList, setInteractionPageIndex, clearInteractionPageIndex } from '../../sclice/Interaction_Sclice'
 import { setNewFriendList, clearNewFriendList, setNewFriendPageIndex, clearNewFriendPageIndex } from '../../sclice/NewFriend_Sclice'
+import { setCommentList, clearCommentList, setCommentPageIndex, clearCommentPageIndex } from '../../sclice/Comment_Sclice'
 import { useDispatch } from 'react-redux'
 import Taro from '@tarojs/taro'
 import './LoadMore.scss'
 import showError from '../../http/errorShow'
+import re from '../../requestUrl'
 /**
  * 轮子哥
- * 数据加载组件
+ * 自定义数据加载组件
  */
 
 export default function HomeLoadMore(props: any) {
@@ -33,21 +35,22 @@ export default function HomeLoadMore(props: any) {
   }
   const setDatas = (viewId: string, data: any, noticeList: any) => {
     switch (viewId) {
-      case 'ArticleLoadMore': dispatch(setData(data)); data.length == tempRequestData.pageSize && dispatch(setSysNoticePageIndex()); break;
-      case 'Notice_List':if(tempRequestData.pageIndex==0){dispatch(setChatDefaultList(noticeList))};dispatch(setChatData(data));data.length == tempRequestData.pageSize && dispatch(setChatPageIndex());break;
+      case 'Article': dispatch(setArticleList(data)); data.length == tempRequestData.pageSize && dispatch(setArticlePageIndex()); break;
+      case 'Notice_List': if (tempRequestData.pageIndex == 0) { dispatch(setChatDefaultList(noticeList)) }; dispatch(setChatData(data)); data.length == tempRequestData.pageSize && dispatch(setChatPageIndex()); break;
       case 'SysNotice': dispatch(setSysNoticeList(data)); data.length == tempRequestData.pageSize && dispatch(setSysNoticePageIndex()); break;
       case 'Interaction': dispatch(setInteractionList(data)); data.length == tempRequestData.pageSize && dispatch(setInteractionPageIndex()); break;
       case 'NewFriend': dispatch(setNewFriendList(data)); data.length == tempRequestData.pageSize && dispatch(setNewFriendPageIndex()); break;
+      case 'Comment': dispatch(setCommentList(data)); data.length == tempRequestData.pageSize && dispatch(setCommentPageIndex()); break;
     }
   }
   const clearDatas = (viewId: string) => {
     switch (viewId) {
-      case 'ArticleLoadMore': dispatch(clearChatPageIndex()); dispatch(clearChatPageIndex()); break;
+      case 'Article': dispatch(clearArticlePageIndex()); dispatch(clearArticleList()); break;
       case 'Notice_List': dispatch(clearChatPageIndex()); dispatch(clearChatData()); break;
       case 'SysNotice': dispatch(clearSysNoticePageIndex()); dispatch(clearSysNoticeList()); break;
       case 'Interaction': dispatch(clearInteractionPageIndex()); dispatch(clearInteractionList()); break;
       case 'NewFriend': dispatch(clearNewFriendPageIndex()); dispatch(clearNewFriendList()); break;
-
+      case 'Comment': dispatch(clearCommentPageIndex()); dispatch(clearCommentList()); break;
     }
   }
 
@@ -55,7 +58,7 @@ export default function HomeLoadMore(props: any) {
     console.log("开始请求")
     return new Promise((resolve) => {
       requests = Taro.request({
-        url: props.requesUrl,
+        url: re(props.requesUrl),
         data: tempRequestDatas,
         header: {
           'content-type': 'application/json'
@@ -80,6 +83,17 @@ export default function HomeLoadMore(props: any) {
             resolve([])
           }
           showError(res)
+        },
+        fail: function (res) {
+          setState({
+            basicsList: [{}],
+            basicsFinished: true,
+          })
+          resolve([])
+          Taro.showModal({
+            title: '请求失败',
+            content: "请求路径错误" + JSON.stringify(res),
+          })
         }
       })
     });
@@ -110,8 +124,9 @@ export default function HomeLoadMore(props: any) {
       //离开页面取消请求
       if (requests != undefined)
         requests.abort()
-      // dispatch(clearPageIndex())
-      // dispatch(clearChatData())
+      if (props.isLeaveClear) {
+        clearDatas(props.viewId)
+      }
     }
   }, [])
 
@@ -127,7 +142,8 @@ export default function HomeLoadMore(props: any) {
       // renderLoading={props.ListCount % tempRequestData.pageSize != props.defaultListCount ? <div></div> : ""}
       animationDuration={10}
       style={{
-        height: props.height
+        height: props.height,
+        marginBottom: props.marginBottom
       }}
     >
       {state.basicsList.map(() => (

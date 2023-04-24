@@ -9,8 +9,8 @@ export default function Notice() {
     return (
         <div>
             <Provider store={store}>
-            <TopMostTaroNavigationBar needBackIcon={false} mainTitle={'消息'} />
-                <NoticeLoadMore />
+            <TopMostTaroNavigationBar needBackIcon={false} mainTitle={'消息'}/>
+                <NoticeLoadMore/>
                 <BottomNavigation />
             </Provider>
         </div>

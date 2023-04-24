@@ -1,10 +1,11 @@
 export default defineAppConfig({
   pages: [
     'router/routerView',
-    'pages/index/index'
+    // 'pages/index/index'
   ],
   window: {
-    navigationStyle: 'custom' 
+    navigationStyle: 'custom' ,
+    navigationBarTextStyle: "black"
     // backgroundTextStyle: 'light',
     // navigationBarBackgroundColor: '#fff',
     // navigationBarTitleText: 'WeChat',

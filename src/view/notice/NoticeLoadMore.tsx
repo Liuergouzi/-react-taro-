@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setChatDataAll, setChatDefaultListRedCount } from '../../sclice/Notice_Sclice'
 import LoadMore from "../../component/loadmore/LoadMore";
-import reUrl from "../../config"
 import Taro from "@tarojs/taro";
 import time from '../../tool/time';
+import netRequest from '../../http/http';
 
 
 /**
@@ -29,31 +29,23 @@ export default function NoticeLoadMore() {
             } else if (index == 2) {
                 type = "friend"
             }
-            Taro.request({
-                url: reUrl.updateMonRedCount,
-                method: 'POST',
-                data: { id: sendId, type: type },
-                header: {
-                    'content-type': 'application/x-www-form-urlencoded'
-                },
-            })
+            netRequest({ id: sendId, type: type }, 'updateMonRedCount', 'POST', 0)
+              .then(() => {
+              })
+              .catch(() => { 
+               })
             dispatch(setChatDefaultListRedCount(index))
         }
         //更新小红点
         if (chatListData[index].redCount != 0 && index > 2) {
-            Taro.request({
-                url: reUrl.redReset,
-                method: 'POST',
-                data: { sendId: item.otherId, receiveId: sendId },
-                header: {
-                    'content-type': 'application/x-www-form-urlencoded'
-                },
-                success: function () {
-                    let chatTemp = JSON.parse(JSON.stringify(chatListData))
-                    chatTemp[index].redCount = 0
-                    dispatch(setChatDataAll(chatTemp))
-                }
+            netRequest({ sendId: item.otherId, receiveId: sendId }, 'redReset', 'POST', 0)
+            .then(() => {
+                let chatTemp = JSON.parse(JSON.stringify(chatListData))
+                chatTemp[index].redCount = 0
+                dispatch(setChatDataAll(chatTemp))
             })
+            .catch(() => { 
+             })
         }
         switch (item.otherId) {
             case -27333: sendId != "" && navigate("/sysNotice"); break;
@@ -71,7 +63,7 @@ export default function NoticeLoadMore() {
 
             {sendId != "" ?
                 <LoadMore
-                    requesUrl={reUrl.getChatList}
+                    requesUrl={'getChatList'}
                     viewId={'Notice_List'}
                     height={(Taro.getWindowInfo().screenHeight) - 106 * (Taro.getWindowInfo().screenHeight) / 568 + 'px'}
                     ListCount={chatListData.length}

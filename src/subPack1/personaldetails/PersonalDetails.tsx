@@ -1,17 +1,34 @@
 import style from './PersonalDetails.module.scss'
 import images from '../../resources'
 import TopMostTaroNavigationBar from '../../component/navigation/TopMostTaroNavigationBar'
-import { Tab, Tabs, Tag, Toast } from '@antmjs/vantui'
+import { Tag } from '@antmjs/vantui'
+import Taro from '@tarojs/taro'
+import TabsArticleLoadMore from '../../component/ariticle/TabsArticleLoadMore'
+import { useNavigate } from 'react-router-dom'
 
 export default function PersonalDetails() {
+
+    const navigate = useNavigate();
+    
+    const parView=(imgUrl)=>{
+        Taro.previewImage({
+            current: imgUrl, // 当前显示图片的http链接
+            urls: [imgUrl] // 需要预览的图片http链接列表
+          })
+    }
+
+    const goChat=(item)=>{
+        // Taro.setStorageSync('setChatItemClick', { id: item.otherId, head: item.head, name: item.name })
+        navigate("/chat");
+    }
 
     return (
         <div>
             <TopMostTaroNavigationBar needBackIcon={true} mainTitle={'个人详情'} />
             <div className={style.top}>
                 <div className={style.topHead}>
-                    <img className={style.topHeadImg} src={images.testH1}></img>
-                    <div className={style.topChat}>私聊</div>
+                    <img className={style.topHeadImg} src={images.testH1} onClick={()=>parView(images.testH1)}></img>
+                    <div className={style.topChat} onClick={()=>{goChat("")}}>私聊</div>
                 </div>
                 <div className={style.topHeadBottom}>
                     <div className={style.topName}>轮子哥</div>
@@ -45,34 +62,7 @@ export default function PersonalDetails() {
                 </div>
 
             </div>
-            <Tabs
-                active={"1"}
-                sticky={true}
-                animated
-                // swipeable
-                lineWidth={'30px'}
-                titleActiveColor="#8BD1AE"
-                onChange={(e) =>
-                    Toast.show({
-                        message: e.detail.name,
-                        selector: '#tabs-toast2',
-                    })
-                }>
-                <Tab title="帖子" name="1">
-                    
-                </Tab>
-                <Tab title="求助" name="2">
-                    
-                </Tab>
-                <Tab title="闲置" name="3">
-                    
-                </Tab>
-                <Tab title="表白" name="4">
-                    
-                </Tab>
-                <Toast id="tabs-toast2" />
-            </Tabs>
-
+            <TabsArticleLoadMore/>
         </div>
     )
 }

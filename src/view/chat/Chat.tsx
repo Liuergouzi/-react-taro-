@@ -4,9 +4,9 @@ import { Toast } from '@antmjs/vantui'
 import images from "../../resources"
 import style from './Chat.module.scss'
 import time from "../../tool/time"
-import reUrl from "../../config"
-import showError from '../../http/errorShow'
+import reUrl from "../../requestUrl"
 import TopMostTaroNavigationBar from "../../component/navigation/TopMostTaroNavigationBar"
+import netRequest from "../../http/http"
 
 export default function Chat() {
 
@@ -14,7 +14,6 @@ export default function Chat() {
     const sendId = Taro.getStorageSync("socketId")
     const receiveId = setChatItemClick.id
     const [messageList, setMessageList] = useState<any[]>([])
-    const [socketOpen, setSocketOpen] = useState(false)
     const [messageText, setMessageText] = useState("")
     const [inputButtom, setInputButtom] = useState(0)
     const [other] = useState({ headImg: setChatItemClick.head, name: setChatItemClick.name })
@@ -33,39 +32,29 @@ export default function Chat() {
 
     //加载更多
     const handleClick = (isOnce) => {
-        Taro.request({
-            url: reUrl.getMessage,
-            method: 'POST',
-            data: {
-                sendId: sendId,
-                receiveId: setChatItemClick.id,
-                pageIndex: pageIndex,
-                pageSize: 10
-            },
-            header: {
-                'content-type': 'application/x-www-form-urlencoded'
-            },
-            success: function (res) {
-                if (res.data.hasOwnProperty("data")) (
-                    res.data.data.length != 10 && setIsHistory(false),
-                    console.log(),
-                    setMessageList([...res.data.data.reverse(), ...messageList]),
-                    !isOnce && setIsScroll(false)
-                )
-                else {
-                    setPageIndex(pageIndex - 1)
-                }
-                showError(res)
-            }
-        })
+        netRequest({
+            sendId: sendId,
+            receiveId: setChatItemClick.id,
+            pageIndex: pageIndex,
+            pageSize: 10
+        }, 'getMessage', 'POST', 0)
+            .then((res) => {
+                res.data.data.length != 10 && setIsHistory(false),
+                console.log(),
+                setMessageList([...res.data.data.reverse(), ...messageList]),
+                !isOnce && setIsScroll(false)
+            })
+            .catch(() => {
+                setPageIndex(pageIndex - 1)
+            })
         setPageIndex(pageIndex + 1)
     }
 
 
     //socket监听
-    Taro.onSocketOpen(function () {
-        setSocketOpen(true)
-    })
+    // Taro.onSocketOpen(function () {
+    //     setSocketOpen(true)
+    // })
     Taro.onSocketError(function () {
         Toast.show("聊天服务连接失败,请联系轮子哥");
     })
@@ -75,20 +64,18 @@ export default function Chat() {
 
     //消息存储
     const insertMessage = (message, messageType, time) => {
-        Taro.request({
-            url: reUrl.chatInsert,
-            data: {
-                sendId: sendId,
-                receiveId: receiveId,
-                sendType: "one",
-                message: message,
-                messageType: messageType,
-                time: time
-            },
-            header: {
-                'content-type': 'application/json'
-            }
-        })
+        netRequest({
+            sendId: sendId,
+            receiveId: receiveId,
+            sendType: "one",
+            message: message,
+            messageType: messageType,
+            time: time
+        }, 'chatInsert', 'POST', 0)
+            .then(() => {
+            })
+            .catch(() => {
+            })
     }
 
     //监听滚动底部
@@ -125,10 +112,6 @@ export default function Chat() {
         Taro.sendSocketMessage({
             data: JSON.stringify(sendData)
         })
-        if (socketOpen) {
-        } else {
-            Toast.show("消息已发送，但对方可能无法实时接收");
-        }
         insertMessage(messageText, "text", sendTime)
         setMessageList(() => ([...messageList, sendData]))
         setMessageText("")
@@ -148,11 +131,11 @@ export default function Chat() {
                 // Taro.showLoading({ title: '图片上传中...' })
                 const tempFilePaths = res.tempFilePaths
                 Taro.uploadFile({
-                    url: reUrl.chatUploadImg,
+                    url: reUrl('chatUploadImg'),
                     filePath: tempFilePaths[0],
                     name: 'file',
                     formData: {
-                        'imgUrlName': sendId + "/" + receiveId + "/" + sendTime + ".png"
+                        'imgUrlName': "chat" + "-" + receiveId + "-" + sendTime + ".png"
                     },
                     success(res: any) {
                         const sendData = {
@@ -162,6 +145,7 @@ export default function Chat() {
                         Taro.sendSocketMessage({
                             data: JSON.stringify(sendData)
                         })
+                        console.log(JSON.stringify(res.data))
                         insertMessage(JSON.parse(res.data).url, "image", sendTime)
                         // Taro.hideLoading()
                         // Taro.showModal({
@@ -180,8 +164,7 @@ export default function Chat() {
 
     return (
         <div>
-            <TopMostTaroNavigationBar needBackIcon={true} mainTitle={'私信'} />
-
+            <TopMostTaroNavigationBar needBackIcon={true} mainTitle={"和 " + other.name + " 聊天"} goTop={true} />
 
             <div className={style.contain} id="chatWindow">
                 {isHistory ? <div className={style.centerTip} onClick={() => { handleClick(false) }}>加载更多</div> : ''}
