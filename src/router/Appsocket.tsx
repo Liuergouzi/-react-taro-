@@ -12,11 +12,11 @@ export default function Appsocket() {
     //五大页面共同组件，初始化即打开socket连接
     useEffect(() => {
         dispatch(openSocket())
-    })
+    },[])
     //接收到消息，及时更新缓存的数据列表
     Taro.onSocketMessage(function (res) {
+        console.log("接收到消息"+JSON.stringify(res))
         const resData = JSON.parse(res.data)
-        console.log(resData)
         if(resData.hasOwnProperty("type")){
             dispatch(setChatDefaultListOne(resData))
         }else{

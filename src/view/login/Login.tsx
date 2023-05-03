@@ -6,6 +6,7 @@ import Taro from '@tarojs/taro'
 import TopMostTaroNavigationBar from '../../component/navigation/TopMostTaroNavigationBar'
 import { Button } from '@antmjs/vantui'
 import netRequest from '../../http/http'
+import reUrl from "../../requestUrl"
 
 export default function Login() {
 
@@ -30,11 +31,11 @@ export default function Login() {
                     .then((res) => {
                         Taro.setStorageSync("userId", res.data.data.loginId)
                         Taro.setStorageSync("token", res.data.data.tokenValue)
-                        netRequest({}, 'info', 'GET', 0)
-                            .then(() => {
-                                Taro.setStorageSync("user", res.data.data)
-                                navigate(-1)
+                        netRequest({}, reUrl('info'), 'GET', 0)
+                            .then((ress) => {
+                                Taro.setStorageSync("user", ress.data.data)
                                 setIsRequestFinsh(true)
+                                navigate(-1)
                             })
                             .catch(() => {
                                 setIsRequestFinsh(true)
@@ -45,7 +46,10 @@ export default function Login() {
                     })
             } else {
                 if (chectInput == chect) {
-                    netRequest({}, 'regist', 'POST', 1)
+                    netRequest({
+                        username: account,
+                        password: password
+                    }, 'regist', 'POST', 0)
                         .then(() => {
                             Taro.showToast({
                                 title: '注册成功',
@@ -87,12 +91,12 @@ export default function Login() {
             <div className={style.contain}>
                 <div className={style.inputFlex}>
                     <div className={style.inputTop}>账号</div>
-                    <input className={style.loginInput} placeholder={isRegister ? "请输入注册的账号" : "请输入登录的账号"} onChange={(e: any) => setAccount(e.detail.value)}></input>
+                    <input className={style.loginInput} placeholder={isRegister ? "请输入注册的账号" : "请输入登录的账号"} onInput={(e: any) => setAccount(e.detail.value)}></input>
                     <div className={style.line}></div>
                 </div>
                 <div className={style.inputFlex}>
                     <div className={style.inputTop}>密码</div>
-                    <input className={style.loginInput} placeholder={isRegister ? "请输入注册的密码" : "请输入登录的密码"} onChange={(e: any) => setPassword(e.detail.value)}></input>
+                    <input className={style.loginInput} placeholder={isRegister ? "请输入注册的密码" : "请输入登录的密码"} onInput={(e: any) => setPassword(e.detail.value)}></input>
                     <div className={style.line}></div>
                 </div>
                 {
@@ -100,7 +104,7 @@ export default function Login() {
                     <div className={style.inputFlex}>
                         <div className={style.inputTop}>验证码</div>
                         <div className={style.inputChect}>
-                            <input className={style.loginInput} placeholder="请输入验证码" onChange={(e: any) => { setchectInput(e.detail.value) }}></input>
+                            <input className={style.loginInput} placeholder="请输入验证码" onInput={(e: any) => { setchectInput(e.detail.value) }}></input>
                             <div className={style.chect} onClick={() => setChect(Math.ceil(Math.random() * 10000))}>{chect}</div>
                         </div>
                         <div className={style.line}></div>

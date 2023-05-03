@@ -22,11 +22,13 @@
     padding-bottom: 30px;
     border-bottom: 1px solid rgb(245, 245, 245);
 }
+
 .left1 {
     float: left;
     height: 100px;
     line-height: 100px;
 }
+
 .right1 {
     float: right;
     height: 100px;
@@ -41,8 +43,13 @@
 
 .right {
     float: right;
-    height: 40px;
-    line-height: 40px;
+    height: 45px;
+    line-height: 45px;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 80%;
 }
 
 .headImg {
@@ -52,20 +59,24 @@
     background-color: lightgray;
 }
 
-.collapseItems{
+.collapseItems {
     display: flex;
     flex-direction: column;
 }
-.collapseItem{
+
+.collapseItem {
     height: 50px;
 }
-.dialogInput{
+
+.dialogInput {
     padding-bottom: 50rpx;
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
 }
-.loginButton{
+
+.loginButton {
+    position: relative;
     background-color: #ffffff;
     border: 1px solid lightgray;
     height: 70px;
@@ -77,4 +88,12 @@
     margin-top: 40px;
     display: flex;
     color: rgb(255, 5, 5);
+}
+
+.inputCount {
+    position: absolute;
+    bottom: 152px;
+    right: 100px;
+    font-size: 24px;
+    color: gray;
 }

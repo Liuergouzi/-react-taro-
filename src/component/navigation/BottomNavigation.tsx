@@ -4,6 +4,7 @@ import routers from '../../router/router';
 import style from './BottomNavigation.module.scss'
 import { useState } from 'react';
 import images from '../../resources';
+import { useSelector } from 'react-redux';
 /**
  * 轮子哥
  * 自定义底部tabbar
@@ -12,8 +13,7 @@ import images from '../../resources';
 export default function BottomNavigation() {
 
     const currentUrl = useLocation().pathname
-
-    const [newMessage] = useState(false)
+    const newMessage = useSelector((state: any) => state.Notice_Reducer.navBarRed)
     const [moveMouse, setMoveMouse] = useState(false)
 
     return (

@@ -14,13 +14,14 @@ export const Notice_Sclice = createSlice({
         socketState: false,
         chatList: [...itemList.Notice_List],
         pageIndex: 0,
-        chatItemClick: {}
+        chatItemClick: {},
+        navBarRed:false
     },
     reducers: {
         openSocket: (state: any) => {
-            if (!state.socketState && Taro.getStorageSync("socketId") != "") {
+            if (!state.socketState && Taro.getStorageSync("userId") != "") {
                 Taro.connectSocket({
-                    url: reUrl('chatWebSocket') + "1",
+                    url: reUrl('chatWebSocket') + Taro.getStorageSync("userId"),
                 })
                 state.socketState = true
             }
@@ -29,6 +30,7 @@ export const Notice_Sclice = createSlice({
             state.chatList = [...state.chatList, ...action.payload]
         },
         setChatDataAll: (state: any, action) => {
+            state.navBarRed=true
             state.chatList = [...action.payload]
         },
         clearChatData: (state: any) => {
@@ -79,6 +81,7 @@ export const Notice_Sclice = createSlice({
             }
         },
         setChatDefaultListOne: (state: any, action) => {
+            state.navBarRed=true
             switch (action.payload.type) {
                 case 'systemCommon':
                     state.chatList[0].message = action.payload.content;
@@ -121,11 +124,18 @@ export const Notice_Sclice = createSlice({
         setChatDefaultListRedCount: (state: any, action) => {
             state.chatList[action.payload].redCount = 0;
             Taro.setStorageSync('chatList'+action.payload, state.chatList[action.payload])
+        },
+        setNavBarTrue:(state: any) => {
+            state.navBarRed=true
+        },
+        setNavBarFalse:(state: any) => {
+            state.navBarRed=false
         }
     }
 })
 
 export const { openSocket, setChatData, clearChatData, setChatDataAll, setChatPageIndex,
-     clearChatPageIndex, setChatItemClick, setChatDefaultList,setChatDefaultListOne,setChatDefaultListRedCount } = Notice_Sclice.actions
+     clearChatPageIndex, setChatItemClick, setChatDefaultList,setChatDefaultListOne,setChatDefaultListRedCount,
+     setNavBarTrue,setNavBarFalse } = Notice_Sclice.actions
 
 export default Notice_Sclice.reducer

@@ -70,12 +70,21 @@
     display: flex;
     padding-right: 20px;
 }
+.subLoveDiv{
+    display: flex;
+    padding-right: 0px;
+}
 .commentLoveImg{
     width: 35px;
     height: 35px;
 }
 
-
+.displayLine{
+    padding-left: 70px;
+    padding-right: 20px;
+    color: gray;
+    font-size: 25px;
+  }
 
 .chatBottom {
     height: 85px;
@@ -134,10 +143,23 @@
     background-color: #8BD1AE;
     border-radius: 20px;
     font-size: 28px;
-    width: 90px;
+    width: 120px;
     height: 55px;
     line-height: 55px;
     text-align: center;
     margin-left: 20px;
     color: white;
+    display: flex;
+}
+
+.canReplay{
+    background-color: #dddddd;
+    border-radius: 20px;
+    font-size: 28px;
+    width: 90px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    margin-left: 20px;
+    color: #ff8f8f;
 }

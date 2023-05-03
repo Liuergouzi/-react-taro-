@@ -17,7 +17,7 @@ const Home = React.memo(() => {
     return (
         <div>
             <TopMostTaroNavigationBar needBackIcon={false} mainTitle={''}>
-                <div className={style.search} onClick={()=>navigate("/search")}>
+                <div className={style.search} onClick={() => navigate("/search")}>
                     <img src={images.search} className={style.searchImg}></img>
                     搜索你的想法，如：爱坤
                 </div>
@@ -75,7 +75,9 @@ const Home = React.memo(() => {
 
                 </div>
                 <Home_bottom_list />
-                <Outlet />
+                <div className={style.list}>
+                    <Outlet />
+                </div>
                 <BottomNavigation />
             </Provider>
         </div>

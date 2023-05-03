@@ -10,7 +10,7 @@ export default function SysNoticeLoadMore() {
     const SysNoticeList: any = useSelector((state: any) => state.SysNotice_Reducer.sysNoticeList)
     const pageIndex: number = useSelector((state: any) => state.SysNotice_Reducer.pageIndex);
     const pageSize = 15;
-    const sendId: string = Taro.getStorageSync("socketId")
+    const sendId: string = Taro.getStorageSync("userId")
 
     const getTime = (t) => {
         var nowTime = time;

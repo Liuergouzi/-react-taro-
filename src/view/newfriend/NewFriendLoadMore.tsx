@@ -9,7 +9,7 @@ export default function NewFriendLoadMore() {
     const newFriendList: any = useSelector((state: any) => state.NewFriend_Reducer.newFriendList)
     const pageIndex: number = useSelector((state: any) => state.NewFriend_Reducer.pageIndex);
     const pageSize = 15;
-    const sendId: string = Taro.getStorageSync("socketId")
+    const sendId: string = Taro.getStorageSync("userId")
 
     const getTime = (t) => {
         var nowTime=time;
@@ -40,7 +40,7 @@ export default function NewFriendLoadMore() {
                 viewId={'NewFriend'}
                 ListCount={newFriendList.length}
                 defaultListCount={1}
-                height={(Taro.getWindowInfo().screenHeight) - 65 * 1.06 * (Taro.getWindowInfo().screenHeight) / 568 + 'px'}
+                isLeaveClear
                 requestData={{
                     id: sendId,
                     pageIndex: pageIndex,

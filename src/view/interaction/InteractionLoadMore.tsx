@@ -9,7 +9,7 @@ export default function InteractionLoadMore() {
     const interactionList: any = useSelector((state: any) => state.Interaction_Reducer.interactionList)
     const pageIndex: number = useSelector((state: any) => state.Interaction_Reducer.pageIndex);
     const pageSize = 15;
-    const sendId: string = Taro.getStorageSync("socketId")
+    const sendId: string = Taro.getStorageSync("userId")
 
     const getTime = (t) => {
         var nowTime=time;
@@ -39,7 +39,7 @@ export default function InteractionLoadMore() {
                 viewId={'Interaction'}
                 ListCount={interactionList.length}
                 defaultListCount={3}
-                height={(Taro.getWindowInfo().screenHeight) - 65 * 1.06 * (Taro.getWindowInfo().screenHeight) / 568 + 'px'}
+                isLeaveClear
                 requestData={{
                     id: sendId,
                     pageIndex: pageIndex,

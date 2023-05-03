@@ -1,0 +1,74 @@
+@keyframes move_wave {
+    0% {
+        transform: translateX(0) translateZ(0) scaleY(1)
+    }
+
+    50% {
+        transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    }
+
+    100% {
+        transform: translateX(-50%) translateZ(0) scaleY(1)
+    }
+}
+
+.waveWrapper {
+    background: -webkit-linear-gradient(#ffffff, #dce9ec, #bcdada);
+}
+
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    bottom: 0px;
+    overflow: hidden;
+    position: relative;
+    background: #8BD1AE;
+    background: -webkit-linear-gradient(#ffffff, #dce9ec, #bcdada);
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 80px;
+}
+
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+
+.waveTop {
+    background-image: url('https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/bl_1.png');
+    background-size: 50% 30px;
+}
+
+.waveAnimation .waveTop {
+    animation: move-wave 3s;
+    -webkit-animation: move-wave 3s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+}
+
+.waveMiddle {
+    background-image: url('https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/bl_2.png');
+    background-size: 50% 40px;
+}
+
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+}
+
+// .waveBottom {
+//     background-image: url('../../public/images/bl_3.png');
+//     background-size: 50% 50px;
+// }
+
+// .waveAnimation .waveBottom {
+//     animation: move_wave 15s linear infinite;
+
+// }

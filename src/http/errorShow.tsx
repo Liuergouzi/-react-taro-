@@ -58,28 +58,35 @@ const showError = (res) => {
             }
         }
         else {
-            if (res.data.hasOwnProperty("status")) {
-                if (res.data.status == 500) {
+            if (res.hasOwnProperty("data")) {
+                if (res.data.hasOwnProperty("status")) {
+                    if (res.data.status == 500) {
+                        Taro.showModal({
+                            title: '连接超时',
+                            content: "连接超时，请稍后重试" + JSON.stringify(res.data.error),
+                        })
+                    } else if (res.data.status == 502) {
+                        Taro.showModal({
+                            title: '服务繁忙',
+                            content: "服务繁忙，请稍后重试！ " + JSON.stringify(res.data.error),
+                        })
+                    }
+                    else if (res.data.status == 404) {
+                        Taro.showModal({
+                            title: '服务请求失败',
+                            content: "请联系轮子哥" + JSON.stringify(res.data.error),
+                        })
+                    }
+                    else {
+                        Taro.showModal({
+                            title: '请求失败',
+                            content: "错误：" + JSON.stringify(res.data),
+                        })
+                    }
+                } else {
                     Taro.showModal({
-                        title: '连接超时',
-                        content: "连接超时，请稍后重试" + JSON.stringify(res.data.error),
-                    })
-                } else if (res.data.status == 502) {
-                    Taro.showModal({
-                        title: '服务繁忙',
-                        content: "服务繁忙，请稍后重试！ " + JSON.stringify(res.data.error),
-                    })
-                }
-                else if (res.data.status == 404) {
-                    Taro.showModal({
-                        title: '服务请求失败',
-                        content: "请联系轮子哥" + JSON.stringify(res.data.error),
-                    })
-                }
-                else {
-                    Taro.showModal({
-                        title: '请求失败',
-                        content: "错误：" + JSON.stringify(res.data),
+                        title: '未知异常',
+                        content: "未知异常：" + JSON.stringify(res.data),
                     })
                 }
             } else {

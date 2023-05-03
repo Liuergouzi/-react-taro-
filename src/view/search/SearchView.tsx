@@ -43,8 +43,6 @@ export default function SearchView() {
             setSearchList([{ value: value }, ...newTemp])
         }
 
-
-
     }
 
     const closeSearchList = (values) => {
@@ -62,11 +60,12 @@ export default function SearchView() {
 
     return (
         <div>
-            <TopMostTaroNavigationBar needBackIcon={true} mainTitle={'搜素'} />
+            <TopMostTaroNavigationBar needBackIcon={true} mainTitle={'搜索'} />
             <Search
-                onChange={(e) => setValue(e.detail)}
+                onBlur={(e) => setValue(e.detail)}
+                value={value}
                 placeholder="请输入搜索关键词"
-                renderAction={<div onClick={searchAction}>{isSearch?'取消':'搜素'}</div>}
+                renderAction={<div onClick={searchAction}>{isSearch?'取消':'搜索'}</div>}
             />
             {
                 !isSearch ?
@@ -84,6 +83,7 @@ export default function SearchView() {
                                             type="primary"
                                             size="medium"
                                             closeable
+                                            onClick={()=>{setValue(item.value)}}
                                             onClose={() => closeSearchList(item.value)}
                                         >
                                             {item.value}
@@ -98,6 +98,7 @@ export default function SearchView() {
                                                     type="primary"
                                                     size="medium"
                                                     closeable
+                                                    onClick={()=>{setValue(item.value)}}
                                                     onClose={() => closeSearchList(item.value)}
                                                 >
                                                     {item.value}
@@ -110,7 +111,8 @@ export default function SearchView() {
                         </div>
                     </div>
                     :
-                    <ArticleLoadMore requesUrl={"https://baidu.com"} requestData={{ search: value }} />
+                    <ArticleLoadMore requesUrl={'searchArticleDisplay'}
+                    requestData={{ search: value, pageSize: 15, pageIndex: 0 }} />
             }
         </div>
     )

@@ -1,33 +1,48 @@
 import style from './ArticleDetail.module.scss'
 import images from '../../resources'
 import TopMostTaroNavigationBar from '../../component/navigation/TopMostTaroNavigationBar'
-import itemList from '../../itemList'
 import Taro from '@tarojs/taro'
 import CommentLoadMore from '../../component/ariticle/CommentLoadMore'
-import { Provider, useDispatch } from 'react-redux'
+import { Provider } from 'react-redux'
 import store from '../../sclice/Store'
 import { useEffect, useState } from 'react'
 import { ShareSheet } from '@antmjs/vantui'
-import { addLove, addComment, addShare, reduceLove, reduceComment, reduceShare } from '../../sclice/Article_Sclice'
 import netRequest from '../../http/http'
+import itemList from '../../itemList'
 
 export default function ArticleDetail() {
-    const dispatch: any = useDispatch()
-
-    const [articleDetailData, setArticleDetailData] = useState(itemList.articleDislayList[0])
+    const [articleDetailData, setArticleDetailData]: any = useState(itemList.articleDeatilInit)
     const [shareShow, setShareShow] = useState(false)
     const [isRequestFinsh, setIsRequestFinsh] = useState(true)
-
+    var isHasId = false;
+    if (Taro.getStorageSync("articleDetailDataId") != "") {
+        isHasId = true
+    }
     useEffect(() => {
-        const data = Taro.getStorageSync("articleDetailData")
-        if (data != "") {
-            setArticleDetailData(data)
+        if (!isHasId) {
+            setArticleDetailData(Taro.getStorageSync("articleDetailData"))
+        } else {
+            netRequest({
+                _id: Taro.getStorageSync("articleDetailDataId")
+            }, 'getArticleDisplayListByMainId', 'POST', 0)
+                .then((res) => {
+                    console.log(res.data.data)
+                    if (res.data.data.length != 0) {
+                        setArticleDetailData(res.data.data[0])
+                    }
+                })
+                .catch(() => {
+                })
+        }
+        return () => {
+            Taro.removeStorageSync("articleDetailData")
+            Taro.removeStorageSync("articleDetailDataId")
         }
     }, [])
 
     const parView = (imgUrl) => {
         Taro.previewImage({
-            current: imgUrl, // 当前显示图片的http链接
+            current: imgUrl,
             urls: [imgUrl] // 需要预览的图片http链接列表
         })
     }
@@ -35,16 +50,15 @@ export default function ArticleDetail() {
     const loveClick = (item) => {
         if (isRequestFinsh) {
             setIsRequestFinsh(false)
-            let articleListTemp = JSON.parse(JSON.stringify(articleDetailData))
-            if (Taro.getStorageSync(articleListTemp._id) != ("")) {
-                articleListTemp.loveCount = articleListTemp.loveCount - 1
-                dispatch(reduceLove(articleListTemp))
-                Taro.removeStorageSync(articleListTemp._id)
-
+            var thisArticle = JSON.parse(JSON.stringify(articleDetailData))
+            console.log(thisArticle)
+            if (Taro.getStorageSync(thisArticle.id) != ("")) {
+                thisArticle.loveCount = thisArticle.loveCount - 1
+                Taro.removeStorageSync(thisArticle.id)
                 netRequest({
-                    _id: item._id,
-                    userId: item.userId
-                }, 'loveArticleDislay', 'POST', 0)
+                    movementId: item.id,
+                    userId: Taro.getStorageSync("userId")
+                }, 'cancelLoveArticleDisplayList', 'POST', 0)
                     .then(() => {
                         setIsRequestFinsh(true)
                     })
@@ -52,14 +66,16 @@ export default function ArticleDetail() {
                         setIsRequestFinsh(true)
                     })
             } else {
-                articleListTemp.loveCount = articleListTemp.loveCount + 1
-                Taro.setStorageSync(articleListTemp._id, 1)
-                dispatch(addLove(articleListTemp))
-
+                thisArticle.loveCount = thisArticle.loveCount + 1
+                Taro.setStorageSync(thisArticle.id, 1)
                 netRequest({
-                    _id: item._id,
-                    userId: item.userId
-                }, 'loveArticleDislay', 'POST', 0)
+                    movementId: item.id,
+                    receiveId:item.userId,
+                    otherId:Taro.getStorageSync("userId"),
+                    title:item.name+"赞了你",
+                    time:item.time,
+                    content:item.name+"赞了你",
+                  }, 'loveArticleDisplayList', 'POST', 0)
                     .then(() => {
                         setIsRequestFinsh(true)
                     })
@@ -67,7 +83,7 @@ export default function ArticleDetail() {
                         setIsRequestFinsh(true)
                     })
             }
-            setArticleDetailData(articleListTemp)
+            setArticleDetailData(thisArticle)
         }
     }
 
@@ -105,20 +121,30 @@ export default function ArticleDetail() {
 
                 <div className={style.info}>
                     <div className={style.infoLeft}>
-                        <img src={articleDetailData.userHeadImg} className={style.infoImage} alt="" onClick={() => parView(images.testH1)} />
+                        <img src={articleDetailData.head == "" ? images.boyHead : articleDetailData.head} className={style.infoImage} alt="" onClick={() => parView(images.testH1)} />
                         <div className={style.infoText}>
-                            <div className={style.infoLeftName}>{articleDetailData.userName}</div>
+                            <div className={style.infoLeftName}>{articleDetailData.name == "" ? "匿名用户" : articleDetailData.name}</div>
                             <div className={style.infoLeftTime}>{articleDetailData.time}</div>
                         </div>
                     </div>
                     <div className={style.infoRight}>关注</div>
                 </div>
                 <div className={style.message}>
+                    <div className={style.title}>{articleDetailData.title}</div>
                     <div className={style.context}>{articleDetailData.content}</div>
+                    <div className={style.imageThreeDiv}>
+                        {
+                            articleDetailData.imageList.map((img) => (
+                                <div className={style.mask2}>
+                                    <img className={style.maskImg} src={img} onClick={() => parView(img)}></img>
+                                </div>
+                            ))
+                        }
+                    </div>
                 </div>
                 <div className={style.items}>
                     <div className={style.itemsDiv} onClick={() => { loveClick(articleDetailData) }}>
-                        <img className={style.itemImg} src={Taro.getStorageSync(articleDetailData._id) != ("") ? images.love_1 : images.love_2} alt='' />
+                        <img className={style.itemImg} src={Taro.getStorageSync(articleDetailData.id) != ("") ? images.love_1 : images.love_2} alt='' />
                         <div className={style.itemText}>{articleDetailData.loveCount}</div>
                     </div>
                     <div className={style.itemsDiv}>
@@ -130,13 +156,10 @@ export default function ArticleDetail() {
                         <div className={style.itemText}>{articleDetailData.shareCount}</div>
                     </div>
                 </div>
-
-
-
                 <div className={style.foot}>评论(0)</div>
 
                 <div>
-                    <CommentLoadMore id={"1"} />
+                    <CommentLoadMore id={isHasId ? Taro.getStorageSync("articleDetailDataId") : articleDetailData.id} />
                     <div className="safe-area-inset-bottom"></div>
                 </div>
 

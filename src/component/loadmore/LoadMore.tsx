@@ -1,4 +1,4 @@
-import { PowerScrollView } from '@antmjs/vantui'
+import { InfiniteScroll, PullToRefresh } from '@antmjs/vantui'
 import react, { useEffect, useState } from 'react'
 import { setArticleList, clearArticleList, setArticlePageIndex, clearArticlePageIndex } from '../../sclice/Article_Sclice'
 import { setChatData, clearChatData, setChatPageIndex, clearChatPageIndex, setChatDefaultList } from '../../sclice/Notice_Sclice'
@@ -6,6 +6,7 @@ import { setSysNoticeList, clearSysNoticeList, setSysNoticePageIndex, clearSysNo
 import { setInteractionList, clearInteractionList, setInteractionPageIndex, clearInteractionPageIndex } from '../../sclice/Interaction_Sclice'
 import { setNewFriendList, clearNewFriendList, setNewFriendPageIndex, clearNewFriendPageIndex } from '../../sclice/NewFriend_Sclice'
 import { setCommentList, clearCommentList, setCommentPageIndex, clearCommentPageIndex } from '../../sclice/Comment_Sclice'
+import { setMyCommentList,clearMyCommentList,setMyCommentPageIndex,clearMyCommentPageIndex } from '../../sclice/MyComment_Sclice'
 import { useDispatch } from 'react-redux'
 import Taro from '@tarojs/taro'
 import './LoadMore.scss'
@@ -20,27 +21,17 @@ export default function HomeLoadMore(props: any) {
 
   const dispatch: any = useDispatch()
   const mockRequest = (tempRequestDatas) => handleClick(tempRequestDatas)
-  const [state, changeState] = react.useState({
-    basicsList: [],
-    basicsFinished: false,
-    backRefCount: 1
-  })
   const [tempRequestData, setTempRequestData] = useState(props.requestData)
   let requests: any;
-  const setState = (newState) => {
-    changeState({
-      ...state,
-      ...newState,
-    })
-  }
   const setDatas = (viewId: string, data: any, noticeList: any) => {
     switch (viewId) {
       case 'Article': dispatch(setArticleList(data)); data.length == tempRequestData.pageSize && dispatch(setArticlePageIndex()); break;
-      case 'Notice_List': if (tempRequestData.pageIndex == 0) { dispatch(setChatDefaultList(noticeList)) }; dispatch(setChatData(data)); data.length == tempRequestData.pageSize && dispatch(setChatPageIndex()); break;
+      case 'Notice_List': if (tempRequestData.pageIndex == 0 && noticeList.length != 0) { dispatch(setChatDefaultList(noticeList)) }; dispatch(setChatData(data)); data.length == tempRequestData.pageSize && dispatch(setChatPageIndex()); break;
       case 'SysNotice': dispatch(setSysNoticeList(data)); data.length == tempRequestData.pageSize && dispatch(setSysNoticePageIndex()); break;
       case 'Interaction': dispatch(setInteractionList(data)); data.length == tempRequestData.pageSize && dispatch(setInteractionPageIndex()); break;
       case 'NewFriend': dispatch(setNewFriendList(data)); data.length == tempRequestData.pageSize && dispatch(setNewFriendPageIndex()); break;
       case 'Comment': dispatch(setCommentList(data)); data.length == tempRequestData.pageSize && dispatch(setCommentPageIndex()); break;
+      case 'MyComment': dispatch(setMyCommentList(data)); data.length == tempRequestData.pageSize && dispatch(setMyCommentPageIndex()); break;
     }
   }
   const clearDatas = (viewId: string) => {
@@ -51,6 +42,7 @@ export default function HomeLoadMore(props: any) {
       case 'Interaction': dispatch(clearInteractionPageIndex()); dispatch(clearInteractionList()); break;
       case 'NewFriend': dispatch(clearNewFriendPageIndex()); dispatch(clearNewFriendList()); break;
       case 'Comment': dispatch(clearCommentPageIndex()); dispatch(clearCommentList()); break;
+      case 'MyComment': dispatch(clearMyCommentPageIndex()); dispatch(clearMyCommentList()); break;
     }
   }
 
@@ -60,36 +52,31 @@ export default function HomeLoadMore(props: any) {
       requests = Taro.request({
         url: re(props.requesUrl),
         data: tempRequestDatas,
+        method: 'POST',
         header: {
-          'content-type': 'application/json'
+          'content-type': 'application/x-www-form-urlencoded'
         },
         success: function (res) {
-          if (res.data.hasOwnProperty("data")) {
-            if (props.viewId == 'Notice_List') {
-              setDatas(props.viewId, res.data.data, res.data.noticeList)
-            } else {
-              setDatas(props.viewId, res.data.data, null)
+          if (res.hasOwnProperty("data")) {
+            if (res.data.hasOwnProperty("data")) {
+              if (props.viewId == 'Notice_List') {
+                console.log(res)
+                setDatas(props.viewId, res.data.data, res.data.noticeList)
+              } else {
+                setDatas(props.viewId, res.data.data, null)
+              }
+              tempRequestDatas.pageSize == res.data.data.length ? resolve('loading') : resolve('complete')
             }
-            tempRequestDatas.pageSize != res.data.data.length ?
-              setState({ basicsList: [{}], basicsFinished: true }) :
-              setState({ basicsList: [{}], basicsFinished: false }),
-              resolve(res.data.data)
-          }
-          else {
-            setState({
-              basicsList: [{}],
-              basicsFinished: true,
-            })
-            resolve([])
+            else {
+              resolve('complete')
+            }
+          } else {
+            resolve('complete')
           }
           showError(res)
         },
         fail: function (res) {
-          setState({
-            basicsList: [{}],
-            basicsFinished: true,
-          })
-          resolve([])
+          resolve('complete')
           Taro.showModal({
             title: '请求失败',
             content: "请求路径错误" + JSON.stringify(res),
@@ -108,18 +95,18 @@ export default function HomeLoadMore(props: any) {
     let tempRequestDatas = tempRequestData;
     tempRequestDatas.pageIndex = 0;
     await mockRequest(tempRequestDatas)
+    return 'complete'
   }
   const basicsLoadMore: any = async () => {
     let tempRequestDatas = tempRequestData
-    await mockRequest(tempRequestDatas)
+    if (props.ListCount % tempRequestData.pageSize == props.defaultListCount) {
+      return await mockRequest(tempRequestDatas)
+    } else {
+      return 'complete'
+    }
   }
 
   react.useEffect(() => {
-    if (props.ListCount % tempRequestData.pageSize != props.defaultListCount) {
-      setState({ basicsList: [...state.basicsList, {}], basicsFinished: props.ListCount % tempRequestData.pageSize != props.defaultListCount })
-    } else {
-      basicsLoadMore()
-    }
     return () => {
       //离开页面取消请求
       if (requests != undefined)
@@ -131,25 +118,9 @@ export default function HomeLoadMore(props: any) {
   }, [])
 
   return (
-    <PowerScrollView
-      finishedText="没有更多了"
-      successText="刷新成功"
-      errorText="请求失败，点击重新加载"
-      onScrollToUpper={basicsDoRefresh}
-      onScrollToLower={basicsLoadMore}
-      current={state.basicsList.length}
-      finished={state.basicsFinished}
-      // renderLoading={props.ListCount % tempRequestData.pageSize != props.defaultListCount ? <div></div> : ""}
-      animationDuration={10}
-      style={{
-        height: props.height,
-        marginBottom: props.marginBottom
-      }}
-    >
-      {state.basicsList.map(() => (
-        props.children
-      )
-      )}
-    </PowerScrollView>
+    <PullToRefresh onRefresh={basicsDoRefresh} touchMaxStart={1000}>
+      {props.children}
+      <InfiniteScroll loadMore={basicsLoadMore} />
+    </PullToRefresh>
   )
 }

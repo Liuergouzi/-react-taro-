@@ -6,9 +6,8 @@ import reUrl from "../requestUrl"
 
 const netRequest = (datas, urlId, method, head) => {
     return new Promise<any>((resolve, reject) => {
-
         Taro.request({
-            url: reUrl(urlId),
+            url: method == 'GET' ? urlId : reUrl(urlId),
             method: method,
             data: datas,
             header: { 'content-type': head == 0 ? 'application/x-www-form-urlencoded' : 'application/json', 'Authorization': 'Bearer ' + Taro.getStorageSync("token") },

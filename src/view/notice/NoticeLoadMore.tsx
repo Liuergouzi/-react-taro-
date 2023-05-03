@@ -1,11 +1,12 @@
 import style from './NoticeLoadMore.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { setChatDataAll, setChatDefaultListRedCount } from '../../sclice/Notice_Sclice'
+import { setChatDataAll, setChatDefaultListRedCount, setNavBarFalse } from '../../sclice/Notice_Sclice'
 import LoadMore from "../../component/loadmore/LoadMore";
 import Taro from "@tarojs/taro";
 import time from '../../tool/time';
 import netRequest from '../../http/http';
+import { useEffect } from 'react';
 
 
 /**
@@ -16,11 +17,15 @@ import netRequest from '../../http/http';
 export default function NoticeLoadMore() {
     const navigate = useNavigate();
     const dispatch: any = useDispatch()
-    const sendId: string = Taro.getStorageSync("socketId")
+    const sendId: string = Taro.getStorageSync("userId")
     const chatListData: any = useSelector((state: any) => state.Notice_Reducer.chatList)
     const pageIndex: number = useSelector((state: any) => state.Notice_Reducer.pageIndex);
     const pageSize = 15;
-
+    const newMessage = useSelector((state: any) => state.Notice_Reducer.navBarRed)
+    useEffect(()=>{
+        if(newMessage)
+        dispatch(setNavBarFalse())
+    },[])
     const handleClick = (item: any, index: any) => {
         if (index <= 2 && chatListData[index].redCount != 0) {
             let type: string = "system"
@@ -30,29 +35,28 @@ export default function NoticeLoadMore() {
                 type = "friend"
             }
             netRequest({ id: sendId, type: type }, 'updateMonRedCount', 'POST', 0)
-              .then(() => {
-              })
-              .catch(() => { 
-               })
+                .then(() => {
+                })
+                .catch(() => {
+                })
             dispatch(setChatDefaultListRedCount(index))
         }
         //更新小红点
         if (chatListData[index].redCount != 0 && index > 2) {
             netRequest({ sendId: item.otherId, receiveId: sendId }, 'redReset', 'POST', 0)
-            .then(() => {
-                let chatTemp = JSON.parse(JSON.stringify(chatListData))
-                chatTemp[index].redCount = 0
-                dispatch(setChatDataAll(chatTemp))
-            })
-            .catch(() => { 
-             })
-        }
-        switch (item.otherId) {
+                .then(() => {
+                    let chatTemp = JSON.parse(JSON.stringify(chatListData))
+                    chatTemp[index].redCount = 0
+                    dispatch(setChatDataAll(chatTemp))
+
+                })
+                .catch(() => {
+                })
+        } switch (item.otherId) {
             case -27333: sendId != "" && navigate("/sysNotice"); break;
             case -28333: sendId != "" && navigate("/interaction"); break;
             case -29333: sendId != "" && navigate("/newFriend"); break;
-            default:        //跨页面存入本地
-                Taro.setStorageSync('setChatItemClick', { id: item.otherId, head: item.head, name: item.name })
+            default: Taro.setStorageSync('setChatItemClick', { id: item.otherId, head: item.head, name: item.name })
                 navigate("/chat");
         }
     }
@@ -63,11 +67,12 @@ export default function NoticeLoadMore() {
 
             {sendId != "" ?
                 <LoadMore
-                    requesUrl={'getChatList'}
+                    requesUrl={"getChatList"}
                     viewId={'Notice_List'}
                     height={(Taro.getWindowInfo().screenHeight) - 106 * (Taro.getWindowInfo().screenHeight) / 568 + 'px'}
                     ListCount={chatListData.length}
                     defaultListCount={3}
+                    isLeaveClear
                     requestData={{
                         id: sendId,
                         pageIndex: pageIndex,

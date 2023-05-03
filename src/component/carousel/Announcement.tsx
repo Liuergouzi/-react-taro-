@@ -2,7 +2,9 @@
 import style from './Announcement.module.scss'
 import images from '../../resources'
 import Carousels, { CarouselItem, CarouselInfo } from "./Carousel";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { NoticeBar } from '@antmjs/vantui';
+import netRequest from '../../http/http';
 
 /**
  * 轮子哥
@@ -38,13 +40,22 @@ const info = [
 
 ];
 
-const announcementValue="轮子哥通知测试轮子哥通知测试轮子哥通知测试轮子哥通知测试轮子哥通知测试"
+
 const  Carousel=React.memo(()=> {
+
+    const [announcementValue,setAnnouncementValue]=useState("轮子哥测试通知")
+
+    useEffect(()=>{
+        netRequest({pageIndex:0,pageSize:1}, "getAnnouncement", 'POST', 0)
+        .then((res) => {
+            setAnnouncementValue(res.data.data[0].content)
+        })
+        .catch(() => { 
+         })
+    },[])
 
     return (
         <div className={style.Carousel}>
-
-
             <Carousels switchingTime={5000} width="auto" height="8rem">
                 {info?.map((item) => {
                     return (
@@ -58,9 +69,9 @@ const  Carousel=React.memo(()=> {
             <div className={style.announcement}>
                     <div className={style.announcementImgDiv}><img src={images.announcement} className={style.announcementImg}></img></div>
                     <div className={style.announcementText}>公告</div>
-                    {/* <AtNoticebar  marquee className={style.announcementNoticebar}> */}
-                        {announcementValue}
-                    {/* </AtNoticebar> */}
+                    <NoticeBar  speed={30} text={announcementValue} backgroundColor={"white"} color={"gray"} className={style.announcementNoticebar}>
+                        {/* {announcementValue}className={style.announcementNoticebar} */}
+                    </NoticeBar>
                     <div className={style.announcementNull}></div>
             </div>
 

@@ -6,6 +6,7 @@ import SysNotice_Sclice from './SysNotice_Sclice'
 import Interaction_Sclice from './Interaction_Sclice'
 import NewFriend_Sclice from './NewFriend_Sclice'
 import Comment_Sclice from './Comment_Sclice'
+import MyComment_Sclice from './MyComment_Sclice'
 /**
  * 轮子哥
  * 状态管理库
@@ -19,6 +20,7 @@ export default configureStore({
     SysNotice_Reducer:SysNotice_Sclice,
     Interaction_Reducer:Interaction_Sclice,
     NewFriend_Reducer:NewFriend_Sclice,
-    Comment_Reducer:Comment_Sclice
+    Comment_Reducer:Comment_Sclice,
+    MyComment_Reducer:MyComment_Sclice
   }
 })

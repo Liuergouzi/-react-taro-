@@ -25,6 +25,9 @@ import images from '../resources';
 // import PersonalDetails from '../subPack1/personaldetails/PersonalDetails';
 //import PersonalSetting from '../subPack1/personalSetting/PersonalSetting';
 //import Search from '../view/search/SearchView';
+//import MyPush from '../view/mypush/MyPush';
+//import MyLike from '../view/mylike/MyLike';
+//import MyComment from '../view/mycomment/MyComment';
 
 const Error = React.lazy(() => import("../view/error/Error"));
 const Home = React.lazy(() => import("../view/home/Home"));
@@ -42,6 +45,9 @@ const NewFriend = React.lazy(() => import("../view/newfriend/NewFriend"));
 const PersonalDetails = React.lazy(() => import("../subPack1/personaldetails/PersonalDetails"));
 const PersonalSetting = React.lazy(() => import("../subPack1/personalSetting/PersonalSetting"));
 const Search =React.lazy(() => import("../view/search/SearchView"));
+const MyPush =React.lazy(() => import("../view/mypush/MyPush"));
+const MyLike=React.lazy(() => import("../view/mylike/MyLike"));
+const MyComment=React.lazy(() => import("../view/mycomment/MyComment"));
 /**
  * 轮子哥
  * 最新react-router-dom@6版本路由自定义配置
@@ -107,7 +113,24 @@ const routes = [
     imgUrlFalse: images.my_2,
     element: <My />,
   },
-
+  {
+    title: '我的帖子',
+    path: '/myPush',
+    isBottomTabbar: false,
+    element: <MyPush />,
+  },
+  {
+    title: '我的点赞',
+    path: '/myLike',
+    isBottomTabbar: false,
+    element: <MyLike />,
+  },
+  {
+    title: '我的评论',
+    path: '/myComment',
+    isBottomTabbar: false,
+    element: <MyComment />,
+  },
   {
     title: '登录',
     path: '/login',

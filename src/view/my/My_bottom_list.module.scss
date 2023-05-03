@@ -27,6 +27,8 @@
     border-radius: 20px;
     box-shadow: -2px 2px 2px 1px rgb(206, 206, 206);
     margin: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .myRightTop{
@@ -75,15 +77,32 @@
     padding-bottom: 20px;
     padding-top: 10px;
 }
+.TopListItem{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+}
 .listDiv{
     width: 25%;
     text-align: center;
     padding-top: 10px;
 }
+.topListDiv{
+    text-align: center;
+    padding-top: 10px;
+    flex: 1;
+}
 .itemImg{
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
+}
+.topItemImg{
+    width: 45px;
+    height: 45px;
 }
 .itemText{
     font-size: 25px;
+}
+.topItemText{
+    font-size: 24px;
 }

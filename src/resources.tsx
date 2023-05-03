@@ -46,6 +46,13 @@ const images = {
     share:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/share.png",
     boyHead:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/boyHead.png",
     girlHead:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/girlHead.png",
+    row:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/row.png",
+    myArticle:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/myArticle.png",
+    myLove:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/myLove.png",
+    myComment:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/myComment.png",
+    myFollow:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/myFollow.png",
+    myFans:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/myFans.png",
+    other:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/other.png",
 }
 
 export default images

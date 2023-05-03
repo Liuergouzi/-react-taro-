@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import LoadMore from "../loadmore/LoadMore";
 import Taro from '@tarojs/taro';
 import { useState } from 'react';
-import { ActionSheet, Ellipsis, Field, ShareSheet } from '@antmjs/vantui';
+import { ActionSheet, Dialog, Ellipsis, Field, ShareSheet } from '@antmjs/vantui';
 import { setArticleListAll } from '../../sclice/Article_Sclice'
 import time from '../../tool/time';
 import netRequest from '../../http/http';
@@ -13,63 +13,81 @@ import netRequest from '../../http/http';
  * 轮子哥
  * 帖子加载
  */
-interface ArticleLoadMore{
-  requesUrl?:string
-  requestData?:any
+interface ArticleLoadMore {
+  requesUrl?: string
+  requestData?: any
+  type?: string
+  isUpdate?: boolean
 }
 
 
-export default function ArticleLoadMore(props:ArticleLoadMore) {
+export default function ArticleLoadMore(props: ArticleLoadMore) {
   const dispatch: any = useDispatch()
   const navigate = useNavigate();
   const articleList: any = useSelector((state: any) => state.Article_Reducer.articleList)
   const pageIndex: number = useSelector((state: any) => state.Article_Reducer.pageIndex);
-  const pageSize = 15;
-  let requestData=props.requestData
-  requestData.pageIndex=pageIndex
-  requestData.pageSize=pageSize
+  let requestData = props.requestData
+  requestData.pageIndex = pageIndex
   const [shareShow, setShareShow] = useState(false)
   const [isRequestFinsh, setIsRequestFinsh] = useState(true)
   const [reportShow, setReportShow] = useState(false)
-  const loveClick = (item) => {
+  const [confirmDelete, setConfirmDelete]:any = useState({data:{},index:-1,delete:false})
 
+  const loveClick = (item, index) => {
     if (isRequestFinsh) {
       setIsRequestFinsh(false)
-      let articleListTemp = JSON.parse(JSON.stringify(articleList))
-      articleListTemp.forEach(element => {
-        if (element._id == item._id) {
-          if (Taro.getStorageSync(element._id) != ("")) {
-            element.loveCount = element.loveCount - 1
-            Taro.removeStorageSync(element._id)
-            
-            netRequest({
-              _id: item._id,
-              userId: item.userId
-            }, 'loveArticleDislay', 'POST', 0)
-            .then(() => {
-              setIsRequestFinsh(true)
-            })
-            .catch(() => { 
-              setIsRequestFinsh(true)
-             })
-          } else {
-            element.loveCount = element.loveCount + 1
-            Taro.setStorageSync(element._id, 1)
-            
-            netRequest({
-              _id: item._id,
-              userId: item.userId
-            }, 'loveArticleDislay', 'POST', 0)
-            .then(() => {
-              setIsRequestFinsh(true)
-            })
-            .catch(() => { 
-              setIsRequestFinsh(true)
-             })
-          }
-        }
-      });
-      dispatch(setArticleListAll(articleListTemp))
+      var thisArticle = JSON.parse(JSON.stringify(articleList))
+      if (Taro.getStorageSync(thisArticle[index].id) != ("")) {
+        thisArticle[index].loveCount = thisArticle[index].loveCount - 1
+        Taro.removeStorageSync(thisArticle[index].id)
+        netRequest({
+          movementId: item.id,
+          userId:Taro.getStorageSync("userId")
+        }, 'cancelLoveArticleDisplayList', 'POST', 0)
+          .then(() => {
+            setIsRequestFinsh(true)
+          })
+          .catch(() => {
+            setIsRequestFinsh(true)
+          })
+      } else {
+        thisArticle[index].loveCount = thisArticle[index].loveCount + 1
+        Taro.setStorageSync(thisArticle[index].id, 1)
+        netRequest({
+          movementId: item.id,
+          receiveId:item.userId,
+          otherId:Taro.getStorageSync("userId"),
+          title:item.name+"赞了你",
+          time:item.time,
+          content:item.name+"赞了你",
+        }, 'loveArticleDisplayList', 'POST', 0)
+          .then(() => {
+            setIsRequestFinsh(true)
+          })
+          .catch(() => {
+            setIsRequestFinsh(true)
+          })
+      }
+      dispatch(setArticleListAll(thisArticle))
+    }
+  }
+
+  const deleteArticle=()=>{
+    console.log(confirmDelete)
+    if (isRequestFinsh) {
+      setIsRequestFinsh(false)
+      netRequest({
+        _id: confirmDelete.data.id
+      }, 'deleteArticleDisplayList', 'POST', 0)
+        .then(() => {
+          let thisArticle = JSON.parse(JSON.stringify(articleList))
+          thisArticle.splice(confirmDelete.index, 1)
+          dispatch(setArticleListAll(thisArticle))
+          setIsRequestFinsh(true)
+        })
+        .catch(() => {
+          setIsRequestFinsh(true)
+        })
     }
   }
 
@@ -117,6 +135,12 @@ export default function ArticleLoadMore(props:ArticleLoadMore) {
     navigate("/articleDetail");
   }
 
+  const parView = (imgUrl) => {
+    Taro.previewImage({
+      current: imgUrl,
+      urls: [imgUrl]
+    })
+  }
 
   return (
     <div>
@@ -141,25 +165,47 @@ export default function ArticleLoadMore(props:ArticleLoadMore) {
         requesUrl={props.requesUrl}
         viewId={'Article'}
         ListCount={articleList.length}
-        defaultListCount={1}
-        isLeaveClear
-        // height={(Taro.getWindowInfo().screenHeight) / 1.4 + 'px'}
-        marginBottom={"50px"}
+        defaultListCount={0}
+        isLeaveClear={true}
+        // height={ '2000px'}
+        marginBottom={"70px"}
         requestData={requestData}>
+        <Dialog
+          id="vadel"
+          title="删除"
+          showCancelButton
+          confirmButtonOpenType="getUserInfo"
+          show={confirmDelete.delete}
+          onConfirm={() => { deleteArticle() }}
+          onClose={() => setConfirmDelete({data:{},index:-1,delete:false})}
+          >
+          <div className={style.deleteTip}>删除不可逆，您确定要删除吗？</div>
+        </Dialog>
         {
-          articleList.map((item) => (
-            <div className={style.Article + " Article"} key={item._id}>
+          articleList.map((item, index) => (
+            <div className={style.Article + " Article"} key={item.id}>
               <div className={style.Article_top}>
                 <div className={style.Article_top_left}>
-                  <div className={style.Article_top_head} onClick={() => { navigate("/personalDetails"); }}>
-                    <img className={style.Article_top_headImg} src={item.userHeadImg} alt='' />
+                  <div className={style.Article_top_head} onClick={() => { Taro.setStorageSync("articleDetailData", item); navigate("/personalDetails"); }}>
+                    <img className={style.Article_top_headImg} src={item.head == "" ? images.boyHead : item.head} alt='' />
                   </div>
                   <div className={style.Article_top_headleft}>
-                    <div className={style.Article_top_name}>{item.userName}</div>
+                    <div className={style.Article_top_name}>{item.name == "" ? "匿名用户" : item.name}</div>
                     <div className={style.Article_top_time}>{getTime(item.time)}</div>
                   </div>
                 </div>
-                <div className={style.Article_top_right}><img className={style.Article_top_rightImg} src={images.more} alt='' onClick={() => setReportShow(true)} /></div>
+                <div className={style.Article_top_right}>
+                  {
+                    props.isUpdate ?
+                      <div className={style.updateDiv}>
+                        <div className={style.update} onClick={() => { Taro.setStorageSync("updateArticle",item);navigate(`/push?update`) }}>修改</div>
+                        <div className={style.delete} onClick={() => { setConfirmDelete({data:item,index:index,delete:!confirmDelete.delete}) }}>删除</div>
+                      </div>
+                      :
+                      <img className={style.Article_top_rightImg} src={images.more} alt='' onClick={() => setReportShow(true)} />
+                  }
+
+                </div>
               </div>
               <div className={style.Article_context} onClick={() => { goToArticleDetail(item) }}>
                 <div className={style.Article_context_title}>
@@ -173,9 +219,27 @@ export default function ArticleLoadMore(props:ArticleLoadMore) {
                   }
                 </div>
               </div>
+              <div className={style.imageThreeDiv}>
+                {
+                  item.imageList.map((img, imgIndex) => (
+                    item.imageList.length > 3 && imgIndex == 2 ?
+                      <div className={style.mask}>
+                        <div className={style.bgMask}>+{item.imageList.length - 3}</div>
+                        <img className={style.maskImg} src={img} onClick={() => parView(img)}></img>
+                      </div>
+                      :
+                      imgIndex < 3 ?
+                        <div className={style.mask2}>
+                          <img className={style.maskImg} src={img} onClick={() => parView(img)}></img>
+                        </div>
+                        :
+                        ""
+                  ))
+                }
+              </div>
               <div className={style.Article_bottom}>
-                <div className={style.Article_bottomDiv} onClick={() => { loveClick(item) }}>
-                  <img className={style.Article_bottomImg} src={Taro.getStorageSync(item._id) != ("") ? images.love_1 : images.love_2} alt='' />
+                <div className={style.Article_bottomDiv} onClick={() => { loveClick(item, index) }}>
+                  <img className={style.Article_bottomImg} src={Taro.getStorageSync(item.id) != ("") ? images.love_1 : images.love_2} alt='' />
                   <div className={style.Article_bottom_text}>{item.loveCount}</div>
                 </div>
                 <div className={style.Article_bottomDiv}>
@@ -196,8 +260,9 @@ export default function ArticleLoadMore(props:ArticleLoadMore) {
 }
 
 ArticleLoadMore.defaultProps = {
-  requesUrl:'getArticleDislayListAll',
-  requestData:{}
+  requesUrl: 'getArticleDisplayListAll',
+  requestData: { pageSize: 8, pageIndex: 0, type: "日常分享" },
+  isUpdate: false
 }
 
 

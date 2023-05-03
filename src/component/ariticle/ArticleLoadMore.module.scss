@@ -1,34 +1,28 @@
 .Article {
     margin: 0px;
     padding: 20px;
-
-
-
+    padding-left: 35px;
+    padding-right: 35px;
 }
 
 .Article_top {
     height: 80px;
     display: flex;
     justify-content: space-between;
-
-
 }
 
 .Article_top_left {
     display: flex;
     align-items: center;
-
-
-
 }
 
-.Article_top_head {
-    .Article_top_headImg {
-        width: 70px;
-        height: 70px;
-        border-radius: 100%;
-    }
+
+.Article_top_headImg {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
 }
+
 
 .Article_top_headleft {
     display: flex;
@@ -37,39 +31,42 @@
     justify-content: space-around;
     padding-left: 20px;
 
-    .Article_top_name {
-        color: black;
-        font-size: 26px;
-    }
 
-    .Article_top_time {
-        color: gray;
-        font-size: 24px;
-    }
 }
 
-.Article_top_right {
-    .Article_top_rightImg {
-        width: 60px;
-        height: 50px;
-    }
+.Article_top_name {
+    color: black;
+    font-size: 26px;
 }
+
+.Article_top_time {
+    color: gray;
+    font-size: 24px;
+}
+
+.Article_top_rightImg {
+    width: 60px;
+    height: 50px;
+}
+
 
 .Article_context {
     margin-bottom: 10px;
 
-    .Article_context_title {
-        color: #323232;
-        font-family: cursive;
-        font-size: 32px;
-        font-weight: bold;
-    }
 
-    .Article_context_contain {
-        color: #555555;
-        font-family: cursive;
-        font-size: 30px;
-    }
+}
+
+.Article_context_title {
+    color: #323232;
+    font-family: cursive;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.Article_context_contain {
+    color: #555555;
+    font-family: cursive;
+    font-size: 30px;
 }
 
 .Article_bottom {
@@ -77,29 +74,33 @@
     display: flex;
     align-items: center;
 
-    .Article_bottomImg {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
-    }
 
-    .Article_bottom_text {
-        font-size: 27px;
-        margin-right: 20px;
-    }
 }
-.Article_bottomDiv{
+
+.Article_bottomImg {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.Article_bottom_text {
+    font-size: 27px;
+    margin-right: 20px;
+}
+
+.Article_bottomDiv {
     display: flex;
 }
 
-.reportTip{
+.reportTip {
     font-size: 25px;
     text-align: center;
     height: 30px;
     line-height: 30px;
     color: red;
 }
-.reportButton{
+
+.reportButton {
     border-radius: 31.8rpx;
     margin: 0 auto;
     height: 55px;
@@ -109,4 +110,71 @@
     width: 30%;
     color: white;
     margin-top: 15px;
+}
+
+.imageThreeDiv {
+    display: flex;
+}
+
+.mask {
+    flex: 1;
+    width: 30%;
+    height: 200px;
+    padding: 5px;
+    position: relative;
+}
+
+.mask2 {
+    width: 30%;
+    height: 200px;
+    padding: 5px;
+    position: relative;
+}
+
+.bgMask {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(31, 30, 30));
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    color: #fff;
+}
+
+.maskImg {
+    width: 100%;
+    height: 100%;
+}
+
+.updateDiv {
+    display: flex;
+}
+
+.update {
+    border-radius: 20px;
+    border: 1px solid lightgray;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    background-color: rgb(250, 249, 249);
+    color: gray;
+}
+
+.delete {
+    color: red;
+    border-radius: 20px;
+    border: 1px solid lightgray;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.deleteTip {
+    color: red;
+    text-align: center;
+    margin-bottom: 30px;
 }

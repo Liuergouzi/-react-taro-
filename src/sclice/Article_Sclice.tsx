@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import itemList from '../itemList'
 /**
  * 轮子哥
  * 普通帖子数据交互切片
@@ -8,7 +7,7 @@ import itemList from '../itemList'
 export const Article_Sclice = createSlice({
     name: '系统模块全局状态传参管理',
     initialState: {
-        articleList: [...itemList.articleDislayList],
+        articleList: [],
         pageIndex: 0,
     },
     reducers: {
@@ -16,7 +15,7 @@ export const Article_Sclice = createSlice({
             state.articleList = [...state.articleList, ...action.payload]
         },
         clearArticleList: (state: any) => {
-            state.articleList = [...itemList.articleDislayList]
+            state.articleList = []
         },
         setArticlePageIndex: (state: any) => {
             state.pageIndex = state.pageIndex + 1

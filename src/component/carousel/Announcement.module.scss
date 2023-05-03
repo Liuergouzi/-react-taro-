@@ -22,6 +22,7 @@
 }
 
 .announcementNoticebar{
+    flex: 4;
     background-color: white;
     margin-right: 40rpx;
     overflow: hidden;
@@ -30,6 +31,6 @@
     border-radius: 10px;
 }
 
-.announcementNull{
-    flex: 1;
-}
+// .announcementNull{
+//     flex: 1;
+// }
