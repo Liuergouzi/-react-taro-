@@ -89,33 +89,35 @@ const itemList = {
       "receiveId": "1",
       "otherId": "-32823",
       "type": "love",
-      "otherHead": "https://img1.baidu.com/it/u=822964690,2883123715&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
+      "otherHead": "https://img1.baidu.com/it/u=3101011520,1386319874&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=500",
       "otherName": "好轮子测试1",
       "title": "lunzi哥",
       "time": "2023/03/29 17:46",
-      "content": "点赞测试"
+      "content": "点赞测试:小黑子赞了你"
     },
     {
       "id": "-112",
       "receiveId": "1",
       "otherId": "-32823",
       "type": "comment",
-      "otherHead": "https://img1.baidu.com/it/u=822964690,2883123715&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
+      "otherHead": "https://img2.baidu.com/it/u=3104826290,3642077997&fm=253&fmt=auto&app=120&f=JPEG?w=720&h=450",
       "otherName": "好轮子测试2",
       "title": "lunzi哥",
-      "time": "2023/03/27 17:46",
-      "content": "评论测试"
+      "time": "1089/03/27 17:46",
+      "content": "评论测试：测试",
+      "contentType": "text"
     },
     {
       "id": "-11212",
       "receiveId": "1",
       "otherId": "-3282323",
       "type": "replay",
-      "otherHead": "https://img1.baidu.com/it/u=822964690,2883123715&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889",
+      "otherHead": "http://t15.baidu.com/it/u=3091143640,3588711309&fm=224&app=112&f=JPEG?w=500&h=500",
       "otherName": "好轮子测试3",
       "title": "lunzi哥",
       "time": "2023/03/26 17:46",
-      "content": "回复测试"
+      "content": "https://img2.baidu.com/it/u=2921273524,629295701&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=500",
+      "contentType": "image"
     }
   ],
   NewFriendList: [

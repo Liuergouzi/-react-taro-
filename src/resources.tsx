@@ -29,9 +29,7 @@ const images = {
     more : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/more.svg",
     love_1 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/love_1.svg",
     love_2 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/love_2.svg",
-    love_3 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/love3.png",
     comment : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/comment.svg",
-    comment2 : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/comment2.png",
     sys_notice : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/sys_notice.svg",
     qq : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/qq.png",
     wx : "https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/wx.png",
@@ -53,6 +51,9 @@ const images = {
     myFollow:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/myFollow.png",
     myFans:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/myFans.png",
     other:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/other.png",
+    interactionLove:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/interactionLove.png",
+    interactionComment:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/interactionComment.png",
+    interactionReplay:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/interactionReplay.png",
 }
 
 export default images

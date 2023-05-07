@@ -12,6 +12,7 @@ import time from '../../tool/time';
 import netRequest from '../../http/http';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { clearAll, setAll } from '../../sclice/Push_Sclice'
+import netRequestTextCheck from '../../http/httpTextCheck';
 
 export default function Push() {
 
@@ -67,6 +68,7 @@ export default function Push() {
                 }
                 if (isRequestFinsh) {
                     if (isUpdate) {
+                        netRequestTextCheck(JSON.stringify(requestData2)).then(() => {
                         netRequest(requestData2, 'updateArticleDisplayList', 'POST', 0)
                             .then(() => {
                                 Taro.showToast({
@@ -81,7 +83,9 @@ export default function Push() {
                             .catch(() => {
                                 setIsRequestFinsh(true)
                             })
+                        })
                     } else {
+                        netRequestTextCheck(JSON.stringify(requestData)).then(() => {
                         netRequest(requestData, 'insertArticleDisplayList', 'POST', 0)
                             .then(() => {
                                 Taro.showToast({
@@ -96,6 +100,7 @@ export default function Push() {
                             .catch(() => {
                                 setIsRequestFinsh(true)
                             })
+                        })
                     }
                 }
             }

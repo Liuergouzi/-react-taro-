@@ -9,29 +9,32 @@ import { useEffect, useState } from 'react'
 import { ShareSheet } from '@antmjs/vantui'
 import netRequest from '../../http/http'
 import itemList from '../../itemList'
+import time from '../../tool/time'
 
 export default function ArticleDetail() {
-    const [articleDetailData, setArticleDetailData]: any = useState(itemList.articleDeatilInit)
-    const [shareShow, setShareShow] = useState(false)
-    const [isRequestFinsh, setIsRequestFinsh] = useState(true)
+
     var isHasId = false;
     if (Taro.getStorageSync("articleDetailDataId") != "") {
         isHasId = true
     }
+
+    const [articleDetailData, setArticleDetailData]: any = useState(!isHasId ? Taro.getStorageSync("articleDetailData") : itemList.articleDeatilInit)
+    const [shareShow, setShareShow] = useState(false)
+    const [isRequestFinsh, setIsRequestFinsh] = useState(true)
+
     useEffect(() => {
-        if (!isHasId) {
-            setArticleDetailData(Taro.getStorageSync("articleDetailData"))
-        } else {
+        if (isHasId) {
             netRequest({
                 _id: Taro.getStorageSync("articleDetailDataId")
             }, 'getArticleDisplayListByMainId', 'POST', 0)
                 .then((res) => {
-                    console.log(res.data.data)
                     if (res.data.data.length != 0) {
                         setArticleDetailData(res.data.data[0])
                     }
+                   
                 })
                 .catch(() => {
+                   
                 })
         }
         return () => {
@@ -70,12 +73,12 @@ export default function ArticleDetail() {
                 Taro.setStorageSync(thisArticle.id, 1)
                 netRequest({
                     movementId: item.id,
-                    receiveId:item.userId,
-                    otherId:Taro.getStorageSync("userId"),
-                    title:item.name+"赞了你",
-                    time:item.time,
-                    content:item.name+"赞了你",
-                  }, 'loveArticleDisplayList', 'POST', 0)
+                    receiveId: item.userId,
+                    otherId: Taro.getStorageSync("userId"),
+                    title: item.name + "赞了你",
+                    time: time,
+                    content: item.name + "赞了你",
+                }, 'loveArticleDisplayList', 'POST', 0)
                     .then(() => {
                         setIsRequestFinsh(true)
                     })
@@ -159,7 +162,9 @@ export default function ArticleDetail() {
                 <div className={style.foot}>评论(0)</div>
 
                 <div>
-                    <CommentLoadMore id={isHasId ? Taro.getStorageSync("articleDetailDataId") : articleDetailData.id} />
+                    {
+                     <CommentLoadMore id={isHasId ? Taro.getStorageSync("articleDetailDataId") : articleDetailData.id} userId={articleDetailData.userId} />
+                    }
                     <div className="safe-area-inset-bottom"></div>
                 </div>
 

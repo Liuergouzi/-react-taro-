@@ -22,10 +22,10 @@ export default function NoticeLoadMore() {
     const pageIndex: number = useSelector((state: any) => state.Notice_Reducer.pageIndex);
     const pageSize = 15;
     const newMessage = useSelector((state: any) => state.Notice_Reducer.navBarRed)
-    useEffect(()=>{
-        if(newMessage)
-        dispatch(setNavBarFalse())
-    },[])
+    useEffect(() => {
+        if (newMessage)
+            dispatch(setNavBarFalse())
+    }, [])
     const handleClick = (item: any, index: any) => {
         if (index <= 2 && chatListData[index].redCount != 0) {
             let type: string = "system"
@@ -41,18 +41,18 @@ export default function NoticeLoadMore() {
                 })
             dispatch(setChatDefaultListRedCount(index))
         }
-        //更新小红点
+
         if (chatListData[index].redCount != 0 && index > 2) {
             netRequest({ sendId: item.otherId, receiveId: sendId }, 'redReset', 'POST', 0)
                 .then(() => {
-                    let chatTemp = JSON.parse(JSON.stringify(chatListData))
-                    chatTemp[index].redCount = 0
-                    dispatch(setChatDataAll(chatTemp))
-
                 })
                 .catch(() => {
                 })
-        } switch (item.otherId) {
+            let chatTemp = JSON.parse(JSON.stringify(chatListData))
+            chatTemp[index].redCount = 0
+            dispatch(setChatDataAll(chatTemp))
+        }
+        switch (item.otherId) {
             case -27333: sendId != "" && navigate("/sysNotice"); break;
             case -28333: sendId != "" && navigate("/interaction"); break;
             case -29333: sendId != "" && navigate("/newFriend"); break;

@@ -2,7 +2,7 @@
  * 轮子哥
  * 全局网络路径管理
  */
-const baseUser = 'http://47.115.202.73:9999/user/'
+const baseUser = 'http://localhost:9091/user/'
 const baseChat = 'http://localhost:9092/ws/'
 const baseMoveMent = 'http://localhost:9093/movement/'
 
@@ -22,6 +22,8 @@ const re = (url) => {
         case "getNoticeMonById": returnUrl = baseChat + 'getNoticeMonById'; break;
         case "updateMonRedCount": returnUrl = baseChat + 'updateMonRedCount'; break;
         case "getAnnouncement": returnUrl = baseChat + 'getAnnouncement'; break;
+        case "textCheck" : returnUrl = baseChat + 'textCheck'; break;
+        case "imageCheck" :returnUrl = baseChat + 'imageCheck'; break;
         //帖子模块
         case "insertArticleDisplayList": returnUrl = baseMoveMent + 'insertArticleDisplayList'; break;
         case "getArticleDisplayListAll": returnUrl = baseMoveMent + 'getArticleDisplayListAll'; break;

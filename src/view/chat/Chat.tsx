@@ -7,6 +7,7 @@ import time from "../../tool/time"
 import reUrl from "../../requestUrl"
 import TopMostTaroNavigationBar from "../../component/navigation/TopMostTaroNavigationBar"
 import netRequest from "../../http/http"
+import netRequestTextCheck from "../../http/httpTextCheck"
 
 export default function Chat() {
 
@@ -40,9 +41,9 @@ export default function Chat() {
         }, 'getMessage', 'POST', 0)
             .then((res) => {
                 res.data.data.length != 10 && setIsHistory(false),
-                console.log(),
-                setMessageList([...res.data.data.reverse(), ...messageList]),
-                !isOnce && setIsScroll(false)
+                    console.log(),
+                    setMessageList([...res.data.data.reverse(), ...messageList]),
+                    !isOnce && setIsScroll(false)
             })
             .catch(() => {
                 setPageIndex(pageIndex - 1)
@@ -109,12 +110,14 @@ export default function Chat() {
             Toast.show("道友为何如此沉默寡言？");
             return;
         }
-        Taro.sendSocketMessage({
-            data: JSON.stringify(sendData)
+        netRequestTextCheck(JSON.stringify(sendData)).then(() => {
+            Taro.sendSocketMessage({
+                data: JSON.stringify(sendData)
+            })
+            insertMessage(messageText, "text", sendTime)
+            setMessageList(() => ([...messageList, sendData]))
+            setMessageText("")
         })
-        insertMessage(messageText, "text", sendTime)
-        setMessageList(() => ([...messageList, sendData]))
-        setMessageText("")
     }
 
     //发送图片

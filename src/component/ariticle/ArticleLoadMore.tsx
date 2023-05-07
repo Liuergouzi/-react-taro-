@@ -31,7 +31,7 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
   const [shareShow, setShareShow] = useState(false)
   const [isRequestFinsh, setIsRequestFinsh] = useState(true)
   const [reportShow, setReportShow] = useState(false)
-  const [confirmDelete, setConfirmDelete]:any = useState({data:{},index:-1,delete:false})
+  const [confirmDelete, setConfirmDelete]: any = useState({ data: {}, index: -1, delete: false })
 
   const loveClick = (item, index) => {
     if (isRequestFinsh) {
@@ -42,7 +42,7 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
         Taro.removeStorageSync(thisArticle[index].id)
         netRequest({
           movementId: item.id,
-          userId:Taro.getStorageSync("userId")
+          userId: Taro.getStorageSync("userId")
         }, 'cancelLoveArticleDisplayList', 'POST', 0)
           .then(() => {
             setIsRequestFinsh(true)
@@ -55,11 +55,11 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
         Taro.setStorageSync(thisArticle[index].id, 1)
         netRequest({
           movementId: item.id,
-          receiveId:item.userId,
-          otherId:Taro.getStorageSync("userId"),
-          title:item.name+"赞了你",
-          time:item.time,
-          content:item.name+"赞了你",
+          receiveId: item.userId,
+          otherId: Taro.getStorageSync("userId"),
+          title: Taro.getStorageSync("user").nickname + "赞了你",
+          time: time,
+          content: Taro.getStorageSync("user").nickname + "赞了你",
         }, 'loveArticleDisplayList', 'POST', 0)
           .then(() => {
             setIsRequestFinsh(true)
@@ -72,7 +72,7 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
     }
   }
 
-  const deleteArticle=()=>{
+  const deleteArticle = () => {
     console.log(confirmDelete)
     if (isRequestFinsh) {
       setIsRequestFinsh(false)
@@ -177,8 +177,8 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
           confirmButtonOpenType="getUserInfo"
           show={confirmDelete.delete}
           onConfirm={() => { deleteArticle() }}
-          onClose={() => setConfirmDelete({data:{},index:-1,delete:false})}
-          >
+          onClose={() => setConfirmDelete({ data: {}, index: -1, delete: false })}
+        >
           <div className={style.deleteTip}>删除不可逆，您确定要删除吗？</div>
         </Dialog>
         {
@@ -198,8 +198,8 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
                   {
                     props.isUpdate ?
                       <div className={style.updateDiv}>
-                        <div className={style.update} onClick={() => { Taro.setStorageSync("updateArticle",item);navigate(`/push?update`) }}>修改</div>
-                        <div className={style.delete} onClick={() => { setConfirmDelete({data:item,index:index,delete:!confirmDelete.delete}) }}>删除</div>
+                        <div className={style.update} onClick={() => { Taro.setStorageSync("updateArticle", item); navigate(`/push?update`) }}>修改</div>
+                        <div className={style.delete} onClick={() => { setConfirmDelete({ data: item, index: index, delete: !confirmDelete.delete }) }}>删除</div>
                       </div>
                       :
                       <img className={style.Article_top_rightImg} src={images.more} alt='' onClick={() => setReportShow(true)} />
@@ -242,7 +242,7 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
                   <img className={style.Article_bottomImg} src={Taro.getStorageSync(item.id) != ("") ? images.love_1 : images.love_2} alt='' />
                   <div className={style.Article_bottom_text}>{item.loveCount}</div>
                 </div>
-                <div className={style.Article_bottomDiv}>
+                <div className={style.Article_bottomDiv} onClick={() => { goToArticleDetail(item) }}>
                   <img className={style.Article_bottomImg} src={images.comment} alt='' />
                   <div className={style.Article_bottom_text}>{item.commentCount}</div>
                 </div>

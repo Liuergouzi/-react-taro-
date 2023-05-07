@@ -7,6 +7,7 @@ import Taro from '@tarojs/taro'
 import { useNavigate } from 'react-router-dom'
 import netRequest from '../../http/http'
 import re from '../../requestUrl'
+import netRequestTextCheck from '../../http/httpTextCheck'
 
 export default function PersonalSetting() {
 
@@ -66,16 +67,21 @@ export default function PersonalSetting() {
             case 'description': userTemp.description = userInfo.substring(0, 50); setDescriptionLength(50 - userInfo.length); break;
             case 'isInfo': userTemp.isInfo = String(userInfo); setValue1(userInfo); break;
         }
-        setUser(userTemp)
-        if (isRequestFinsh && bool) {
-            if (id == 'address') {
-                if (userInfo.length == 3) {
+
+        netRequestTextCheck(JSON.stringify(userTemp)).then(() => {
+            setUser(userTemp)
+            if (isRequestFinsh && bool) {
+                if (id == 'address') {
+                    if (userInfo.length == 3) {
+                        updateUserRequest(userTemp)
+                    }
+                } else {
                     updateUserRequest(userTemp)
                 }
-            } else {
-                updateUserRequest(userTemp)
             }
-        }
+        })
+        .catch(() => {
+        })
     }
 
     const logout = () => {

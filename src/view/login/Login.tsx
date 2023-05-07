@@ -33,6 +33,7 @@ export default function Login() {
                         Taro.setStorageSync("token", res.data.data.tokenValue)
                         netRequest({}, reUrl('info'), 'GET', 0)
                             .then((ress) => {
+                                console.log(ress)
                                 Taro.setStorageSync("user", ress.data.data)
                                 setIsRequestFinsh(true)
                                 navigate(-1)
