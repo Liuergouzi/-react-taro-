@@ -7,6 +7,7 @@ import { setInteractionList, clearInteractionList, setInteractionPageIndex, clea
 import { setNewFriendList, clearNewFriendList, setNewFriendPageIndex, clearNewFriendPageIndex } from '../../sclice/NewFriend_Sclice'
 import { setCommentList, clearCommentList, setCommentPageIndex, clearCommentPageIndex } from '../../sclice/Comment_Sclice'
 import { setMyCommentList,clearMyCommentList,setMyCommentPageIndex,clearMyCommentPageIndex } from '../../sclice/MyComment_Sclice'
+import { setFollowAndFansList,clearFollowAndFansList,setFollowAndFansPageIndex,clearFollowAndFansPageIndex } from '../../sclice/FollowAndFans_Sclice'
 import { useDispatch } from 'react-redux'
 import Taro from '@tarojs/taro'
 import './LoadMore.scss'
@@ -32,6 +33,7 @@ export default function HomeLoadMore(props: any) {
       case 'NewFriend': dispatch(setNewFriendList(data)); data.length == tempRequestData.pageSize && dispatch(setNewFriendPageIndex()); break;
       case 'Comment': dispatch(setCommentList(data)); data.length == tempRequestData.pageSize && dispatch(setCommentPageIndex()); break;
       case 'MyComment': dispatch(setMyCommentList(data)); data.length == tempRequestData.pageSize && dispatch(setMyCommentPageIndex()); break;
+      case 'FollowAndFans': dispatch(setFollowAndFansList(data)); data.length == tempRequestData.pageSize && dispatch(setFollowAndFansPageIndex()); break;
     }
   }
   const clearDatas = (viewId: string) => {
@@ -43,6 +45,7 @@ export default function HomeLoadMore(props: any) {
       case 'NewFriend': dispatch(clearNewFriendPageIndex()); dispatch(clearNewFriendList()); break;
       case 'Comment': dispatch(clearCommentPageIndex()); dispatch(clearCommentList()); break;
       case 'MyComment': dispatch(clearMyCommentPageIndex()); dispatch(clearMyCommentList()); break;
+      case 'FollowAndFans': dispatch(clearFollowAndFansPageIndex()); dispatch(clearFollowAndFansList()); break;
     }
   }
 
@@ -54,11 +57,11 @@ export default function HomeLoadMore(props: any) {
         data: tempRequestDatas,
         method: 'POST',
         header: {
-          'content-type': 'application/x-www-form-urlencoded'
+          'content-type': 'application/x-www-form-urlencoded', 'Authorization': 'Bearer ' + Taro.getStorageSync("token")
         },
         success: function (res) {
           if (res.hasOwnProperty("data")) {
-            if (res.data.hasOwnProperty("data")) {
+            if (res.data.hasOwnProperty("data")&&res.data.data!=null) {
               if (props.viewId == 'Notice_List') {
                 console.log(res)
                 setDatas(props.viewId, res.data.data, res.data.noticeList)

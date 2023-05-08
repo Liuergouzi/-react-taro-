@@ -28,6 +28,7 @@ import images from '../resources';
 //import MyPush from '../view/mypush/MyPush';
 //import MyLike from '../view/mylike/MyLike';
 //import MyComment from '../view/mycomment/MyComment';
+//import FollowAndFans from '../view/followandfans/FollowAndFans';
 
 const Error = React.lazy(() => import("../view/error/Error"));
 const Home = React.lazy(() => import("../view/home/Home"));
@@ -48,6 +49,7 @@ const Search =React.lazy(() => import("../view/search/SearchView"));
 const MyPush =React.lazy(() => import("../view/mypush/MyPush"));
 const MyLike=React.lazy(() => import("../view/mylike/MyLike"));
 const MyComment=React.lazy(() => import("../view/mycomment/MyComment"));
+const FollowAndFans=React.lazy(() => import("../view/followandfans/FollowAndFans"));
 /**
  * 轮子哥
  * 最新react-router-dom@6版本路由自定义配置
@@ -66,7 +68,7 @@ const routes = [
         element: <ArticleLoadMore />
       },
       {
-        path: "/home/type2",
+        path: "/home/type1",
         element: <ArticleLoadMore />,
       },
     ]
@@ -130,6 +132,12 @@ const routes = [
     path: '/myComment',
     isBottomTabbar: false,
     element: <MyComment />,
+  },
+  {
+    title: '我的关注和粉丝',
+    path: '/myFollowAndFans',
+    isBottomTabbar: false,
+    element: <FollowAndFans />,
   },
   {
     title: '登录',

@@ -22,7 +22,7 @@ export default function Push() {
     const params = useLocation()
     const updateArticle: any = Taro.getStorageSync("updateArticle")
     var isUpdate: boolean
-    params.search == "" && updateArticle != "" ? isUpdate = false : isUpdate = true
+    params.search != "" && updateArticle != "" ? isUpdate = true : isUpdate = false
 
     useEffect(() => {
         if (isUpdate) {

@@ -2,9 +2,9 @@
  * 轮子哥
  * 全局网络路径管理
  */
-const baseUser = 'http://localhost:9091/user/'
-const baseChat = 'http://localhost:9092/ws/'
-const baseMoveMent = 'http://localhost:9093/movement/'
+const baseUser = 'http://localhost:9090/user/'
+const baseChat = 'http://localhost:9090/ws/'
+const baseMoveMent = 'http://localhost:9090/movement/'
 
 const re = (url) => {
     var returnUrl = ''
@@ -24,6 +24,8 @@ const re = (url) => {
         case "getAnnouncement": returnUrl = baseChat + 'getAnnouncement'; break;
         case "textCheck" : returnUrl = baseChat + 'textCheck'; break;
         case "imageCheck" :returnUrl = baseChat + 'imageCheck'; break;
+        case "saveImg" :returnUrl = baseChat + 'saveImg'; break;
+        case "updateUser":returnUrl = baseChat + 'updateUser'; break;
         //帖子模块
         case "insertArticleDisplayList": returnUrl = baseMoveMent + 'insertArticleDisplayList'; break;
         case "getArticleDisplayListAll": returnUrl = baseMoveMent + 'getArticleDisplayListAll'; break;
@@ -50,6 +52,9 @@ const re = (url) => {
         case "info": returnUrl = baseUser + 'info'; break;
         case "user": returnUrl = baseUser; break;
         case "logout": returnUrl = baseUser + 'logout'; break;
+        case "getFollow":returnUrl=baseUser+'getFollow';break;
+        case "getFans":returnUrl=baseUser+'getFans';break;
+        case "follow":returnUrl=baseUser+'follow';break;
     }
     return returnUrl;
 }

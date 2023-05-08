@@ -41,7 +41,6 @@
 }
 
 .right{
-    flex: 1;
     min-width: 100px;
     min-height: 60px;
     display: flex;
@@ -53,4 +52,12 @@
     border-radius: 30px;
     font-size: 28px;
     text-align: center;
+}
+.rightButtonCancel{
+    width: 100%;
+    border: 2px solid gray;
+    border-radius: 30px;
+    font-size: 28px;
+    text-align: center;
+    color: red;
 }

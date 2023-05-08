@@ -2,6 +2,7 @@ import style from './My_bottom_list.module.scss'
 import itemList from '../../itemList'
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Taro from '@tarojs/taro';
 
 /**
  * 轮子哥
@@ -11,11 +12,18 @@ import { useNavigate } from 'react-router-dom';
 const My_bottom_list = React.memo(() => {
 
     const navigate = useNavigate();
-    const goTo=(index)=>{
-        switch(index){
-            case 0:navigate("/myPush");break;
-            case 1:navigate(`/myLike`);break;
-            case 2:navigate(`/myComment`);break;
+    const goTo1 = (index) => {
+        switch (index) {
+            case 0: navigate("/myPush"); break;
+            case 1: navigate(`/myLike`); break;
+            case 2: navigate(`/myComment`); break;
+        }
+    }
+
+    const goTo2 = (index) => {
+        switch (index) {
+            case 0: Taro.setStorageSync("isFollow", "isFollow"); navigate("/myFollowAndFans"); break;
+            case 1: navigate(`/myFollowAndFans`); break;
         }
     }
 
@@ -25,27 +33,27 @@ const My_bottom_list = React.memo(() => {
                 <div className={style.myLeft}>
                     <div className={style.myLeftTop}>我的动态</div>
                     <div className={style.TopListItem}>
-                    {
-                        itemList.My_bottom_list_left.map((item,index) => (
-                            <div className={style.topListDiv} key={item.id} onClick={()=>{goTo(index)}}>
-                                <img className={style.topItemImg} src={item.url}></img>
-                                <div className={style.topItemText}>{item.title}</div>
-                            </div>
-                        ))
-                    }
+                        {
+                            itemList.My_bottom_list_left.map((item, index) => (
+                                <div className={style.topListDiv} key={item.id} onClick={() => { goTo1(index) }}>
+                                    <img className={style.topItemImg} src={item.url}></img>
+                                    <div className={style.topItemText}>{item.title}</div>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
                 <div className={style.myRight}>
                     <div className={style.myRightTop}>我的社交</div>
                     <div className={style.TopListItem}>
-                    {
-                        itemList.My_bottom_list_right.map((item) => (
-                            <div className={style.topListDiv} key={item.id}>
-                                <img className={style.topItemImg} src={item.url}></img>
-                                <div className={style.topItemText}>{item.title}</div>
-                            </div>
-                        ))
-                    }
+                        {
+                            itemList.My_bottom_list_right.map((item, index) => (
+                                <div className={style.topListDiv} key={item.id} onClick={() => { goTo2(index) }}>
+                                    <img className={style.topItemImg} src={item.url}></img>
+                                    <div className={style.topItemText}>{item.title}</div>
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
             </div>

@@ -8,10 +8,9 @@ import { useRef, useState } from 'react';
 import netRequest from '../../http/http';
 import { setCommentListAll } from '../../sclice/Comment_Sclice'
 import time from '../../tool/time';
-import re from '../../requestUrl';
 import time2 from '../../tool/time2';
 import netRequestTextCheck from '../../http/httpTextCheck';
-import netRequestImageCheck from '../../http/httpImageCheck';
+import httpImageCheck from '../../http/httpImageCheck';
 
 export default function CommentLoadMore(props) {
     const userId = props.userId
@@ -81,34 +80,8 @@ export default function CommentLoadMore(props) {
     }
 
     const sendImg = () => {
-        Taro.chooseImage({
-            count: 1,
-            success(ress) {
-                const tempFilePaths = ress.tempFilePaths
-                Taro.showLoading({ title: '正在加载中...' })
-                Taro.uploadFile({
-                    url: re('imageCheck'),
-                    filePath: tempFilePaths[0],
-                    name: 'media',
-                    formData: {
-                        'imgUrlName': "comment/" + time2 + "-" + "userId=" + Taro.getStorageSync("userId") + ".png"
-                    },
-                    success(res: any) {
-                        console.log(JSON.stringify(res))
-                        const returns = JSON.parse(res.data)
-                        if (returns.hasOwnProperty("code")) {
-                            if (returns.code == 200) {
-                                sendText("image", returns.url)
-                                // netRequestImageCheck(returns.url).then((res)=>{console.log(JSON.stringify(res))}).catch((res)=>{console.log(JSON.stringify(res))})
-                            }
-                        }
-                        Taro.hideLoading()
-                    },
-                    fail() {
-                        Taro.hideLoading()
-                    }
-                })
-            }
+        httpImageCheck( "comment/" + time2() + "-" + "userId=" + Taro.getStorageSync("userId") + ".png").then((res)=>{
+            sendText("image", res)
         })
     }
 

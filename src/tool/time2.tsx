@@ -12,9 +12,9 @@ function getNowTime2() {
     //分 getMinutes()： (0 ~ 59)
     var minute = date.getMinutes();
     //秒 getSeconds()：(0 ~ 59)
-    // var second = date.getSeconds();
+    var second = date.getSeconds();
 
-    var time =year + '-' + addZero(month) + '-' + addZero(day) + '-' + addZero(hour) + '-' + addZero(minute);
+    var time =year + '-' + addZero(month) + '-' + addZero(day) + '-' + addZero(hour) + '-' + addZero(minute)+"-"+addZero(second);
     return time;
 }
 //小于10的拼接上0字符串
@@ -23,4 +23,4 @@ function addZero(s) {
 }
 
 
-export default getNowTime2()
+export default getNowTime2

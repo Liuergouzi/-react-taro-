@@ -20,6 +20,7 @@ export default function ArticleDetail() {
 
     const [articleDetailData, setArticleDetailData]: any = useState(!isHasId ? Taro.getStorageSync("articleDetailData") : itemList.articleDeatilInit)
     const [shareShow, setShareShow] = useState(false)
+    const [isFollow, setIsFollow] = useState(false)
     const [isRequestFinsh, setIsRequestFinsh] = useState(true)
 
     useEffect(() => {
@@ -31,10 +32,9 @@ export default function ArticleDetail() {
                     if (res.data.data.length != 0) {
                         setArticleDetailData(res.data.data[0])
                     }
-                   
                 })
                 .catch(() => {
-                   
+
                 })
         }
         return () => {
@@ -110,6 +110,31 @@ export default function ArticleDetail() {
         }
     ]
 
+    const handFollow = () => {
+        if (isRequestFinsh) {
+            setIsRequestFinsh(false)
+            if (!isFollow) {
+                netRequest({ userId: Taro.getStorageSync("userId"), followedUserId: articleDetailData.userId, status: 0 }, 'follow', 'POST', 0)
+                    .then(() => {
+                        setIsFollow(true)
+                        setIsRequestFinsh(true)
+                    })
+                    .catch(() => {
+                        setIsRequestFinsh(true)
+                    })
+            } else {
+                netRequest({ userId: Taro.getStorageSync("userId"), followedUserId: articleDetailData.userId, status: -1 }, 'follow', 'POST', 0)
+                    .then(() => {
+                        setIsFollow(false)
+                        setIsRequestFinsh(true)
+                    })
+                    .catch(() => {
+                        setIsRequestFinsh(true)
+                    })
+            }
+        }
+    }
+
     return (
         <Provider store={store}>
             <ShareSheet
@@ -130,7 +155,7 @@ export default function ArticleDetail() {
                             <div className={style.infoLeftTime}>{articleDetailData.time}</div>
                         </div>
                     </div>
-                    <div className={style.infoRight}>关注</div>
+                    <div className={style.infoRight} onClick={() => { handFollow() }}>{isFollow ? "已关注" : "关注"}</div>
                 </div>
                 <div className={style.message}>
                     <div className={style.title}>{articleDetailData.title}</div>
@@ -163,7 +188,7 @@ export default function ArticleDetail() {
 
                 <div>
                     {
-                     <CommentLoadMore id={isHasId ? Taro.getStorageSync("articleDetailDataId") : articleDetailData.id} userId={articleDetailData.userId} />
+                        <CommentLoadMore id={isHasId ? Taro.getStorageSync("articleDetailDataId") : articleDetailData.id} userId={articleDetailData.userId} />
                     }
                     <div className="safe-area-inset-bottom"></div>
                 </div>

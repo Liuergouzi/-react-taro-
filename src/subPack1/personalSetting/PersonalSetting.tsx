@@ -6,8 +6,8 @@ import TopMostTaroNavigationBar from '../../component/navigation/TopMostTaroNavi
 import Taro from '@tarojs/taro'
 import { useNavigate } from 'react-router-dom'
 import netRequest from '../../http/http'
-import re from '../../requestUrl'
 import netRequestTextCheck from '../../http/httpTextCheck'
+import httpImageCheck from '../../http/httpImageCheck'
 
 export default function PersonalSetting() {
 
@@ -26,7 +26,7 @@ export default function PersonalSetting() {
     const navigate = useNavigate();
     const [user, setUser] = useState(
         {
-            "avatar": "",
+            "avatar": "","userId":"",
             "nickname": "", "grade": "", "sex": "男",
             "address": "", "description": "", "isInfo": "false"
         }
@@ -37,6 +37,7 @@ export default function PersonalSetting() {
         if (Taro.getStorageSync("user") != "") {
             let userTemp = JSON.parse(JSON.stringify(user));
             const useStore = Taro.getStorageSync("user")
+            userTemp.userId = useStore.userId
             if (useStore.avatar != null)
                 userTemp.avatar = useStore.avatar
             if (useStore.nickname != null)
@@ -66,6 +67,10 @@ export default function PersonalSetting() {
             case 'address': userTemp.address = [CodeToText[userInfo[0]], CodeToText[userInfo[1]], CodeToText[userInfo[2]]].join("-"); setArea(userInfo); break;
             case 'description': userTemp.description = userInfo.substring(0, 50); setDescriptionLength(50 - userInfo.length); break;
             case 'isInfo': userTemp.isInfo = String(userInfo); setValue1(userInfo); break;
+        }
+
+        if(id=="avatar"||id=="nickname"){
+            netRequest({userId:userTemp.userId,head:userTemp.avatar,name:userTemp.nickname}, 'updateUser', 'POST', 0)
         }
 
         netRequestTextCheck(JSON.stringify(userTemp)).then(() => {
@@ -122,35 +127,8 @@ export default function PersonalSetting() {
 
     //更换头像
     const  openImg=()=> {
-        Taro.chooseImage({
-            count: 1,
-            success(ress) {
-                Taro.showLoading({ title: '图片上传中...' })
-                const tempFilePaths = ress.tempFilePaths
-                console.log(ress.tempFilePaths[0])
-                Taro.uploadFile({
-                    url: re('chatUploadImg'),
-                    filePath: tempFilePaths[0],
-                    name: 'file',
-                    formData: {
-                        'imgUrlName': "userHead/" + "userId=" + Taro.getStorageSync("userId") + ".png"
-                    },
-                    success(res:any) {
-                        Taro.hideLoading()
-                        const returns=JSON.parse(res.data)
-                        if(returns.hasOwnProperty("code")){
-                            if(returns.code==200){
-                                updateUser(returns.url,"avatar",true)
-                                Toast.show("更换成功");
-                            }
-                        }
-                    },
-                    fail() {
-                        Taro.hideLoading()
-                        Toast.show("上传失败");
-                    }
-                })
-            }
+        httpImageCheck( "userHead/" + "userId=" + Taro.getStorageSync("userId") + ".png").then((res)=>{
+            updateUser(res,"avatar",true)
         })
     }
 

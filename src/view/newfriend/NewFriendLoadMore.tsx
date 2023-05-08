@@ -64,7 +64,6 @@ export default function NewFriendLoadMore() {
                         </div>
                     ))
                 }
-
             </LoadMore>
         </div>
     )
