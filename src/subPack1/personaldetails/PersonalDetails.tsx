@@ -13,7 +13,7 @@ export default function PersonalDetails() {
     const navigate = useNavigate();
     var userId = Taro.getStorageSync("articleDetailData").userId;
     const [userDetail, setUserDetail] = useState({
-        avatar: null, nickname: "私密账号", followCount: "xx",
+        avatar: null, nickname: "未命名用户", fansCount: "xx",
         likeCount: "xx", grade: "xxxx", description: "xxxx", sex: "x", address: "xx-xx-xx"
     })
     const [isPrivacy, setIsPrivacy] = useState(true)
@@ -32,31 +32,33 @@ export default function PersonalDetails() {
                     let userTemp = JSON.parse(JSON.stringify(userDetail))
                     userTemp.avatar = res.data.data.avatar
                     userTemp.nickname = res.data.data.nickname
-                    userTemp.followCount = res.data.data.followCount
+                    userTemp.fansCount = res.data.data.fansCount
                     userTemp.likeCount = res.data.data.likeCount
                     userTemp.grade = res.data.data.grade
                     userTemp.description = res.data.data.description
                     userTemp.sex = res.data.data.sex
                     userTemp.address = res.data.data.address
+
+                    netRequest({ userId: userId }, 'getArticleTotal', 'POST', 0)
+                    .then((ress) => {
+                        userTemp.likeCount = ress.data.data[0].loveCount
+                        setUserDetail(userTemp)
+                    })
+                    .catch(() => {
+                    })
+
+                } else {
+                    let userTemp = JSON.parse(JSON.stringify(userDetail))
+                    userTemp.nickname = "隐私用户无法查看"
                     setUserDetail(userTemp)
                 }
             })
-            .catch((res) => {
-                console.log(res)
-            })
-        netRequest({ userId: userId }, 'getArticleTotal', 'POST', 0)
-            .then((res) => {
-                let userTemp = JSON.parse(JSON.stringify(userDetail))
-                userTemp.likeCount = res.data.data[0].loveCount
-                setUserDetail(userTemp)
-            })
-            .catch((res) => {
-                console.log(res)
+            .catch(() => {
             })
     }, [])
 
-    const goChat = (item) => {
-        // Taro.setStorageSync('setChatItemClick', { id: item.otherId, head: item.head, name: item.name })
+    const goChat = () => {
+        Taro.setStorageSync('setChatItemClick', { id: userId, head: userDetail.avatar, name: userDetail.nickname })
         navigate("/chat");
     }
 
@@ -66,7 +68,7 @@ export default function PersonalDetails() {
             <div className={style.top}>
                 <div className={style.topHead}>
                     <img className={style.topHeadImg} src={userDetail.avatar == null ? '' : userDetail.avatar} onClick={() => parView(userDetail.avatar)}></img>
-                    <div className={style.topChat} onClick={() => { goChat("") }}>私聊</div>
+                    <div className={style.topChat} onClick={() => { goChat() }}>私聊</div>
                 </div>
 
                 <div className={style.topHeadBottom}>
@@ -74,7 +76,7 @@ export default function PersonalDetails() {
                     <div className={style.topList}>
                         <div className={style.topItem}>
                             <div>粉丝&emsp;</div>
-                            <div>{userDetail.followCount}</div>
+                            <div>{userDetail.fansCount}</div>
                         </div>
                         <div className={style.topItem}>
                             <div>获赞&emsp;</div>

@@ -1,4 +1,3 @@
-
 .mainComment, .subComment {
     display: flex;
     flex-direction: row;
@@ -15,6 +14,7 @@
     height: 60px;
     border-radius: 50%;
     margin-top: 5px;
+    background-color: lightgray;
 }
 
 .others {

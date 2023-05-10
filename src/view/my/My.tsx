@@ -16,7 +16,7 @@ const My = React.memo(() => {
     const [user, setUser]= useState(
         {
             "avatar": "", "followCount": 0, "fansCount": 0,
-            "nickname": "未命名用户", "grade": "", "sex": "男","useLogin":false,
+            "nickname": "未命名用户", "grade": "", "sex": "男","useLogin":Taro.getStorageSync("user") != ""?true:false,
             "address": "", "description": "", "isInfo": "false"
         }
     )

@@ -11,8 +11,8 @@ const netRequestTextCheck = (text) => {
             data: { text: text },
             header: { 'content-type': 'application/x-www-form-urlencoded', 'Authorization': 'Bearer ' + Taro.getStorageSync("token") },
             success: function (res) {
-                if (res.hasOwnProperty("data")) {
-                    if (res.data.hasOwnProperty("data")) {
+                if (res.data.hasOwnProperty("code")) {
+                    if (res.data.code == 200) {
                         if (res.data.data != null) {
                             if (res.data.data.suggest == 'pass') {
                                 resolve(res)
@@ -88,7 +88,7 @@ const netRequestTextCheck = (text) => {
                                         duration: 1500
                                     })
                                     reject(res)
-                                } 
+                                }
                                 else {
                                     Taro.showToast({
                                         title: '内容不合法请重新输入！',
@@ -107,16 +107,15 @@ const netRequestTextCheck = (text) => {
                             reject(res)
                         }
                     } else {
-                        Taro.showToast({
-                            title: '校验失败！',
-                            icon: 'none',
-                            duration: 1500
+                        Taro.showModal({
+                            title: '401',
+                            content: JSON.stringify(res.data.message),
                         })
                         reject(res)
                     }
                 } else {
                     Taro.showToast({
-                        title: '校验失败！',
+                        title: '校验失败或者未登录！',
                         icon: 'none',
                         duration: 1500
                     })

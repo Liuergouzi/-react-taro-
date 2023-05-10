@@ -195,7 +195,7 @@ export default function Chat() {
                     <div className={style.inputDiv} >
                         <input className={style.bottomInput} placeholder="开始你的聊天吧！" adjust-position={false}
                             onFocus={(e: any) => { e.detail.height && setInputButtom(e.detail.height) }}
-                            onBlur={() => { setInputButtom(0) }}
+                            onBlur={() => { setInputButtom(0) }} value={messageText}
                             onInput={(e: any) => setMessageText(e.detail.value)} />
                     </div>
                     <div className={style.bottomRight}>

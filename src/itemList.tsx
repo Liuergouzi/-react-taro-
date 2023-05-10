@@ -13,14 +13,14 @@ const itemList = {
     { id: 5, name: "大歌手", path: "/home/type5" },
     { id: 6, name: "表白", path: "/home/type6" },
     { id: 7, name: "吐槽", path: "/home/type7" },
-    { id: 8, name: "救命啊", path: "/home/type8" },
-    { id: 9, name: "谁懂啊", path: "/home/type9" }
+    // { id: 8, name: "救命啊", path: "/home/type8" },
+    // { id: 9, name: "谁懂啊", path: "/home/type9" }
   ],
   Home_center_list: [
     { id: 1, name: "快递帮拿", url: images.expressDelivery },
-    { id: 2, name: "快递帮拿", url: images.expressDelivery },
+    { id: 2, name: "后续更新", url: images.expressDelivery },
     { id: 3, name: "快递帮拿", url: images.expressDelivery },
-    { id: 4, name: "快递帮拿", url: images.expressDelivery }
+    { id: 4, name: "后续更新", url: images.expressDelivery }
   ],
   Notice_List: [
     { otherId: -27333, head: images.sys_notice, name: "系统通知", message: "暂无相关信息", time: "公元前202年", redCount: 0 },

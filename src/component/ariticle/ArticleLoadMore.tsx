@@ -185,8 +185,8 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
           articleList.map((item, index) => (
             <div className={style.Article + " Article"} key={item.id}>
               <div className={style.Article_top}>
-                <div className={style.Article_top_left}>
-                  <div className={style.Article_top_head} onClick={() => { Taro.setStorageSync("articleDetailData", item); navigate("/personalDetails"); }}>
+                <div className={style.Article_top_left} onClick={() => { Taro.setStorageSync("articleDetailData", item); navigate("/personalDetails"); }}>
+                  <div className={style.Article_top_head} >
                     <img className={style.Article_top_headImg} src={item.head == "" ? images.boyHead : item.head} alt='' />
                   </div>
                   <div className={style.Article_top_headleft}>

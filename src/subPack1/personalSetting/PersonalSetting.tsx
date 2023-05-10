@@ -157,8 +157,11 @@ export default function PersonalSetting() {
                 onClose={() => setNameShow(false)}>
                 <div>
                     <input className={style.dialogInput} placeholder="请输入你的昵称"
-                        maxLength={nicknameLength}
-                        onInput={(e: any) => { updateUser(e.detail.value, "nickname", false) }} />
+                        maxLength={nicknameLength} value={user.nickname}
+                        onInput={(e: any) => {
+                              let userTemp = JSON.parse(JSON.stringify(user));
+                              userTemp.nickname=e.detail.value
+                              setUser(userTemp)}} />
                     <div className={style.inputCount}>{8}/{user.nickname.length}</div>
                 </div>
             </Dialog>
@@ -172,8 +175,11 @@ export default function PersonalSetting() {
                 onClose={() => setIntroductionShow(false)}>
                 <div>
                     <textarea className={style.dialogInput} placeholder="请输入你的介绍"
-                        maxLength={descriptionLength}
-                        onInput={(e: any) => { updateUser(e.detail.value, "description", false) }} />
+                        maxLength={descriptionLength} value={user.description}
+                        onInput={(e: any) => {
+                            let userTemp = JSON.parse(JSON.stringify(user));
+                            userTemp.description=e.detail.value
+                            setUser(userTemp) }} />
                     <div className={style.inputCount}>{50}/{user.description.length}</div>
                 </div>
             </Dialog>
@@ -242,7 +248,7 @@ export default function PersonalSetting() {
                                 <div className={style.left}>隐藏个人信息</div>
                                 <div className={style.right}>
                                     <Switch
-                                        size="20px"
+                                        size="16px"
                                         activeColor="#8BD1AE"
                                         inactiveColor="#a5a5a5"
                                         checked={value1}
@@ -253,20 +259,22 @@ export default function PersonalSetting() {
                                 <div className={style.left}>禁止陌生人私聊</div>
                                 <div className={style.right}>
                                     <Switch
-                                        size="20px"
+                                        size="16px"
                                         activeColor="#8BD1AE"
                                         inactiveColor="#a5a5a5"
                                         checked={value2}
+                                        disabled
                                         onChange={(e) => setValue2(e.detail)} /></div>
                             </div>
                             <div className={style.collapseItem}>
                                 <div className={style.left}>发帖时匿名</div>
                                 <div className={style.right}>
                                     <Switch
-                                        size="20px"
+                                        size="16px"
                                         activeColor="#8BD1AE"
                                         inactiveColor="#a5a5a5"
                                         checked={value3}
+                                        disabled
                                         onChange={(e) => setValue3(e.detail)} /></div>
                             </div>
                         </div>

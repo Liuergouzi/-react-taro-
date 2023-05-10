@@ -196,6 +196,15 @@ export default function CommentLoadMore(props) {
                 })
             }
         }
+        setReplayClickData({
+            inputTip: "发表你的一些观点吧",
+            replayName: "",
+            replayId: "",
+            replayUserId: "",
+            index: -1,
+            subIndex: -1
+        })
+        setInpValue("")
     }
 
     const deleteComment = (item, index, subindex, bool) => {
@@ -264,6 +273,15 @@ export default function CommentLoadMore(props) {
                     })
             }
         }
+        setReplayClickData({
+            inputTip: "发表你的一些观点吧",
+            replayName: "",
+            replayId: "",
+            replayUserId: "",
+            index: -1,
+            subIndex: -1
+        })
+        setInpValue("")
     }
 
     return (
@@ -274,7 +292,7 @@ export default function CommentLoadMore(props) {
                 ListCount={CommentlList.length}
                 defaultListCount={0}
                 isLeaveClear
-                marginBottom={"50px"}
+                marginBottom={"80px"}
                 requestData={{
                     _id: props.id,
                     pageIndex: pageIndex,
@@ -317,7 +335,7 @@ export default function CommentLoadMore(props) {
                                             <div className={style.userName}>{subItem.name}&ensp; 回复 &ensp;{subItem.replyName}</div>
                                             {
                                                 subItem.type == "text" ?
-                                                    <div className={style.content} onClick={() => { replayClick(subItem.name, subItem.id, item.userId, index, subIndex) }}>{subItem.comment}</div> :
+                                                    <div className={style.content} onClick={() => { replayClick(subItem.name, item.id, item.userId, index, subIndex) }}>{subItem.comment}</div> :
                                                     <Image
                                                         width="100px"
                                                         height="auto"
@@ -326,7 +344,7 @@ export default function CommentLoadMore(props) {
                                                         src={subItem.comment}></Image>
                                             }
                                             <div className={style.commentButtom}>
-                                                <div onClick={() => { replayClick(subItem.name, subItem.id, item.userId, index, subIndex) }}>{subItem.time}&emsp;回复</div>
+                                                <div onClick={() => { replayClick(subItem.name, item.id, item.userId, index, subIndex) }}>{subItem.time}&emsp;回复</div>
                                                 {
                                                     subItem.userId == Taro.getStorageSync("userId") && <div onClick={() => { deleteComment(subItem, index, subIndex, false) }}>&emsp;删除</div>
                                                 }

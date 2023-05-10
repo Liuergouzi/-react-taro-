@@ -2,9 +2,9 @@
     "miniprogramRoot": "dist/",
     "projectname": "rtt",
     "description": "rtt",
-    "appid": "wx0494ac9beaac5ec6",
+    "appid": "wx7de39ae899fd1544",
     "setting": {
-        "urlCheck": false,
+        "urlCheck": true,
         "es6": false,
         "enhance": false,
         "postcss": false,

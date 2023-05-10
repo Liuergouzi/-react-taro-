@@ -2,15 +2,15 @@
  * 轮子哥
  * 全局网络路径管理
  */
-const baseUser = 'http://localhost:9090/user/'
-const baseChat = 'http://localhost:9090/ws/'
-const baseMoveMent = 'http://localhost:9090/movement/'
+const baseUser = 'https://ctrlc.cc/gyt-user/user/'
+const baseChat = 'https://ctrlc.cc/gyt-chat/ws/'
+const baseMoveMent = 'https://ctrlc.cc/gyt-movement/movement/'
 
 const re = (url) => {
     var returnUrl = ''
     switch (url) {
         //消息模块
-        case "chatWebSocket": returnUrl = 'ws://localhost:9092/ws/WebSocket/'; break;
+        case "chatWebSocket": returnUrl = 'wss://ctrlc.cc/gyt-chat/ws/WebSocket/'; break;
         case "chatInsert": returnUrl = baseChat + 'insertMessage'; break;
         case "chatUploadImg": returnUrl = baseChat + 'saveImg'; break;
         case "getChatList": returnUrl = baseChat + 'getChatList2'; break;

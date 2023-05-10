@@ -134,6 +134,7 @@ export default function Push() {
                             activeColor="#8BD1AE"
                             inactiveColor="#a5a5a5"
                             checked={value}
+                            disabled
                             onChange={(e) => setValue(e.detail)} />
                     </div>
                 </div>
