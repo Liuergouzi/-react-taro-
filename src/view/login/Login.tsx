@@ -102,12 +102,12 @@ export default function Login() {
             <div className={style.contain}>
                 <div className={style.inputFlex}>
                     <div className={style.inputTop}>账号</div>
-                    <input className={style.loginInput} placeholder={isRegister ? "请输入注册的账号" : "请输入登录的账号"} onInput={(e: any) => setAccount(e.detail.value)}></input>
+                    <input className={style.loginInput} placeholder={isRegister ? "请输入注册的账号" : "请输入登录的账号"} onBlur={(e: any) => setAccount(e.target.value)}></input>
                     <div className={style.line}></div>
                 </div>
                 <div className={style.inputFlex}>
                     <div className={style.inputTop}>密码</div>
-                    <input className={style.loginInput} placeholder={isRegister ? "请输入注册的密码" : "请输入登录的密码"} onInput={(e: any) => setPassword(e.detail.value)}></input>
+                    <input className={style.loginInput} placeholder={isRegister ? "请输入注册的密码" : "请输入登录的密码"} onBlur={(e: any) => setPassword(e.target.value)}></input>
                     <div className={style.line}></div>
                 </div>
                 {
@@ -115,7 +115,7 @@ export default function Login() {
                     <div className={style.inputFlex}>
                         <div className={style.inputTop}>验证码</div>
                         <div className={style.inputChect}>
-                            <input className={style.loginInput} placeholder="请输入验证码" onInput={(e: any) => { setchectInput(e.detail.value) }}></input>
+                            <input className={style.loginInput} placeholder="请输入验证码" onBlur={(e: any) => { setchectInput(e.target.value) }}></input>
                             <div className={style.chect} onClick={() => setChect(Math.ceil(Math.random() * 10000))}>{chect}</div>
                         </div>
                         <div className={style.line}></div>

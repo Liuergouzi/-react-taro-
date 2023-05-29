@@ -29,6 +29,10 @@ import images from '../resources';
 //import MyLike from '../view/mylike/MyLike';
 //import MyComment from '../view/mycomment/MyComment';
 //import FollowAndFans from '../view/followandfans/FollowAndFans';
+// import LegWork from '../view/legwork/LegWork';
+// import LegworkLoadMore from '../component/ariticle/LegworkLoadMore';
+// import MyLegwork from '../view/myLegwork/MyLegwork';
+// import MyReceiveLegwork from '../view/myLegwork/MyReceiveLegwork';
 
 const Error = React.lazy(() => import("../view/error/Error"));
 const Home = React.lazy(() => import("../view/home/Home"));
@@ -50,6 +54,10 @@ const MyPush =React.lazy(() => import("../view/mypush/MyPush"));
 const MyLike=React.lazy(() => import("../view/mylike/MyLike"));
 const MyComment=React.lazy(() => import("../view/mycomment/MyComment"));
 const FollowAndFans=React.lazy(() => import("../view/followandfans/FollowAndFans"));
+const LegWork =React.lazy(()=>import("../view/legwork/LegWork"))
+const LegworkLoadMore =React.lazy(()=>import("../component/ariticle/LegworkLoadMore"))
+const MyLegwork =React.lazy(()=>import("../view/myLegwork/MyLegwork"))
+const MyReceiveLegwork=React.lazy(()=>import("../view/myLegwork/MyReceiveLegwork"))
 /**
  * 轮子哥
  * 最新react-router-dom@6版本路由自定义配置
@@ -70,6 +78,10 @@ const routes = [
       {
         path: "/home/type1",
         element: <ArticleLoadMore />,
+      },
+      {
+        path: "/home/type2",
+        element: <LegworkLoadMore />,
       },
     ]
   },
@@ -140,6 +152,18 @@ const routes = [
     element: <FollowAndFans />,
   },
   {
+    title: '我的订单',
+    path: '/myLegwork',
+    isBottomTabbar: false,
+    element: <MyLegwork />,
+  },
+  {
+    title: '已接订单',
+    path: '/myReceiveLegwork',
+    isBottomTabbar: false,
+    element: <MyReceiveLegwork />,
+  },
+  {
     title: '登录',
     path: '/login',
     isBottomTabbar: false,
@@ -150,6 +174,12 @@ const routes = [
     path: '/articleDetail',
     isBottomTabbar: false,
     element: <ArticleDetail />,
+  },
+  {
+    title: '跑腿悬赏发布页面',
+    path: '/legwork',
+    isBottomTabbar: false,
+    element: <LegWork />,
   },
   {
     title: '聊天界面',

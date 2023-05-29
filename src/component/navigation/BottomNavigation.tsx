@@ -38,7 +38,7 @@ export default function BottomNavigation() {
                     <ul className={moveMouse ? style.menu2 : style.menu1}>
                         <li className={moveMouse ? style.liItem2 : style.liItem1}>
                             <NavLink to={'/push'} className={moveMouse ? style.aitem2 : style.aitem1}>
-                                表白
+                                帖子
                             </NavLink>
                         </li>
                         <li className={moveMouse ? style.liItem2 : style.liItem1}>
@@ -47,8 +47,8 @@ export default function BottomNavigation() {
                             </NavLink>
                         </li>
                         <li className={moveMouse ? style.liItem2 : style.liItem1}>
-                            <NavLink to={'/push'} className={moveMouse ? style.aitem2 : style.aitem1}>
-                                求助
+                            <NavLink to={'/legwork'} className={moveMouse ? style.aitem2 : style.aitem1}>
+                                跑腿
                             </NavLink>
                         </li>
                     </ul>

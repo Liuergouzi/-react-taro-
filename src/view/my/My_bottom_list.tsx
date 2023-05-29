@@ -27,6 +27,14 @@ const My_bottom_list = React.memo(() => {
         }
     }
 
+    const goTo3 = (index1, index2) => {
+        if (index1 == 0)
+            switch (index2) {
+                case 0: navigate(`/myLegwork`); break;
+                case 1: navigate(`/myReceiveLegwork`); break;
+            }
+    }
+
     return (
         <div>
             <div className={style.myTop}>
@@ -60,14 +68,14 @@ const My_bottom_list = React.memo(() => {
 
             <div className={style.My_bottom_list}>
                 {
-                    itemList.My_bottom_list.map(item => (
+                    itemList.My_bottom_list.map((item, index1) => (
                         <div className={style.list} key={item.id}>
                             <div className={style.listTitle}>{item.title}</div>
                             <div className={style.listLine}></div>
                             <div className={style.listItem}>
                                 {
-                                    item.data.map(items => (
-                                        <div className={style.listDiv} key={items.id}>
+                                    item.data.map((items, index2) => (
+                                        <div className={style.listDiv} key={items.id} onClick={() => goTo3(index1, index2)}>
                                             <img className={style.itemImg} src={items.url}></img>
                                             <div className={style.itemText}>{items.name}</div>
                                         </div>

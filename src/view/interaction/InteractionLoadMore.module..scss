@@ -53,6 +53,7 @@
     padding-left: 10px;
     font-size: 22px;
     height: 25px;
+    min-width: 80px;
     line-height: 25px;
 }
 
@@ -64,4 +65,30 @@
     width: 100px;
     height: 100px;
     border-radius: 10px;
+}
+
+.qiang1{
+    background-color: #8BD1AE;
+    color: white;
+    min-width: 60px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+.qiang2{
+    background-color: lightgray;
+    color: white;
+    min-width: 60px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    font-size: 25px;
 }

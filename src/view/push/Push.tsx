@@ -33,7 +33,7 @@ export default function Push() {
                 imageList: updateArticle.imageList
             }))
         }
-        return ()=>{
+        return () => {
             dispatch(clearAll())
         }
     }, [])
@@ -52,7 +52,7 @@ export default function Push() {
         const textLength = title + content
 
         if (title != "" && content != "" && selectId != -1) {
-            if (textLength.length <= 15) {
+            if (textLength.length <= 5) {
                 Taro.showModal({
                     title: '发布失败',
                     content: "低质量帖子",
@@ -63,43 +63,48 @@ export default function Push() {
                     title: title, content: content, time: time, type: tagName[0].name, imageList: imageList
                 }
                 const requestData2 = {
-                    id:updateArticle.id,userId: Taro.getStorageSync("userId"),
+                    id: updateArticle.id, userId: Taro.getStorageSync("userId"),
                     title: title, content: content, time: time, type: tagName[0].name, imageList: imageList
                 }
                 if (isRequestFinsh) {
+                    setIsRequestFinsh(false)
                     if (isUpdate) {
                         netRequestTextCheck(JSON.stringify(requestData2)).then(() => {
-                        netRequest(requestData2, 'updateArticleDisplayList', 'POST', 0)
-                            .then(() => {
-                                Taro.showToast({
-                                    title: '修改成功',
-                                    icon: 'success',
-                                    duration: 2000
+                            netRequest(requestData2, 'updateArticleDisplayList', 'POST', 0)
+                                .then(() => {
+                                    Taro.showToast({
+                                        title: '修改成功',
+                                        icon: 'success',
+                                        duration: 2000
+                                    })
+                                    dispatch(clearAll())
+                                    setIsRequestFinsh(true)
+                                    navigate(-1)
                                 })
-                                dispatch(clearAll())
-                                setIsRequestFinsh(true)
-                                navigate(-1)
-                            })
-                            .catch(() => {
-                                setIsRequestFinsh(true)
-                            })
+                                .catch(() => {
+                                    setIsRequestFinsh(true)
+                                })
+                        }).catch(() => {
+                            setIsRequestFinsh(true)
                         })
                     } else {
                         netRequestTextCheck(JSON.stringify(requestData)).then(() => {
-                        netRequest(requestData, 'insertArticleDisplayList', 'POST', 0)
-                            .then(() => {
-                                Taro.showToast({
-                                    title: '发布成功',
-                                    icon: 'success',
-                                    duration: 2000
+                            netRequest(requestData, 'insertArticleDisplayList', 'POST', 0)
+                                .then(() => {
+                                    Taro.showToast({
+                                        title: '发布成功',
+                                        icon: 'success',
+                                        duration: 2000
+                                    })
+                                    dispatch(clearAll())
+                                    setIsRequestFinsh(true)
+                                    navigate(-1)
                                 })
-                                dispatch(clearAll())
-                                setIsRequestFinsh(true)
-                                navigate(-1)
-                            })
-                            .catch(() => {
-                                setIsRequestFinsh(true)
-                            })
+                                .catch(() => {
+                                    setIsRequestFinsh(true)
+                                })
+                        }).catch(() => {
+                            setIsRequestFinsh(true)
                         })
                     }
                 }

@@ -4,7 +4,6 @@ import time from '../../tool/time';
 import LoadMore from '../../component/loadmore/LoadMore'
 import style from './MyCommentLoadMore.module.scss'
 import images from '../../resources';
-import { Ellipsis } from '@antmjs/vantui';
 import { useNavigate } from 'react-router-dom';
 
 export default function MyCommentLoadMore() {
@@ -36,7 +35,7 @@ export default function MyCommentLoadMore() {
     if (minute1 - minute2 != 0) { return "前" + (minute1 - minute2) + "分钟" }
   }
 
-  const goTo=(item)=>{
+  const goTo = (item) => {
     Taro.setStorageSync("articleDetailDataId", item.movementId)
     navigate("/articleDetail")
   }
@@ -56,8 +55,8 @@ export default function MyCommentLoadMore() {
         }}>
 
         {
-          myCommentList.map((item) => (
-            <div className={style.contain} onClick={()=>{goTo(item)}}>
+          myCommentList.map((item,index) => (
+            <div key={index} className={style.contain} onClick={() => { goTo(item) }}>
               <div className={style.left}>
                 <img className={style.leftImg} src={user.avatar != null ? user.avatar : images.boyHead}></img>
               </div>
@@ -66,9 +65,12 @@ export default function MyCommentLoadMore() {
                 <div className={style.content}><div className={style.time}>{getTime(item.time)}&ensp;</div></div>
               </div>
               <div className={style.centerLeft}>
-                <Ellipsis rows={2}>
-                  {item.comment}
-                </Ellipsis>
+                {
+                  item.type == 'text' ?
+                      item.comment
+                    :
+                    <img className={style.leftMinImg} src={item.comment}></img>
+                }
               </div>
               <div className={style.right}>
                 <img className={style.rightImg} src={images.row}></img>

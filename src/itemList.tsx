@@ -7,8 +7,8 @@ import images from './resources'
 const itemList = {
   Home_bottom_list: [
     { id: 1, name: "日常分享", path: "/home/type1" },
-    { id: 2, name: "求助", path: "/home/type2" },
-    { id: 3, name: "快递跑腿", path: "/home/type3" },
+    { id: 2, name: "快递跑腿", path: "/home/type2" },
+    { id: 3, name: "求助", path: "/home/type3" },
     { id: 4, name: "视频", path: "/home/type4" },
     { id: 5, name: "大歌手", path: "/home/type5" },
     { id: 6, name: "表白", path: "/home/type6" },
@@ -44,6 +44,13 @@ const itemList = {
   ],
   My_bottom_list: [
     {
+      id: 2, type: 2, title: "订单",
+      data: [
+        { id: 1, name: "我的发布", url: images.other },
+        { id: 2, name: "已接订单", url: images.other },
+      ]
+    },
+    {
       id: 1, type: 1, title: "其它",
       data: [
         { id: 1, name: "申请认证", url: images.announcement },
@@ -52,14 +59,6 @@ const itemList = {
         { id: 4, name: "我的举报", url: images.announcement },
         { id: 5, name: "浏览历史", url: images.announcement },
         { id: 6, name: "使用须知", url: images.announcement },
-      ]
-    },
-    {
-      id: 2, type: 2, title: "其它的",
-      data: [
-        { id: 1, name: "我再想想", url: images.other },
-        { id: 2, name: "容我想想", url: images.other },
-        { id: 3, name: "再想一想", url: images.other },
       ]
     },
   ],

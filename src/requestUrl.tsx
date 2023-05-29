@@ -2,15 +2,20 @@
  * 轮子哥
  * 全局网络路径管理
  */
-const baseUser = 'https://ctrlc.cc/gyt-user/user/'
-const baseChat = 'https://ctrlc.cc/gyt-chat/ws/'
-const baseMoveMent = 'https://ctrlc.cc/gyt-movement/movement/'
+const host = 'https://ctrlc.cc'
+// const local ='http://localhost:9094/'
+const hostWs = 'wss://ctrlc.cc'
 
+const baseUser = host + '/gyt_service/user/'
+const baseChat = host + '/gyt_service/ws/'
+const baseMoveMent = host + '/gyt_service/movement/'
+const baseLegwork =host + '/gyt_service/legwork/'
+const baseWs = hostWs + '/gyt_service/ws/WebSocket/'
 const re = (url) => {
     var returnUrl = ''
     switch (url) {
         //消息模块
-        case "chatWebSocket": returnUrl = 'wss://ctrlc.cc/gyt-chat/ws/WebSocket/'; break;
+        case "chatWebSocket": returnUrl = baseWs; break;
         case "chatInsert": returnUrl = baseChat + 'insertMessage'; break;
         case "chatUploadImg": returnUrl = baseChat + 'saveImg'; break;
         case "getChatList": returnUrl = baseChat + 'getChatList2'; break;
@@ -22,10 +27,20 @@ const re = (url) => {
         case "getNoticeMonById": returnUrl = baseChat + 'getNoticeMonById'; break;
         case "updateMonRedCount": returnUrl = baseChat + 'updateMonRedCount'; break;
         case "getAnnouncement": returnUrl = baseChat + 'getAnnouncement'; break;
-        case "textCheck" : returnUrl = baseChat + 'textCheck'; break;
-        case "imageCheck" :returnUrl = baseChat + 'imageCheck'; break;
-        case "saveImg" :returnUrl = baseChat + 'saveImg'; break;
-        case "updateUser":returnUrl = baseChat + 'updateUser'; break;
+        case "textCheck": returnUrl = baseChat + 'textCheck'; break;
+        case "imageCheck": returnUrl = baseChat + 'imageCheck'; break;
+        case "saveImg": returnUrl = baseChat + 'saveImg'; break;
+        case "updateUser": returnUrl = baseChat + 'updateUser'; break;
+        //订单
+        case "insertLegwork":returnUrl=baseLegwork+'insertLegwork';break;
+        case "getLegworkListById":returnUrl=baseLegwork+'getLegworkListById';break;
+        case "myReceiveLegwork":returnUrl=baseLegwork+'myReceiveLegwork';break;
+        case "getLegworkListAll":returnUrl=baseLegwork+'getLegworkListAll';break;
+        case "deleteLegwork":returnUrl=baseLegwork+'deleteLegwork';break;
+        case "joinLegwork":returnUrl=baseLegwork+'joinLegwork';break;
+        case "timeOutLegwork":returnUrl=baseLegwork+'timeOutLegwork';break;
+        case "applyLegwork":returnUrl=baseLegwork+'applyLegwork';break;
+        case "refuseLegwork":returnUrl=baseLegwork+'refuseLegwork';break;
         //帖子模块
         case "insertArticleDisplayList": returnUrl = baseMoveMent + 'insertArticleDisplayList'; break;
         case "getArticleDisplayListAll": returnUrl = baseMoveMent + 'getArticleDisplayListAll'; break;
@@ -45,16 +60,16 @@ const re = (url) => {
         case "searchArticleDisplay": returnUrl = baseMoveMent + 'searchArticleDisplay'; break;
         case "getArticleDisplayListLove": returnUrl = baseMoveMent + 'getArticleDisplayListLove'; break;
         case "getArticleCommentByUser": returnUrl = baseMoveMent + 'getArticleCommentByUser'; break;
-        case "getArticleDisplayListByMainId":returnUrl = baseMoveMent + 'getArticleDisplayListByMainId'; break;
+        case "getArticleDisplayListByMainId": returnUrl = baseMoveMent + 'getArticleDisplayListByMainId'; break;
         //用户模块
         case "login": returnUrl = baseUser + 'login'; break;
         case "regist": returnUrl = baseUser + 'regist'; break;
         case "info": returnUrl = baseUser + 'info'; break;
         case "user": returnUrl = baseUser; break;
         case "logout": returnUrl = baseUser + 'logout'; break;
-        case "getFollow":returnUrl=baseUser+'getFollow';break;
-        case "getFans":returnUrl=baseUser+'getFans';break;
-        case "follow":returnUrl=baseUser+'follow';break;
+        case "getFollow": returnUrl = baseUser + 'getFollow'; break;
+        case "getFans": returnUrl = baseUser + 'getFans'; break;
+        case "follow": returnUrl = baseUser + 'follow'; break;
     }
     return returnUrl;
 }

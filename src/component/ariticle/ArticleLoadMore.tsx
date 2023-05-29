@@ -9,6 +9,7 @@ import { ActionSheet, Dialog, Ellipsis, Field, ShareSheet } from '@antmjs/vantui
 import { setArticleListAll } from '../../sclice/Article_Sclice'
 import time from '../../tool/time';
 import netRequest from '../../http/http';
+import { Toast } from '@antmjs/vantui'
 /**
  * 轮子哥
  * 帖子加载
@@ -32,6 +33,7 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
   const [isRequestFinsh, setIsRequestFinsh] = useState(true)
   const [reportShow, setReportShow] = useState(false)
   const [confirmDelete, setConfirmDelete]: any = useState({ data: {}, index: -1, delete: false })
+  const Toast_ = Toast.createOnlyToast()
 
   const loveClick = (item, index) => {
     if (isRequestFinsh) {
@@ -53,6 +55,7 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
       } else {
         thisArticle[index].loveCount = thisArticle[index].loveCount + 1
         Taro.setStorageSync(thisArticle[index].id, 1)
+
         netRequest({
           movementId: item.id,
           receiveId: item.userId,
@@ -151,14 +154,15 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
         onSelect={(e) => console.log(e.detail.name)}
         onClose={() => setShareShow(false)}
       />
+      <Toast_ />
       <ActionSheet show={reportShow} title="举报帖子" onClose={() => setReportShow(false)}>
         <div className={style.reportTip}>(***多次恶意提交无效举报将会受到处罚***)</div>
-        <div>
+        <div style={{ marginBottom: '20px' }}>
           <Field
             label="举报理由"
             placeholder="请输入举报理由(选填)"
             border={true} />
-          <div className={style.reportButton}>提交</div>
+          <div className={style.reportButton} onClick={() => { Toast_.show("提交成功"); setReportShow(false); }}>提交</div>
         </div>
       </ActionSheet>
       <LoadMore
@@ -207,6 +211,7 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
 
                 </div>
               </div>
+              
               <div className={style.Article_context} onClick={() => { goToArticleDetail(item) }}>
                 <div className={style.Article_context_title}>
                   {item.title}
@@ -223,7 +228,7 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
                 {
                   item.imageList.map((img, imgIndex) => (
                     item.imageList.length > 3 && imgIndex == 2 ?
-                      <div className={style.mask}>
+                      <div className={style.mask} key={img}>
                         <div className={style.bgMask}>+{item.imageList.length - 3}</div>
                         <img className={style.maskImg} src={img} onClick={() => parView(img)}></img>
                       </div>

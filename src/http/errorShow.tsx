@@ -31,6 +31,9 @@ const showError = (res) => {
                     title: '401',
                     content: JSON.stringify(res.data.message),
                 })
+                Taro.removeStorageSync('userId')
+                Taro.removeStorageSync('user')
+                Taro.removeStorageSync('token')
             }
             if (res.data.code == 403) {
                 Taro.showModal({

@@ -8,6 +8,7 @@ import NewFriend_Sclice from './NewFriend_Sclice'
 import Comment_Sclice from './Comment_Sclice'
 import MyComment_Sclice from './MyComment_Sclice'
 import FollowAndFans_Sclice from './FollowAndFans_Sclice'
+import Legwork_Sclice from './Legwork_Sclice'
 /**
  * 轮子哥
  * 状态管理库
@@ -23,6 +24,7 @@ export default configureStore({
     NewFriend_Reducer:NewFriend_Sclice,
     Comment_Reducer:Comment_Sclice,
     MyComment_Reducer:MyComment_Sclice,
-    FollowAndFans_Reducer:FollowAndFans_Sclice
+    FollowAndFans_Reducer:FollowAndFans_Sclice,
+    Legwork_Reducer:Legwork_Sclice
   }
 })

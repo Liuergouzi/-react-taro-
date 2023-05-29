@@ -3,6 +3,12 @@
     background-color:#8BD1AE !important
 }
 
+//取消边框
+input{
+    border: none !important;	 
+    outline:none;
+}
+
 //取消滚动条
 // ::-webkit-scrollbar {
 //     display: none;

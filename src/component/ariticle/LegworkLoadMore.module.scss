@@ -1,0 +1,250 @@
+.Article {
+    margin: 0px;
+    padding: 20px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.Article_top {
+    display: flex;
+    min-height: 150px;
+    justify-content: space-between;
+}
+
+.Article_top_left {
+    display: flex;
+    align-items: center;
+}
+
+
+.Article_top_headImg {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    background-color: lightgray;
+}
+.Article_top_head{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 100px;
+}
+
+.Article_top_headleft {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 20px;
+}
+
+.Article_top_name {
+    color: black;
+    font-size: 26px;
+    padding-bottom: 15px;
+}
+
+.Article_top_time {
+    color: gray;
+    font-size: 24px;
+}
+
+.Article_top_rightImg {
+    width: 60px;
+    height: 50px;
+}
+
+
+.Article_context {
+    margin-bottom: 10px;
+
+
+}
+
+.Article_context_title {
+    color: #323232;
+    font-family: cursive;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.Article_context_contain {
+    color: #555555;
+    font-family: cursive;
+    font-size: 30px;
+}
+
+.Article_bottom {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.Article_bottomImg {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.Article_bottom_text {
+    font-size: 27px;
+    margin-right: 20px;
+}
+
+.Article_bottomDiv {
+    display: flex;
+}
+
+.reportTip {
+    font-size: 25px;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    color: red;
+}
+
+.reportButton {
+    border-radius: 31.8rpx;
+    margin: 0 auto;
+    height: 55px;
+    line-height: 55rpx;
+    background-color: rgb(117 117 117);
+    text-align: center;
+    width: 30%;
+    color: white;
+    margin-top: 15px;
+}
+
+.imageThreeDiv {
+    display: flex;
+}
+
+.mask {
+    flex: 1;
+    width: 30%;
+    height: 200px;
+    padding: 5px;
+    position: relative;
+}
+
+.mask2 {
+    width: 30%;
+    height: 200px;
+    padding: 5px;
+    position: relative;
+}
+
+.bgMask {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(31, 30, 30));
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    color: #fff;
+}
+
+.maskImg {
+    width: 100%;
+    height: 100%;
+}
+
+.updateDiv {
+    display: flex;
+}
+
+.update {
+    border-radius: 20px;
+    border: 1px solid lightgray;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    background-color: rgb(250, 249, 249);
+    color: gray;
+}
+
+.delete {
+    color: red;
+    border-radius: 20px;
+    border: 1px solid lightgray;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.deleteTip {
+    color: red;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.liuchen{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-top: 20px;
+}
+.liuchenLeft{
+    display: flex;
+    flex-direction: column;
+}
+.liuchenRight{
+    display: flex;
+    float: right;
+    flex-direction: column;
+}
+.state1{
+    background-color: #8BD1AE;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+}
+.state2{
+    background-color: #ff6720;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+}
+.state3{
+    background-color: #c3c9c6;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+}
+
+.qiang1{
+    background-color: #8BD1AE;
+    color: white;
+    min-width: 70px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+}
+.qiang2{
+    background-color: lightgray;
+    color: white;
+    min-width: 70px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+}

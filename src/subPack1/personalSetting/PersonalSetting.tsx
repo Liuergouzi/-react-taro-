@@ -160,7 +160,7 @@ export default function PersonalSetting() {
                         maxLength={nicknameLength} value={user.nickname}
                         onInput={(e: any) => {
                               let userTemp = JSON.parse(JSON.stringify(user));
-                              userTemp.nickname=e.detail.value
+                              userTemp.nickname=e.target.value
                               setUser(userTemp)}} />
                     <div className={style.inputCount}>{8}/{user.nickname.length}</div>
                 </div>
@@ -178,7 +178,7 @@ export default function PersonalSetting() {
                         maxLength={descriptionLength} value={user.description}
                         onInput={(e: any) => {
                             let userTemp = JSON.parse(JSON.stringify(user));
-                            userTemp.description=e.detail.value
+                            userTemp.description=e.target.value
                             setUser(userTemp) }} />
                     <div className={style.inputCount}>{50}/{user.description.length}</div>
                 </div>

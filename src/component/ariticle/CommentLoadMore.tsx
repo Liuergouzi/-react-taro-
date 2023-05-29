@@ -384,7 +384,7 @@ export default function CommentLoadMore(props) {
                             adjust-position={false}
                             value={inputValue}
                             onFocus={(e: any) => { e.detail.height && setInputButtom(e.detail.height) }}
-                            onBlur={(e: any) => { setInputButtom(0); setInpValue(e.detail.value) }} />
+                            onBlur={(e: any) => { setInputButtom(0); setInpValue(e.target.value) }} />
                     </div>
                     <div className={style.bottomRight}>
                         <img src={images.emote} className={style.bottomImg} />

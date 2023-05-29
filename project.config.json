@@ -4,7 +4,7 @@
     "description": "rtt",
     "appid": "wx7de39ae899fd1544",
     "setting": {
-        "urlCheck": true,
+        "urlCheck": false,
         "es6": false,
         "enhance": false,
         "postcss": false,
@@ -12,7 +12,7 @@
         "minified": false,
         "newFeature": false,
         "coverView": true,
-        "nodeModules": false,
+        "nodeModules": true,
         "autoAudits": false,
         "showShadowRootInWxmlPanel": true,
         "scopeDataCheck": false,

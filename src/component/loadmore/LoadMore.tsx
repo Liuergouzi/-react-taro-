@@ -8,6 +8,7 @@ import { setNewFriendList, clearNewFriendList, setNewFriendPageIndex, clearNewFr
 import { setCommentList, clearCommentList, setCommentPageIndex, clearCommentPageIndex } from '../../sclice/Comment_Sclice'
 import { setMyCommentList,clearMyCommentList,setMyCommentPageIndex,clearMyCommentPageIndex } from '../../sclice/MyComment_Sclice'
 import { setFollowAndFansList,clearFollowAndFansList,setFollowAndFansPageIndex,clearFollowAndFansPageIndex } from '../../sclice/FollowAndFans_Sclice'
+import { setLegworkList,clearLegworkList,setLegworkPageIndex,clearLegworkPageIndex} from '../../sclice/Legwork_Sclice'
 import { useDispatch } from 'react-redux'
 import Taro from '@tarojs/taro'
 import './LoadMore.scss'
@@ -34,6 +35,7 @@ export default function HomeLoadMore(props: any) {
       case 'Comment': dispatch(setCommentList(data)); data.length == tempRequestData.pageSize && dispatch(setCommentPageIndex()); break;
       case 'MyComment': dispatch(setMyCommentList(data)); data.length == tempRequestData.pageSize && dispatch(setMyCommentPageIndex()); break;
       case 'FollowAndFans': dispatch(setFollowAndFansList(data)); data.length == tempRequestData.pageSize && dispatch(setFollowAndFansPageIndex()); break;
+      case 'Legwork': dispatch(setLegworkList(data)); data.length == tempRequestData.pageSize && dispatch(setLegworkPageIndex()); break;
     }
   }
   const clearDatas = (viewId: string) => {
@@ -46,6 +48,7 @@ export default function HomeLoadMore(props: any) {
       case 'Comment': dispatch(clearCommentPageIndex()); dispatch(clearCommentList()); break;
       case 'MyComment': dispatch(clearMyCommentPageIndex()); dispatch(clearMyCommentList()); break;
       case 'FollowAndFans': dispatch(clearFollowAndFansPageIndex()); dispatch(clearFollowAndFansList()); break;
+      case 'Legwork' :dispatch(clearLegworkPageIndex()); dispatch(clearLegworkList()); break;
     }
   }
 
@@ -112,7 +115,7 @@ export default function HomeLoadMore(props: any) {
   react.useEffect(() => {
     return () => {
       //离开页面取消请求
-      if (requests != undefined)
+      if (requests != undefined &&Taro.getEnv()=='WEAPP')
         requests.abort()
       if (props.isLeaveClear) {
         clearDatas(props.viewId)
