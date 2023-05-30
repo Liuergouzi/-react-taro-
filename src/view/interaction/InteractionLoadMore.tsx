@@ -111,7 +111,7 @@ export default function InteractionLoadMore() {
                                     {item.type == "replay" && item.contentType == "text" && <div className={style.replayContent}>回复了你：{item.content}</div>}
                                     {item.type == 'love' || item.type == 'follow' ? <div className={style.replayContent}>{item.content}</div> : null}
                                     {item.type == 'legwork' && <div className={style.replayContent}>申请接取跑腿订单</div>}
-                                    {item.type == 'legworkReplay' && <div className={style.replayContent}>对方已同意您的申请</div>}
+                                    {item.type == 'legworkReplay' && <div className={style.replayContent}>{item.title}</div>}
                                     <div className={style.time}>{getTime(item.time)}</div>
                                 </div>
                             </div>

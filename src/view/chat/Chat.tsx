@@ -4,10 +4,10 @@ import { Toast } from '@antmjs/vantui'
 import images from "../../resources"
 import style from './Chat.module.scss'
 import time from "../../tool/time"
-import reUrl from "../../requestUrl"
 import TopMostTaroNavigationBar from "../../component/navigation/TopMostTaroNavigationBar"
 import netRequest from "../../http/http"
 import netRequestTextCheck from "../../http/httpTextCheck"
+import httpImageCheck from "../../http/httpImageCheck"
 
 export default function Chat() {
 
@@ -60,7 +60,7 @@ export default function Chat() {
         Toast.show("聊天服务连接失败,请联系轮子哥");
     })
     Taro.onSocketMessage(function (res) {
-        setMessageList([...messageList, { sendId: receiveId, receiveId: sendId, messageType: "text", message: JSON.parse(res.data).message, time: time }])
+        setMessageList([...messageList, { sendId: receiveId, receiveId: sendId, messageType: JSON.parse(res.data).messageType, message: JSON.parse(res.data).message, time: time }])
     })
 
     //消息存储
@@ -123,44 +123,16 @@ export default function Chat() {
     //发送图片
     function openImg() {
         const sendTime = time;
-        Taro.chooseImage({
-            count: 1,
-            success(res) {
-                const sendData = {
-                    sendId: sendId, receiveId: receiveId, sendType: "one", messageType: "image",
-                    message: res.tempFilePaths[0], time: sendTime
-                }
-                setMessageList([...messageList, sendData])
-                // Taro.showLoading({ title: '图片上传中...' })
-                const tempFilePaths = res.tempFilePaths
-                Taro.uploadFile({
-                    url: reUrl('chatUploadImg'),
-                    filePath: tempFilePaths[0],
-                    name: 'file',
-                    formData: {
-                        'imgUrlName': "chat" + "-" + receiveId + "-" + sendTime + ".png"
-                    },
-                    success(res: any) {
-                        const sendData = {
-                            sendId: sendId, receiveId: receiveId, sendType: "one", messageType: "image",
-                            message: res.data, time: sendTime
-                        }
-                        Taro.sendSocketMessage({
-                            data: JSON.stringify(sendData)
-                        })
-                        console.log(JSON.stringify(res.data))
-                        insertMessage(JSON.parse(res.data).url, "image", sendTime)
-                        // Taro.hideLoading()
-                        // Taro.showModal({
-                        //     title: '返回结果',
-                        //     content: JSON.stringify(res.data),
-                        // })
-                    },
-                    fail(res: any) {
-                        Toast.show(res.message);
-                    }
-                })
+        httpImageCheck( "chat" + "-" + receiveId + "-" +sendId+ sendTime+Math.random() + ".png").then((res)=>{
+            const sendData = {
+                sendId: sendId, receiveId: receiveId, sendType: "one", messageType: "image",
+                message: res, time: sendTime
             }
+            Taro.sendSocketMessage({
+                data: JSON.stringify(sendData)
+            })
+            setMessageList(() => ([...messageList, sendData]))
+            insertMessage(res, "image", sendTime)
         })
     }
 
@@ -177,7 +149,7 @@ export default function Chat() {
                             <div className={style.itemMessage} style={item.sendId != sendId ? {} : { flexDirection: "row-reverse" }}>
                                 <img src={item.sendId != sendId ? other.headImg : me.headImg} className={style.headImg}></img>
                                 {
-                                    item.messageType === 'image' ? <img src={item.message} className={style.chatImg} /> :
+                                    item.messageType == 'image' ? <img src={item.message} className={style.chatImg} /> :
                                         <div className={style.chatOuter}>{item.message}</div>
                                 }
                             </div>

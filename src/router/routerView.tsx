@@ -14,7 +14,7 @@ import Appsocket from './Appsocket';
  */
 
 
-export default function routerView() {
+export default function RouterView() {
 
   return (
     <BrowserRouter>

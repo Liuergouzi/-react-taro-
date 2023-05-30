@@ -1,7 +1,7 @@
 export default defineAppConfig({
   pages: [
-    'router/routerView',
-    // 'pages/index/index'
+    // 'view/home/Home',
+    'router/RouterView',
   ],
   window: {
     navigationStyle: 'custom' ,

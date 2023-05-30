@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import {  useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import time from '../tool/time';
 import { openSocket, setChatDataAll,setChatDefaultListOne } from '../sclice/Notice_Sclice'
 import Taro from '@tarojs/taro';
@@ -12,14 +12,15 @@ export default function Appsocket() {
     //五大页面共同组件，初始化即打开socket连接
     useEffect(() => {
         dispatch(openSocket())
-    },[])
+    }, [])
+    
     //接收到消息，及时更新缓存的数据列表
     Taro.onSocketMessage(function (res) {
-        console.log("接收到消息"+JSON.stringify(res))
+        console.log("接收到消息" + JSON.stringify(res))
         const resData = JSON.parse(res.data)
-        if(resData.hasOwnProperty("type")){
+        if (resData.hasOwnProperty("type")) {
             dispatch(setChatDefaultListOne(resData))
-        }else{
+        } else {
             let chatTemp = JSON.parse(JSON.stringify(chatListData))
             chatTemp.forEach(element => {
                 if (element.otherId == resData.sendId) {
@@ -32,7 +33,7 @@ export default function Appsocket() {
         }
     })
 
-  return (
-    <div></div>
-  )
+    return (
+        <div></div>
+    )
 }

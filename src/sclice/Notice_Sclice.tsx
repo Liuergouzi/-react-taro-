@@ -8,6 +8,25 @@ import itemList from '../itemList'
  * 消息模块数据交互切片
  */
 
+
+const open1=()=>{
+    console.log("执行")
+    Taro.connectSocket({
+        url: reUrl('chatWebSocket') + Taro.getStorageSync("userId"),
+    }).then(task => {
+        task.onOpen(function () {
+            console.log('socket成功连接')
+        })
+        task.onMessage(function (msg) {
+            console.log('onMessage: ', msg)
+        })
+        task.onClose(function () {
+            var timer2=setTimeout(() => { clearTimeout(timer2);open1()}, 5000)
+            console.log('socket连接意外断开,正在重连')
+        })
+    })
+}
+
 export const Notice_Sclice = createSlice({
     name: '消息模块全局状态传参管理',
     initialState: {
@@ -15,13 +34,24 @@ export const Notice_Sclice = createSlice({
         chatList: [...itemList.Notice_List],
         pageIndex: 0,
         chatItemClick: {},
-        navBarRed:false
+        navBarRed: false,
     },
     reducers: {
         openSocket: (state: any) => {
             if (!state.socketState && Taro.getStorageSync("userId") != "") {
                 Taro.connectSocket({
                     url: reUrl('chatWebSocket') + Taro.getStorageSync("userId"),
+                }).then(task => {
+                    task.onOpen(function () {
+                        console.log('socket成功连接')
+                    })
+                    task.onMessage(function (msg) {
+                        console.log('onMessage: ', msg)
+                    })
+                    task.onClose(function () {
+                        open1()
+                        console.log('socket连接发生意外,正在重连')
+                    })
                 })
                 state.socketState = true
             }
@@ -30,7 +60,7 @@ export const Notice_Sclice = createSlice({
             state.chatList = [...state.chatList, ...action.payload]
         },
         setChatDataAll: (state: any, action) => {
-            state.navBarRed=true
+            state.navBarRed = true
             state.chatList = [...action.payload]
         },
         clearChatData: (state: any) => {
@@ -81,7 +111,7 @@ export const Notice_Sclice = createSlice({
             }
         },
         setChatDefaultListOne: (state: any, action) => {
-            state.navBarRed=true
+            state.navBarRed = true
             switch (action.payload.type) {
                 case 'systemCommon':
                     state.chatList[0].message = action.payload.content;
@@ -123,19 +153,19 @@ export const Notice_Sclice = createSlice({
         },
         setChatDefaultListRedCount: (state: any, action) => {
             state.chatList[action.payload].redCount = 0;
-            Taro.setStorageSync('chatList'+action.payload, state.chatList[action.payload])
+            Taro.setStorageSync('chatList' + action.payload, state.chatList[action.payload])
         },
-        setNavBarTrue:(state: any) => {
-            state.navBarRed=true
+        setNavBarTrue: (state: any) => {
+            state.navBarRed = true
         },
-        setNavBarFalse:(state: any) => {
-            state.navBarRed=false
+        setNavBarFalse: (state: any) => {
+            state.navBarRed = false
         }
     }
 })
 
 export const { openSocket, setChatData, clearChatData, setChatDataAll, setChatPageIndex,
-     clearChatPageIndex, setChatItemClick, setChatDefaultList,setChatDefaultListOne,setChatDefaultListRedCount,
-     setNavBarTrue,setNavBarFalse } = Notice_Sclice.actions
+    clearChatPageIndex, setChatItemClick, setChatDefaultList, setChatDefaultListOne, setChatDefaultListRedCount,
+    setNavBarTrue, setNavBarFalse } = Notice_Sclice.actions
 
 export default Notice_Sclice.reducer

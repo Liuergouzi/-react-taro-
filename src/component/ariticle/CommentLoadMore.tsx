@@ -383,8 +383,9 @@ export default function CommentLoadMore(props) {
                         <input className={style.bottomInput} ref={inputDom} placeholder={replayClickData.inputTip}
                             adjust-position={false}
                             value={inputValue}
+                            onInput={(e:any)=>{setInpValue(e.target.value)}}
                             onFocus={(e: any) => { e.detail.height && setInputButtom(e.detail.height) }}
-                            onBlur={(e: any) => { setInputButtom(0); setInpValue(e.target.value) }} />
+                            onBlur={() => { setInputButtom(0)}} />
                     </div>
                     <div className={style.bottomRight}>
                         <img src={images.emote} className={style.bottomImg} />

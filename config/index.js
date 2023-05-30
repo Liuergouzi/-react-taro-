@@ -112,12 +112,22 @@ const config = {
     // router:{
     //   mode:'browser'
     // },
+    // router: {
+    //   basename: '/myapp',
+    //   customRoutes: {
+    //     '/view/home/Home': '/home',
+    //   },
+    // },
+    // devServer: {
+    //   disablePathRewriting: true
+    // },
     pxtransform: {
       enable: true,
       config: {},
     },
 
-    publicPath: '/',
+    publicPath: process.env.NODE_ENV==='development'?'/':'./',
+    outputRoot: './dist',
     staticDirectory: 'static',
     postcss: {
       autoprefixer: {

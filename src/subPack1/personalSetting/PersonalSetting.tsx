@@ -22,11 +22,11 @@ export default function PersonalSetting() {
     const [nicknameLength, setNicknameLength] = useState(8)
     const [descriptionLength, setDescriptionLength] = useState(50)
     const [area, setArea] = useState([])
-    const [randoms,setRandoms]=useState(Math.random())
+    const [randoms, setRandoms] = useState(Math.random())
     const navigate = useNavigate();
     const [user, setUser] = useState(
         {
-            "avatar": "","userId":"",
+            "avatar": "", "userId": "",
             "nickname": "", "grade": "", "sex": "男",
             "address": "", "description": "", "isInfo": "false"
         }
@@ -60,7 +60,7 @@ export default function PersonalSetting() {
     const updateUser = (userInfo, id, bool) => {
         let userTemp = JSON.parse(JSON.stringify(user));
         switch (id) {
-            case 'avatar': userTemp.avatar = userInfo;setRandoms(Math.random()); break;
+            case 'avatar': userTemp.avatar = userInfo; setRandoms(Math.random()); break;
             case 'nickname': userTemp.nickname = userInfo.substring(0, 8); setNicknameLength(8 - userInfo.length); break;
             case 'grade': userTemp.grade = userInfo; break;
             case 'sex': userTemp.sex = userInfo; break;
@@ -69,8 +69,8 @@ export default function PersonalSetting() {
             case 'isInfo': userTemp.isInfo = String(userInfo); setValue1(userInfo); break;
         }
 
-        if(id=="avatar"||id=="nickname"){
-            netRequest({userId:userTemp.userId,head:userTemp.avatar,name:userTemp.nickname}, 'updateUser', 'POST', 0)
+        if (id == "avatar" || id == "nickname") {
+            netRequest({ userId: userTemp.userId, head: userTemp.avatar, name: userTemp.nickname }, 'updateUser', 'POST', 0)
         }
 
         netRequestTextCheck(JSON.stringify(userTemp)).then(() => {
@@ -85,8 +85,8 @@ export default function PersonalSetting() {
                 }
             }
         })
-        .catch(() => {
-        })
+            .catch(() => {
+            })
     }
 
     const logout = () => {
@@ -126,9 +126,9 @@ export default function PersonalSetting() {
     }
 
     //更换头像
-    const  openImg=()=> {
-        httpImageCheck( "userHead/" + "userId=" + Taro.getStorageSync("userId") + ".png").then((res)=>{
-            updateUser(res,"avatar",true)
+    const openImg = () => {
+        httpImageCheck("userHead/" + "userId=" + Taro.getStorageSync("userId") + ".png").then((res) => {
+            updateUser(res, "avatar", true)
         })
     }
 
@@ -153,15 +153,16 @@ export default function PersonalSetting() {
                 showCancelButton
                 confirmButtonOpenType="getUserInfo"
                 show={nameShow}
-                onConfirm={() => { updateUserRequest(user) }}
+                onConfirm={() => { updateUser(user.nickname,'nickname',true) }}
                 onClose={() => setNameShow(false)}>
                 <div>
                     <input className={style.dialogInput} placeholder="请输入你的昵称"
                         maxLength={nicknameLength} value={user.nickname}
                         onInput={(e: any) => {
-                              let userTemp = JSON.parse(JSON.stringify(user));
-                              userTemp.nickname=e.target.value
-                              setUser(userTemp)}} />
+                            let userTemp = JSON.parse(JSON.stringify(user));
+                            userTemp.nickname = e.target.value
+                            setUser(userTemp)
+                        }} />
                     <div className={style.inputCount}>{8}/{user.nickname.length}</div>
                 </div>
             </Dialog>
@@ -178,8 +179,9 @@ export default function PersonalSetting() {
                         maxLength={descriptionLength} value={user.description}
                         onInput={(e: any) => {
                             let userTemp = JSON.parse(JSON.stringify(user));
-                            userTemp.description=e.target.value
-                            setUser(userTemp) }} />
+                            userTemp.description = e.target.value
+                            setUser(userTemp)
+                        }} />
                     <div className={style.inputCount}>{50}/{user.description.length}</div>
                 </div>
             </Dialog>
@@ -215,8 +217,8 @@ export default function PersonalSetting() {
             <div className={style.contain}>
                 <div className={style.lines1}>
                     <div className={style.left1}>头像</div>
-                    <div className={style.right1} onClick={()=>openImg()}>
-                        <img className={style.headImg} src={user.avatar != null ? user.avatar+ '?' + randoms : ""}></img>
+                    <div className={style.right1} onClick={() => openImg()}>
+                        <img className={style.headImg} src={user.avatar != null ? user.avatar + '?' + randoms : ""}></img>
                     </div>
                 </div>
                 <div className={style.lines} onClick={() => setNameShow(true)}>
