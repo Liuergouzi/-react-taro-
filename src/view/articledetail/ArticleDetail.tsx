@@ -149,7 +149,7 @@ export default function ArticleDetail() {
 
                 <div className={style.info}>
                     <div className={style.infoLeft}>
-                        <img src={articleDetailData.head == "" ? images.boyHead : articleDetailData.head} className={style.infoImage} alt="" onClick={() => parView(images.testH1)} />
+                        <img src={articleDetailData.head == "" ? images.boyHead : articleDetailData.head} className={style.infoImage} alt="" onClick={() => parView(articleDetailData.head)} />
                         <div className={style.infoText}>
                             <div className={style.infoLeftName}>{articleDetailData.name == "" ? "匿名用户" : articleDetailData.name}</div>
                             <div className={style.infoLeftTime}>{articleDetailData.time}</div>

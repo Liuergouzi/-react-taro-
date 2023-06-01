@@ -55,7 +55,7 @@ export default function Push() {
             if (textLength.length <= 5) {
                 Taro.showModal({
                     title: '发布失败',
-                    content: "低质量帖子",
+                    content: "内容太少！",
                 })
             } else {
                 const requestData = {

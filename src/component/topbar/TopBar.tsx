@@ -17,6 +17,7 @@ export default class TopBar extends Component<propsBind, any> {
     constructor(props: propsBind) {
         super(props)
     }
+    
 
     render() {
         return (
