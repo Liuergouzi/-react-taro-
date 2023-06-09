@@ -163,7 +163,7 @@ export default function ArticleDetail() {
                     <div className={style.imageThreeDiv}>
                         {
                             articleDetailData.imageList.map((img) => (
-                                <div className={style.mask2}>
+                                <div className={style.mask2} key={img}>
                                     <img className={style.maskImg} src={img} onClick={() => parView(img)}></img>
                                 </div>
                             ))

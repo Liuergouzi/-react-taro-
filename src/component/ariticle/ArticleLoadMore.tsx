@@ -234,7 +234,7 @@ export default function ArticleLoadMore(props: ArticleLoadMore) {
                       </div>
                       :
                       imgIndex < 3 ?
-                        <div className={style.mask2}>
+                        <div className={style.mask2} key={img}>
                           <img className={style.maskImg} src={img} onClick={() => parView(img)}></img>
                         </div>
                         :

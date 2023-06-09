@@ -82,7 +82,7 @@ export default function CommentLoadMore(props) {
     const sendImg = () => {
         httpImageCheck( "comment/" + time2() + "-" + "userId=" + Taro.getStorageSync("userId") + ".png").then((res)=>{
             sendText("image", res)
-        })
+        }).catch()
     }
 
     const sendText = (type, url) => {
@@ -300,9 +300,9 @@ export default function CommentLoadMore(props) {
                 }}>
                 {
                     CommentlList.map((item, index) =>
-                        <div className={style.commentItem}>
+                        <div className={style.commentItem} key={index}>
                             <div className={style.mainComment}>
-                                <img fade-in className={style.userHeadImg} src={item.head}></img>
+                                <img className={style.userHeadImg} src={item.head}></img>
                                 <div className={style.others} >
                                     <div className={style.userName}>{item.name}</div>
                                     {
@@ -329,7 +329,7 @@ export default function CommentLoadMore(props) {
                             </div>
                             {
                                 item.subCommentList != null && item.subCommentList.map((subItem, subIndex) =>
-                                    <div className={style.subComment}>
+                                    <div className={style.subComment} key={subIndex}>
                                         <img fade-in className={style.userHeadImg} src={subItem.head}></img>
                                         <div className={style.others}>
                                             <div className={style.userName}>{subItem.name}&ensp; 回复 &ensp;{subItem.replyName}</div>
@@ -381,7 +381,7 @@ export default function CommentLoadMore(props) {
                     </div>
                     <div className={style.inputDiv} >
                         <input className={style.bottomInput} ref={inputDom} placeholder={replayClickData.inputTip}
-                            adjust-position={false}
+                            adjust-position="false"
                             value={inputValue}
                             onInput={(e:any)=>{setInpValue(e.target.value)}}
                             onFocus={(e: any) => { e.detail.height && setInputButtom(e.detail.height) }}

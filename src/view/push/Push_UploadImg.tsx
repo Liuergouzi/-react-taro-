@@ -42,6 +42,7 @@ export default function Push_UploadImg() {
           formData: {
             'imgUrlName': "test"
           },
+          withCredentials: false,
           header:{'Authorization': 'Bearer ' + Taro.getStorageSync("token")},
           async success(res: any) {
             const returns = JSON.parse(res.data)
@@ -55,6 +56,7 @@ export default function Push_UploadImg() {
                     filePath: file[i - 1].url,
                     name: 'file',
                     header:{'Authorization': 'Bearer ' + Taro.getStorageSync("token")},
+                    withCredentials: false,
                     formData: {
                       'imgUrlName': imgUrl
                     },

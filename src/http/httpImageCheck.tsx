@@ -17,6 +17,7 @@ const httpImageCheck = (urls) => {
                     formData: {
                         'imgUrlName': urls
                     },
+                    withCredentials: false,
                     header:{'Authorization': 'Bearer ' + Taro.getStorageSync("token")},
                     success(res: any) {
                         Taro.hideLoading()
@@ -32,6 +33,7 @@ const httpImageCheck = (urls) => {
                                         formData: {
                                             'imgUrlName': urls
                                         },
+                                        withCredentials: false,
                                         header:{'Authorization': 'Bearer ' + Taro.getStorageSync("token")},
                                         success(ress: any) {
                                             Taro.hideLoading()

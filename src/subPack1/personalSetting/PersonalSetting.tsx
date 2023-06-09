@@ -129,7 +129,7 @@ export default function PersonalSetting() {
     const openImg = () => {
         httpImageCheck("userHead/" + "userId=" + Taro.getStorageSync("userId") + ".png").then((res) => {
             updateUser(res, "avatar", true)
-        })
+        }).catch()
     }
 
     const [sexActions] = useState([
@@ -153,12 +153,12 @@ export default function PersonalSetting() {
                 showCancelButton
                 confirmButtonOpenType="getUserInfo"
                 show={nameShow}
-                onConfirm={() => { updateUser(user.nickname,'nickname',true) }}
+                onConfirm={() => { updateUser(user.nickname, 'nickname', true) }}
                 onClose={() => setNameShow(false)}>
                 <div>
                     <input className={style.dialogInput} placeholder="请输入你的昵称"
                         maxLength={nicknameLength} value={user.nickname}
-                        onInput={(e: any) => {
+                        onChange={(e: any) => {
                             let userTemp = JSON.parse(JSON.stringify(user));
                             userTemp.nickname = e.target.value
                             setUser(userTemp)
@@ -177,7 +177,7 @@ export default function PersonalSetting() {
                 <div>
                     <textarea className={style.dialogInput} placeholder="请输入你的介绍"
                         maxLength={descriptionLength} value={user.description}
-                        onInput={(e: any) => {
+                        onChange={(e: any) => {
                             let userTemp = JSON.parse(JSON.stringify(user));
                             userTemp.description = e.target.value
                             setUser(userTemp)
@@ -291,7 +291,11 @@ export default function PersonalSetting() {
                     </CollapseItem>
                     <CollapseItem renderTitle={<div> 隐私政策{"&&"}用户协议<Icon name="question-o" /></div>} name="3">
                         <div className={style.collapseItems}>
-                            我们不会泄露你的任何信息，禁止黄赌毒一切非法内容......
+                            我们不会泄露你的任何信息，禁止黄赌毒一切非法内容,如有发现违法犯罪内容，将积极配合公安取证
+                            <br></br>
+                            粤ICP备2023024905号-1
+                            <br></br>
+                            粤公网安备 44512202000102号
                         </div>
                     </CollapseItem>
                 </Collapse>

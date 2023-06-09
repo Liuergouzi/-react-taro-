@@ -134,7 +134,7 @@ export default function Chat() {
             })
             setMessageList(() => ([...messageList, sendData]))
             insertMessage(res, "image", sendTime)
-        })
+        }).catch()
     }
 
 
