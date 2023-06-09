@@ -33,6 +33,8 @@ import images from '../resources';
 // import LegworkLoadMore from '../component/ariticle/LegworkLoadMore';
 // import MyLegwork from '../view/myLegwork/MyLegwork';
 // import MyReceiveLegwork from '../view/myLegwork/MyReceiveLegwork';
+// import ArticleLoadMore1 from '../component/ariticle/ArticleLoadMore1';
+// import ArticleLoadMore2 from '../component/ariticle/ArticleLoadMore2';
 
 const Error = React.lazy(() => import("../view/error/Error"));
 const Home = React.lazy(() => import("../view/home/Home"));
@@ -58,6 +60,8 @@ const LegWork =React.lazy(()=>import("../view/legwork/LegWork"))
 const LegworkLoadMore =React.lazy(()=>import("../component/ariticle/LegworkLoadMore"))
 const MyLegwork =React.lazy(()=>import("../view/myLegwork/MyLegwork"))
 const MyReceiveLegwork=React.lazy(()=>import("../view/myLegwork/MyReceiveLegwork"))
+const ArticleLoadMore1=React.lazy(()=>import("../component/ariticle/ArticleLoadMore1"))
+const ArticleLoadMore2=React.lazy(()=>import("../component/ariticle/ArticleLoadMore2"))
 /**
  * 轮子哥
  * 最新react-router-dom@6版本路由自定义配置
@@ -83,6 +87,26 @@ const routes = [
         path: "/home/type2",
         element: <LegworkLoadMore />,
       },
+      {
+        path: "/home/type3",
+        element: <ArticleLoadMore1 requestData={{pageSize: 8, pageIndex: 0, type: "求助" }}/>,
+      },
+      {
+        path: "/home/type4",
+        element: <ArticleLoadMore2 requestData={{pageSize: 8, pageIndex: 0, type: "吐槽" }}/>,
+      },
+      {
+        path: "/home/type5",
+        element: <ArticleLoadMore requestData={{pageSize: 8, pageIndex: 0, type: "表白" }}/>,
+      },
+      // {
+      //   path: "/home/type6",
+      //   element: <ArticleLoadMore requestData={{pageSize: 8, pageIndex: 0, type: "大歌手" }}/>,
+      // },
+      // {
+      //   path: "/home/type7",
+      //   element: <ArticleLoadMore requestData={{pageSize: 8, pageIndex: 0, type: "视频" }}/>,
+      // },
     ]
   },
   {
