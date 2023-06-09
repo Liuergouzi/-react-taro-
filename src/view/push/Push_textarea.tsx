@@ -28,7 +28,7 @@ import React from 'react'
 
             <div className={style.inputDiv}>
                 <input  className={style.inputDom} placeholder='请输入爱坤标题' maxLength={tMax}
-                    value={title.titleData}
+                    defaultValue={title.titleData}
                     onInput={(e: any) => getTitle(e.target.value)}>
                 </input>
                 <div className={style.inputCount}>{tMax}/{title.titleLen}</div>
@@ -36,7 +36,7 @@ import React from 'react'
 
             <div className={style.textDiv}>
                 <textarea className={style.textArea} placeholder='尊敬的爱坤，发表您伟大的观点吧！' maxLength={cMax}
-                    value={content.contentData}
+                    defaultValue={content.contentData}
                     onInput={(e: any) => getContent(e.target.value)}>
                 </textarea>
                 <div className={style.textCount}>{cMax}/{content.contentLen}</div>

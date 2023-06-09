@@ -145,8 +145,8 @@ export default function Chat() {
             <div className={style.contain} id="chatWindow">
                 {isHistory ? <div className={style.centerTip} onClick={() => { handleClick(false) }}>加载更多</div> : ''}
                 {
-                    messageList.map((item) =>
-                        <div>
+                    messageList.map((item,index) =>
+                        <div key={index}>
                             <div className={style.itemMessage} style={item.sendId != sendId ? {} : { flexDirection: "row-reverse" }}>
                                 <img src={item.sendId != sendId ? other.headImg : me.headImg} className={style.headImg}></img>
                                 {

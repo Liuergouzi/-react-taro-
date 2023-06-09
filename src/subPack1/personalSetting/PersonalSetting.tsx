@@ -26,9 +26,8 @@ export default function PersonalSetting() {
     const navigate = useNavigate();
     const [user, setUser] = useState(
         {
-            "avatar": "", "userId": "",
-            "nickname": "", "grade": "", "sex": "男",
-            "address": "", "description": "", "isInfo": "false"
+            avatar: "", userId: "", nickname: "", grade: "", sex: "男",
+            address: "", description: "", isInfo: "false"
         }
     )
     const [isRequestFinsh, setIsRequestFinsh] = useState(true)
@@ -157,7 +156,7 @@ export default function PersonalSetting() {
                 onClose={() => setNameShow(false)}>
                 <div>
                     <input className={style.dialogInput} placeholder="请输入你的昵称"
-                        maxLength={nicknameLength} value={user.nickname}
+                        maxLength={nicknameLength}
                         onChange={(e: any) => {
                             let userTemp = JSON.parse(JSON.stringify(user));
                             userTemp.nickname = e.target.value
@@ -176,7 +175,7 @@ export default function PersonalSetting() {
                 onClose={() => setIntroductionShow(false)}>
                 <div>
                     <textarea className={style.dialogInput} placeholder="请输入你的介绍"
-                        maxLength={descriptionLength} value={user.description}
+                        maxLength={descriptionLength}
                         onChange={(e: any) => {
                             let userTemp = JSON.parse(JSON.stringify(user));
                             userTemp.description = e.target.value

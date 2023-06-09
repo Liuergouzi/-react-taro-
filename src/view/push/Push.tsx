@@ -38,7 +38,6 @@ export default function Push() {
         }
     }, [])
 
-
     const selectId: any = useSelector((state: any) => state.Push_Sclice.tagId)
     const title: any = useSelector((state: any) => state.Push_Sclice.title.titleData)
     const content: any = useSelector((state: any) => state.Push_Sclice.content.contentData)
@@ -46,8 +45,6 @@ export default function Push() {
     const tagName: Array<any> = itemList.Home_bottom_list.filter((e) => e.id == selectId)
     const [isRequestFinsh, setIsRequestFinsh] = useState(true)
     const [value, setValue] = useState(false)
-
-
     const push = () => {
         const textLength = title + content
 
@@ -64,7 +61,7 @@ export default function Push() {
                 }
                 const requestData2 = {
                     id: updateArticle.id, userId: Taro.getStorageSync("userId"),
-                    title: title, content: content, time: time, type: tagName[0].name, imageList: imageList
+                    title: title, content: content, time: time, type: tagName[0].name, imageList: imageList 
                 }
                 if (isRequestFinsh) {
                     setIsRequestFinsh(false)

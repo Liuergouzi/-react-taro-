@@ -11,7 +11,6 @@ import { setImageList, setImageListAll } from '../../sclice/Push_Sclice'
 export default function Push_UploadImg() {
   const value = useSelector((state: any) => state.Push_Sclice.imageList.thisList)
   const dispatch: any = useDispatch()
-  console.log(value)
   const afterRead = (event) => {
     const { file } = event.detail
     // 上传

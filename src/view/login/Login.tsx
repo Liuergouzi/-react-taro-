@@ -92,7 +92,7 @@ export default function Login() {
             <div className={style.loginTop}>
                 <div className={style.left}>
                     <div className={style.loginTopText}>自从我用了</div>
-                    <div className={style.loginTopText2}>广应科万事通</div>
+                    <div className={style.loginTopText2}>万事通</div>
                     <div className={style.loginTopText}>我成为了全村最靓的崽</div>
                 </div>
                 <div className={style.right}>
