@@ -11,7 +11,6 @@ export default function InteractionLoadMore() {
     const interactionList: any = useSelector((state: any) => state.Interaction_Reducer.interactionList)
     const pageIndex: number = useSelector((state: any) => state.Interaction_Reducer.pageIndex);
     const pageSize = 15;
-    const sendId: string = Taro.getStorageSync("userId")
     const [isRequestFinsh, setIsRequestFinsh] = useState(true)
     const [cache, setCache]: any = useState(Array.from(Taro.getStorageSync("agreeList")))
 
@@ -48,7 +47,6 @@ export default function InteractionLoadMore() {
             netRequest({
                 _id: item.content,
                 receiveId: item.otherId,
-                userId: Taro.getStorageSync("userId"),
                 time: time
             }, 'joinLegwork', 'POST', 0)
                 .then(() => {
@@ -91,7 +89,6 @@ export default function InteractionLoadMore() {
                 defaultListCount={3}
                 isLeaveClear
                 requestData={{
-                    id: sendId,
                     pageIndex: pageIndex,
                     pageSize: pageSize
                 }}>

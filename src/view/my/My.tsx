@@ -54,7 +54,7 @@ const My = React.memo(() => {
                 })
         }
 
-        netRequest({ userId: Taro.getStorageSync("userId") }, 'getArticleTotal', 'POST', 0)
+        netRequest({}, 'getArticleTotal', 'POST', 0)
             .then((res) => {
                 let articleTemp = JSON.parse(JSON.stringify(articleTotal))
                 articleTemp.loveCount = res.data.data[0].loveCount

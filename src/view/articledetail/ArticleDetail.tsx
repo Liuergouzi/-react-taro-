@@ -59,8 +59,7 @@ export default function ArticleDetail() {
                 thisArticle.loveCount = thisArticle.loveCount - 1
                 Taro.removeStorageSync(thisArticle.id)
                 netRequest({
-                    movementId: item.id,
-                    userId: Taro.getStorageSync("userId")
+                    movementId: item.id
                 }, 'cancelLoveArticleDisplayList', 'POST', 0)
                     .then(() => {
                         setIsRequestFinsh(true)

@@ -35,7 +35,6 @@ export default function Chat() {
     //加载更多
     const handleClick = (isOnce) => {
         netRequest({
-            sendId: sendId,
             receiveId: setChatItemClick.id,
             pageIndex: pageIndex,
             pageSize: 10
@@ -67,7 +66,6 @@ export default function Chat() {
     //消息存储
     const insertMessage = (message, messageType, time) => {
         netRequest({
-            sendId: sendId,
             receiveId: receiveId,
             sendType: "one",
             message: message,

@@ -17,7 +17,6 @@ export default function LegWork() {
     const [isRequestFinsh, setIsRequestFinsh] = useState(true)
     const navigate = useNavigate();
     const [inputDate, setInputDate] = useState({
-        userId: Taro.getStorageSync("userId"),
         pushTime:time,
         goods: "",
         start: "",

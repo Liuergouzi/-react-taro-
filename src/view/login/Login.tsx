@@ -51,27 +51,23 @@ export default function Login() {
                         username: account,
                         password: password
                     }, 'regist', 'POST', 0)
-                        .then((res) => {
-                            netRequest({userId:res.data.data,head:null,name:null}, 'updateUser', 'POST', 0).then(()=>{
-                                Taro.showToast({
-                                    title: '注册成功',
-                                    icon: 'success',
-                                    duration: 1500
-                                })
-                                setIsRegister(!isRegister)
-                                setIsRequestFinsh(true)
-                            }).catch(()=>{
-                                Taro.showToast({
+                        .then(() => {
+                            Taro.showToast({
+                                title: '注册成功',
+                                icon: 'success',
+                                duration: 1500
+                            })
+                            setIsRegister(!isRegister)
+                            setIsRequestFinsh(true)
+                        })
+                        .catch(() => {
+                                 Taro.showToast({
                                     title: '出了点小意外',
                                     icon: 'error',
                                     duration: 1500
                                 })
                                 setIsRegister(!isRegister)
                                 setIsRequestFinsh(true)
-                            })
-                        })
-                        .catch(() => {
-                            setIsRequestFinsh(true)
                         })
                 } else {
                     setIsRequestFinsh(true);

@@ -39,7 +39,7 @@ export default function PersonalDetails() {
                     userTemp.sex = res.data.data.sex
                     userTemp.address = res.data.data.address
 
-                    netRequest({ userId: userId }, 'getArticleTotal', 'POST', 0)
+                    netRequest({}, 'getArticleTotal', 'POST', 0)
                     .then((ress) => {
                         userTemp.likeCount = ress.data.data[0].loveCount
                         setUserDetail(userTemp)

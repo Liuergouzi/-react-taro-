@@ -34,7 +34,7 @@ export default function NoticeLoadMore() {
             } else if (index == 2) {
                 type = "friend"
             }
-            netRequest({ id: sendId, type: type }, 'updateMonRedCount', 'POST', 0)
+            netRequest({ type: type }, 'updateMonRedCount', 'POST', 0)
                 .then(() => {
                 })
                 .catch(() => {
@@ -43,7 +43,7 @@ export default function NoticeLoadMore() {
         }
 
         if (chatListData[index].redCount != 0 && index > 2) {
-            netRequest({ sendId: item.otherId, receiveId: sendId }, 'redReset', 'POST', 0)
+            netRequest({ sendId: item.otherId }, 'redReset', 'POST', 0)
                 .then(() => {
                 })
                 .catch(() => {
@@ -74,7 +74,6 @@ export default function NoticeLoadMore() {
                     defaultListCount={3}
                     isLeaveClear
                     requestData={{
-                        id: sendId,
                         pageIndex: pageIndex,
                         pageSize: pageSize
                     }}>

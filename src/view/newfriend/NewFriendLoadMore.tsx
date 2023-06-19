@@ -1,6 +1,5 @@
 import style from './NewFriendLoadMore.module.scss'
 import { useSelector } from 'react-redux';
-import Taro from '@tarojs/taro';
 import LoadMore from "../../component/loadmore/LoadMore";
 import time from '../../tool/time';
 
@@ -9,7 +8,6 @@ export default function NewFriendLoadMore() {
     const newFriendList: any = useSelector((state: any) => state.NewFriend_Reducer.newFriendList)
     const pageIndex: number = useSelector((state: any) => state.NewFriend_Reducer.pageIndex);
     const pageSize = 15;
-    const sendId: string = Taro.getStorageSync("userId")
 
     const getTime = (t) => {
         var nowTime=time;
@@ -42,7 +40,6 @@ export default function NewFriendLoadMore() {
                 defaultListCount={1}
                 isLeaveClear
                 requestData={{
-                    id: sendId,
                     pageIndex: pageIndex,
                     pageSize: pageSize,
                     type: 'follow'

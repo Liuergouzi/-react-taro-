@@ -68,10 +68,6 @@ export default function PersonalSetting() {
             case 'isInfo': userTemp.isInfo = String(userInfo); setValue1(userInfo); break;
         }
 
-        if (id == "avatar" || id == "nickname") {
-            netRequest({ userId: userTemp.userId, head: userTemp.avatar, name: userTemp.nickname }, 'updateUser', 'POST', 0)
-        }
-
         netRequestTextCheck(JSON.stringify(userTemp)).then(() => {
             setUser(userTemp)
             if (isRequestFinsh && bool) {

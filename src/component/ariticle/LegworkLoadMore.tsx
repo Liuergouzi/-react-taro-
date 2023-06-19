@@ -58,7 +58,6 @@ export default function LegworkLoadMore(props: LegworkLoadMore) {
             netRequest({
                 legworkId: item.id,
                 receiveId: item.userId,
-                userId: Taro.getStorageSync("userId"),
                 time: time
             }, 'applyLegwork', 'POST', 0)
                 .then(() => {

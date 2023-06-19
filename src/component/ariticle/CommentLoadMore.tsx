@@ -98,7 +98,6 @@ export default function CommentLoadMore(props) {
                 netRequestTextCheck(JSON.stringify(comments)).then(() => {
                     netRequest({
                         movementId: props.id,
-                        otherId: Taro.getStorageSync("userId"),
                         receiveId: replayClickData.replayUserId != "" ? replayClickData.replayUserId : userId,
                         title: Taro.getStorageSync("user").nickname + "评论了你",
                         comment: comments,
@@ -140,7 +139,6 @@ export default function CommentLoadMore(props) {
                         movementId: props.id,
                         faId: replayClickData.replayId,
                         replyName: replayClickData.replayName,
-                        otherId: Taro.getStorageSync("userId"),
                         receiveId: replayClickData.replayUserId != "" ? replayClickData.replayUserId : userId,
                         title: Taro.getStorageSync("user").nickname + "回复了你",
                         comment: comments,

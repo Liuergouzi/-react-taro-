@@ -56,12 +56,10 @@ export default function Push() {
                 })
             } else {
                 const requestData = {
-                    userId: Taro.getStorageSync("userId"),
                     title: title, content: content, time: time, type: tagName[0].name, imageList: imageList
                 }
                 const requestData2 = {
-                    id: updateArticle.id, userId: Taro.getStorageSync("userId"),
-                    title: title, content: content, time: time, type: tagName[0].name, imageList: imageList 
+                    id: updateArticle.id, title: title, content: content, time: time, type: tagName[0].name, imageList: imageList 
                 }
                 if (isRequestFinsh) {
                     setIsRequestFinsh(false)
