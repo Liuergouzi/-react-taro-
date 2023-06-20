@@ -19,6 +19,7 @@ export default function NoticeLoadMore() {
     const dispatch: any = useDispatch()
     const sendId: string = Taro.getStorageSync("userId")
     const chatListData: any = useSelector((state: any) => state.Notice_Reducer.chatList)
+    console.log("a",chatListData)
     const pageIndex: number = useSelector((state: any) => state.Notice_Reducer.pageIndex);
     const pageSize = 15;
     const newMessage = useSelector((state: any) => state.Notice_Reducer.navBarRed)
@@ -95,7 +96,12 @@ export default function NoticeLoadMore() {
                                         </div>
                                         <div className={style.list_bottom}>
                                             <div className={style.list_message}>
-                                                {item.message}
+                                                {
+                                                 item.message!=null&&item.message.includes("https://47image.oss-cn-heyuan.aliyuncs.com") ?
+                                                  '[图片]'
+                                                  :
+                                                  item.message
+                                                }
                                             </div>
                                             {
                                                 item.redCount > 0 && index <= 2 && <div className={style.list_red}>新</div>

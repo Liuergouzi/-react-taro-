@@ -54,6 +54,8 @@ const images = {
     interactionLove:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/interactionLove.png",
     interactionComment:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/interactionComment.png",
     interactionReplay:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/interactionReplay.png",
+    legwork1:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/legwork1.png",
+    legwork2:"https://gykxytimage.oss-cn-heyuan.aliyuncs.com/gyk/public/images/legwork2.png"
 }
 
 export default images

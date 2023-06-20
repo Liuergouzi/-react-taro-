@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom'
+// import { Navigate } from 'react-router-dom'
 import images from '../resources';
 
 /**
@@ -36,7 +36,7 @@ import images from '../resources';
 // import ArticleLoadMore1 from '../component/ariticle/ArticleLoadMore1';
 // import ArticleLoadMore2 from '../component/ariticle/ArticleLoadMore2';
 
-const Error = React.lazy(() => import("../view/error/Error"));
+// const Error = React.lazy(() => import("../view/error/Error"));
 const Home = React.lazy(() => import("../view/home/Home"));
 const My = React.lazy(() => import("../view/my/My"));
 const Notice = React.lazy(() => import("../view/notice/Notice"));
@@ -247,17 +247,17 @@ const routes = [
     isBottomTabbar: false,
     element: <Search />,
   },
-  {
-    path: "/*",
-    isBottomTabbar: false,
-    element: <Navigate to="/home" />,
-  },
-  {
-    title: '404',
-    path: '/*',
-    isBottomTabbar: false,
-    element: <Error />,
-  },
+  // {
+  //   path: "/*",
+  //   isBottomTabbar: false,
+  //   element: <Navigate to="/home" />,
+  // },
+  // {
+  //   title: '404',
+  //   path: '/*',
+  //   isBottomTabbar: false,
+  //   element: <Error />,
+  // },
 ]
 
 

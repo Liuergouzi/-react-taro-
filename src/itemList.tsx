@@ -5,6 +5,7 @@
 
 import images from './resources'
 const itemList = {
+
   Home_bottom_list: [
     { id: 1, name: "日常分享", path: "/home/type1" },
     { id: 2, name: "快递跑腿", path: "/home/type2" },
@@ -46,8 +47,8 @@ const itemList = {
     {
       id: 2, type: 2, title: "订单",
       data: [
-        { id: 1, name: "我的发布", url: images.other },
-        { id: 2, name: "已接订单", url: images.other },
+        { id: 1, name: "我的发布", url: images.legwork1 },
+        { id: 2, name: "已接订单", url: images.legwork2 },
       ]
     },
     {
@@ -56,9 +57,9 @@ const itemList = {
         { id: 1, name: "申请认证", url: images.announcement },
         { id: 2, name: "联系客服", url: images.announcement },
         { id: 3, name: "留言反馈", url: images.announcement },
-        { id: 4, name: "我的举报", url: images.announcement },
+        { id: 4, name: "我的举报", url: images.other },
         { id: 5, name: "浏览历史", url: images.announcement },
-        { id: 6, name: "使用须知", url: images.announcement },
+        { id: 6, name: "使用须知", url: images.other },
       ]
     },
   ],

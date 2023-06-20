@@ -36,7 +36,7 @@ const My_bottom_list = React.memo(() => {
     }
 
     return (
-        <div>
+        <>
             <div className={style.myTop}>
                 <div className={style.myLeft}>
                     <div className={style.myLeftTop}>我的动态</div>
@@ -87,7 +87,7 @@ const My_bottom_list = React.memo(() => {
                     )
                 }
             </div>
-        </div>
+        </>
     )
 }
 )

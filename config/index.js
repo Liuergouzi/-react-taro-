@@ -109,6 +109,8 @@ const config = {
   h5: {
     //Ui组件库默认编译
     esnextModules: [/@antmjs[\\/]vantui/],
+    publicPath: './',
+    staticDirectory: 'static',
     // router:{
     //   mode:'browser'
     // },
